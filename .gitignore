@@ -1,0 +1,16 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+# Arquivos temporarios e logs
+*.tmp
+*.temp
+*.log
+*.swp
+*.swo

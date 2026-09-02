@@ -17,3 +17,8 @@ Abra o arquivo `index.html` em qualquer navegador.
 ## Tecnologias
 
 - HTML5
+
+
+## Avaliação
+
+- 02/09/2026 -- Avaliação em pares
