@@ -12,13 +12,15 @@
         }
         
         body {
-            background-color: white;
+            background-color: #fffaf5;
+            color: #2f211b;
             font-family: Arial, sans-serif;
             text-align: center;
         }
         
         header {
             padding: 3rem 1rem;
+            background-color: #f2dfc8;
         }
         
         header h1 {
@@ -61,6 +63,31 @@
             height: 200px;
             object-fit: cover;
             border-radius: 8px;
+        }
+
+        .aviso {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            padding: 0.75rem 1rem;
+            background-color: #f7eadb;
+            border-left: 4px solid #8B4513;
+        }
+
+        .aviso p {
+            margin: 0;
+        }
+
+        .botao-fechar {
+            width: auto;
+            padding: 0.25rem 0.6rem;
+            background-color: transparent;
+            color: #8B4513;
+            font-size: 1.5rem;
+            line-height: 1;
         }
         
         form {
@@ -120,6 +147,27 @@
         button:hover {
             background-color: #A0522D;
         }
+
+        .botao-fechar:hover {
+            background-color: #ead5bd;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: normal;
+        }
+
+        .radio-option input {
+            width: auto;
+        }
         
         footer {
             padding: 2rem 1rem;
@@ -131,11 +179,12 @@
 <body>
     <header>
         <h1>☕ Cafeteria Aroma</h1>
+        <p>Sabores especiais para deixar seu dia mais gostoso.</p>
     </header>
 
     <main>
-        <section>
-            <h2>Nossas Bebidas</h2>
+        <section aria-labelledby="titulo-bebidas">
+            <h2 id="titulo-bebidas">Nossas Bebidas</h2>
             <div class="galeria">
                 <div class="cafe-item">
                     <img src="café expresso.webp" alt="Café Espresso">
@@ -152,10 +201,89 @@
             </div>
         </section>
 
+        <section aria-labelledby="titulo-reserva">
+            <h2 id="titulo-reserva">Reserve sua mesa</h2>
+            <div class="aviso" id="aviso-reserva">
+                <p>Faça sua reserva e aproveite a experiência Aroma.</p>
+                <button class="botao-fechar" type="button" aria-label="Fechar aviso" aria-controls="aviso-reserva">&times;</button>
+            </div>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Dados da reserva</legend>
+
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input id="nome" name="nome" type="text" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input id="email" name="email" type="email" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input id="telefone" name="telefone" type="tel" autocomplete="tel" pattern="[0-9]{10,11}" title="Digite apenas 10 ou 11 números">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data">Data da reserva</label>
+                        <input id="data" name="data" type="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario">Horário</label>
+                        <input id="horario" name="horario" type="time" min="08:00" max="20:00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pessoas">Quantidade de pessoas</label>
+                        <input id="pessoas" name="pessoas" type="number" min="1" max="12" value="2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bebida">Bebida de preferência</label>
+                        <select id="bebida" name="bebida" required>
+                            <option value="">Selecione uma bebida</option>
+                            <option value="espresso">Café Espresso</option>
+                            <option value="cappuccino">Cappuccino</option>
+                            <option value="gelado">Café Gelado</option>
+                            <option value="cha">Chá artesanal</option>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Preferência de atendimento</legend>
+                    <div class="radio-group">
+                        <label class="radio-option" for="salao">
+                            <input id="salao" name="atendimento" type="radio" value="salao" required>
+                            No salão
+                        </label>
+                        <label class="radio-option" for="varanda">
+                            <input id="varanda" name="atendimento" type="radio" value="varanda">
+                            Na varanda
+                        </label>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Solicitar reserva</button>
+            </form>
+        </section>
 
     </main>
 
     <footer>
+        <p>&copy; 2026 Cafeteria Aroma</p>
     </footer>
+
+    <script>
+        const aviso = document.querySelector('#aviso-reserva');
+        const botaoFechar = aviso.querySelector('button');
+
+        botaoFechar.addEventListener('click', () => {
+            aviso.hidden = true;
+        });
+    </script>
 </body>
 </html>
