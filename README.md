@@ -17,7 +17,7 @@ Abra o arquivo `index.html` em qualquer navegador.
 ## Tecnologias
 
 - HTML5
-
+- CSS3
 
 ## Avaliação
 
