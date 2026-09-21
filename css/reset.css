@@ -1,0 +1,36 @@
+/* ==========================================================================
+   RESET CSS - Etapa 1 da Demonstração
+   Objetivo: Garantir consistência entre navegadores e evitar comportamentos inesperados
+   ========================================================================== */
+
+/* 1. box-sizing: border-box aplicado globalmente.
+   Evita o erro comum de paddings e borders somarem à largura do elemento e estourarem o layout */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Remoção de margens e preenchimentos padrão do body */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Reset básico de elementos para evitar inconsistências entre browsers */
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}

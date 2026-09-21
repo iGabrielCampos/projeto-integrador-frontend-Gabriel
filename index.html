@@ -4,32 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafeteria Aroma</title>
+    <!-- Reset CSS: padronização global e box-sizing: border-box -->
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- Style CSS: variáveis, seletores, box model e estilização temática -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
+    <header id="cabecalho-principal">
         <h1>☕ Cafeteria Aroma</h1>
         <p>Sabores especiais para deixar seu dia mais gostoso.</p>
+        <nav aria-label="Navegação principal">
+            <ul class="menu-navegacao">
+                <li><a href="#titulo-bebidas">Nossas Bebidas</a></li>
+                <li><a href="#titulo-diferenciais">Diferenciais</a></li>
+                <li><a href="#titulo-horarios">Horários</a></li>
+                <li><a href="#titulo-reserva">Reservas</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
+        <!-- Seção de Bebidas: Galeria com Cards e Destaque -->
         <section aria-labelledby="titulo-bebidas">
             <h2 id="titulo-bebidas">Nossas Bebidas</h2>
             <div class="galeria">
-                <div class="cafe-item">
+                <div class="cafe-item card">
                     <img src="assets/images/cafe-expresso.webp" alt="Café Espresso">
                     <p>Café Espresso</p>
                 </div>
-                <div class="cafe-item">
+                <div class="cafe-item card destaque">
                     <img src="assets/images/cappuccino.jpg" alt="Cappuccino">
                     <p>Cappuccino</p>
                 </div>
-                <div class="cafe-item">
+                <div class="cafe-item card">
                     <img src="assets/images/cafe-gelado.webp" alt="Café Gelado">
                     <p>Café Gelado</p>
                 </div>
             </div>
         </section>
 
+        <!-- Seção de Diferenciais: Lista estilizada com list-style-type e padding -->
+        <section aria-labelledby="titulo-diferenciais">
+            <h2 id="titulo-diferenciais">Nossos Diferenciais</h2>
+            <ul class="lista-diferenciais">
+                <li>Grãos 100% arábica de origem sustentável e torra artesanal</li>
+                <li>Métodos variados de preparo: espresso, prensa francesa e coado especial</li>
+                <li>Espaço aconchegante com Wi-Fi de alta velocidade e tomadas individuais</li>
+                <li>Opções inclusivas com leites vegetais e doces sem glúten</li>
+            </ul>
+        </section>
+
+        <!-- Seção de Horários: Tabela estilizada com border-collapse e padding -->
+        <section aria-labelledby="titulo-horarios">
+            <h2 id="titulo-horarios">Horários de Funcionamento</h2>
+            <table class="tabela-horarios">
+                <thead>
+                    <tr>
+                        <th scope="col">Dia da Semana</th>
+                        <th scope="col">Abertura</th>
+                        <th scope="col">Fechamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Segunda a Sexta</td>
+                        <td>07:30</td>
+                        <td>20:00</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td>08:00</td>
+                        <td>19:00</td>
+                    </tr>
+                    <tr>
+                        <td>Domingo e Feriados</td>
+                        <td>08:30</td>
+                        <td>14:00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Seção de Reserva: Formulário estruturado com classes reutilizáveis -->
         <section aria-labelledby="titulo-reserva">
             <h2 id="titulo-reserva">Reserve sua mesa</h2>
             <div class="aviso" id="aviso-reserva">
@@ -96,14 +152,15 @@
                     </div>
                 </fieldset>
 
-                <button type="submit">Solicitar reserva</button>
+                <button class="botao botao-primario" type="submit">Solicitar reserva</button>
             </form>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2026 Cafeteria Aroma</p>
+        <p>&copy; 2026 Cafeteria Aroma - Todos os direitos reservados.</p>
+        <p><a href="#cabecalho-principal">Voltar ao topo ↑</a></p>
     </footer>
 
 </body>
