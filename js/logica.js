@@ -4,7 +4,6 @@
  * disponibiliza um menu de navegacao no terminal e em alertas.
  */
 
-// Cardapio da cafeteria
 const cardapio = [
     { id: 1, nome: "Cafe Espresso Tradicional", categoria: "espresso", preco: 9.00 },
     { id: 2, nome: "Cappuccino Italiano", categoria: "cappuccino", preco: 14.50 },
@@ -18,7 +17,6 @@ const cardapio = [
  * Executa o fluxo de analise e o menu interativo.
  */
 function iniciarMenuInterativo() {
-    // Leitura e validacao do valor limite
     const valorPadrao = 15.00;
     let precoLimite = valorPadrao;
 
@@ -41,24 +39,19 @@ function iniciarMenuInterativo() {
         }
     }
 
-    // Variaveis de controle e acumuladores
     const itensProcessados = [];
     let totalPreco = 0;
     let contadorDentroDoLimite = 0;
     let itemMaisCaro = cardapio[0];
     let itemMaisBarato = cardapio[0];
 
-    // Classifica os itens e calcula os totais
     for (const item of cardapio) {
-        // Acumula o valor total
         totalPreco += item.preco;
 
-        // Conta os itens que cabem no orcamento
         if (item.preco <= precoLimite) {
             contadorDentroDoLimite++;
         }
 
-        // Localiza os extremos de preco
         if (item.preco > itemMaisCaro.preco) {
             itemMaisCaro = item;
         }
@@ -66,7 +59,6 @@ function iniciarMenuInterativo() {
             itemMaisBarato = item;
         }
 
-        // Faixa de preco
         let faixaPreco = "";
         if (item.preco < 12.00) {
             faixaPreco = "Economico";
@@ -76,7 +68,6 @@ function iniciarMenuInterativo() {
             faixaPreco = "Premium";
         }
 
-        // Descricao de cada categoria
         let etiquetaCategoria = "";
         switch (item.categoria) {
             case "espresso":
@@ -99,10 +90,8 @@ function iniciarMenuInterativo() {
                 break;
         }
 
-        // Status em relacao ao orcamento
         const statusOrcamento = item.preco <= precoLimite ? "Dentro do orcamento" : "Acima do orcamento";
 
-        // Salva o item formatado na lista final
         itensProcessados.push({
             id: item.id,
             nome: item.nome,
@@ -114,7 +103,6 @@ function iniciarMenuInterativo() {
         });
     }
 
-    // Media de precos
     const mediaPreco = totalPreco / cardapio.length;
 
     /*
@@ -125,7 +113,6 @@ function iniciarMenuInterativo() {
      * 3. Cafe Gelado Caramelo (18.00)      -> Premium       -> Total: 41.50 -> No orcamento: 2
      */
 
-    // Exibe o relatorio geral no console
     console.log(`\n======================================================`);
     console.log(`☕ RELATORIO GERAL - CARDAPIO CAFETERIA AROMA`);
     console.log(`======================================================`);
@@ -139,7 +126,6 @@ function iniciarMenuInterativo() {
     console.log("Tabela completa dos itens classificados:");
     console.table(itensProcessados);
 
-    // Menu interativo com as opcoes de consulta
     let opcaoMenu = "";
 
     do {
@@ -208,7 +194,6 @@ function iniciarMenuInterativo() {
     } while (opcaoMenu !== "sair");
 }
 
-// Executa ao carregar a pagina
 iniciarMenuInterativo();
 
 // Permite reabrir a funcao pelo botao da pagina ou pelo console

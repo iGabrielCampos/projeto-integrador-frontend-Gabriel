@@ -1,5 +1,3 @@
-/* Reset basico para manter o comportamento padrao consistente entre navegadores */
-
 /* Inclui padding e bordas na largura total dos elementos */
 *,
 *::before,
@@ -7,13 +5,11 @@
     box-sizing: border-box;
 }
 
-/* Remove espacamentos padrao do body */
 body {
     margin: 0;
     padding: 0;
 }
 
-/* Zera margens e preenchimentos de elementos estruturais comuns */
 h1,
 h2,
 h3,

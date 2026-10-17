@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafeteria Aroma</title>
-    <!-- Reset de estilos padrao -->
     <link rel="stylesheet" href="css/reset.css">
-    <!-- Folha de estilos principal -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -33,9 +31,7 @@
                 <p class="slogan-marca">Sabores especiais para deixar seu dia mais gostoso.</p>
             </div>
 
-            <!-- Navegacao principal -->
             <nav id="menu-principal" class="navegacao-principal" aria-label="Navegação principal">
-                <!-- Botao de menu para telas menores -->
                 <button class="botao-hamburguer" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
                     <span class="linha-hamburguer"></span>
                     <span class="linha-hamburguer"></span>
@@ -43,7 +39,6 @@
                 </button>
 
                 <ul class="menu-navegacao">
-                    <!-- Item com submenu suspenso -->
                     <li class="menu-item-dropdown">
                         <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page" aria-haspopup="true">
                             Nossas Bebidas <span class="indicador-dropdown" aria-hidden="true">▾</span>
@@ -64,7 +59,6 @@
     </header>
 
     <main>
-        <!-- Bebidas em destaque -->
         <section aria-labelledby="titulo-bebidas">
             <h2 id="titulo-bebidas">Nossas Bebidas</h2>
             <div class="galeria">
@@ -87,7 +81,6 @@
             </div>
         </section>
 
-        <!-- Analisador interativo de cardapio -->
         <section aria-labelledby="titulo-analisador">
             <h2 id="titulo-analisador">Analisador de Cardápio Interativo</h2>
             <div class="card destaque" style="width: 100%; max-width: 600px; margin: 1rem auto; padding: 1.5rem; text-align: center;">
@@ -103,7 +96,6 @@
             </div>
         </section>
 
-        <!-- Diferenciais -->
         <section aria-labelledby="titulo-diferenciais">
             <h2 id="titulo-diferenciais">Nossos Diferenciais</h2>
             <ul class="lista-diferenciais">
@@ -114,7 +106,6 @@
             </ul>
         </section>
 
-        <!-- Horarios de funcionamento -->
         <section aria-labelledby="titulo-horarios">
             <h2 id="titulo-horarios">Horários de Funcionamento</h2>
             <table class="tabela-horarios">
@@ -145,7 +136,6 @@
             </table>
         </section>
 
-        <!-- Formulario de reserva -->
         <section aria-labelledby="titulo-reserva">
             <h2 id="titulo-reserva">Reserve sua mesa</h2>
             <div class="aviso" id="aviso-reserva">
@@ -223,7 +213,6 @@
         <p><a href="#cabecalho-principal">Voltar ao topo ↑</a></p>
     </footer>
 
-    <!-- Logica interativa do cardapio -->
     <script src="js/logica.js" defer></script>
 </body>
 </html>

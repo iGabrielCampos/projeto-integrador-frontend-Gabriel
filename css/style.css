@@ -1,21 +1,17 @@
-/* Estilos principais da Cafeteria Aroma */
-
-/* Variaveis de cores, medidas e sombras */
 :root {
-    --cor-primaria: #6f4e37;          /* Marrom principal */
-    --cor-primaria-escura: #4d3322;   /* Tom escuro para titulos e hover */
-    --cor-secundaria: #c89666;        /* Tom caramelo para destaques */
-    --cor-fundo: #fbf9f5;             /* Fundo claro da pagina */
-    --cor-superficie: #ffffff;        /* Fundo branco de cards */
-    --cor-texto: #2c2523;             /* Texto principal */
-    --cor-texto-suave: #6b635f;       /* Textos secundarios */
-    --cor-borda: #e8e0d7;             /* Bordas e divisorias */
+    --cor-primaria: #6f4e37;
+    --cor-primaria-escura: #4d3322;
+    --cor-secundaria: #c89666;
+    --cor-fundo: #fbf9f5;
+    --cor-superficie: #ffffff;
+    --cor-texto: #2c2523;
+    --cor-texto-suave: #6b635f;
+    --cor-borda: #e8e0d7;
     --espacamento-padrao: 1.5rem;
     --raio-borda: 0.5rem;
     --sombra-card: 0 4px 12px rgba(111, 78, 55, 0.08);
 }
 
-/* Tamanhos em rem respeitam o zoom e o tamanho de fonte padrao do usuario */
 body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
@@ -24,7 +20,6 @@ body {
     line-height: 1.6;
 }
 
-/* Regras compartilhadas entre os titulos */
 h1, h2, h3 {
     color: var(--cor-primaria-escura);
     line-height: 1.25;
@@ -53,7 +48,6 @@ h3 {
     box-shadow: 0 2px 8px rgba(111, 78, 55, 0.08);
 }
 
-/* Alinhamento da marca e dos links da navegacao */
 .navbar-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -118,7 +112,6 @@ h3 {
     background-color: var(--cor-secundaria);
 }
 
-/* Lista de links da navegacao */
 .menu-navegacao {
     display: flex;
     align-items: center;
@@ -128,7 +121,6 @@ h3 {
     padding: 0;
 }
 
-/* Estilos dos links do menu */
 .link-menu {
     display: inline-flex;
     align-items: center;
@@ -149,7 +141,6 @@ h3 {
     text-decoration: none;
 }
 
-/* Item da secao ativa */
 .link-menu.ativo,
 .link-menu.active,
 .link-menu[aria-current="page"] {
@@ -234,7 +225,6 @@ h3 {
     color: var(--cor-primaria-escura);
 }
 
-/* Links do rodape */
 footer a:link {
     color: var(--cor-primaria);
     text-decoration: none;
@@ -256,7 +246,6 @@ footer a:active {
     color: #9c27b0;
 }
 
-/* Layout do conteudo principal */
 main {
     max-width: 900px;
     margin: 0 auto;
@@ -267,7 +256,6 @@ section {
     margin-bottom: 2.5rem;
 }
 
-/* Galeria de produtos */
 .galeria {
     display: flex;
     flex-wrap: wrap;
@@ -275,7 +263,6 @@ section {
     justify-content: center;
 }
 
-/* Cards das bebidas */
 .card {
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
@@ -293,7 +280,7 @@ section {
     box-shadow: 0 8px 20px rgba(111, 78, 55, 0.14);
 }
 
-/* Mantem a proporcao da imagem sem distorcer */
+/* Mantem a proporcao da foto sem distorcer */
 .card img {
     width: 100%;
     height: 180px;
@@ -308,13 +295,11 @@ section {
     color: var(--cor-primaria-escura);
 }
 
-/* Card em destaque */
 .destaque {
     border: 2px solid var(--cor-secundaria);
     background-color: #fff9f2;
 }
 
-/* Estilos de botao */
 .botao {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -342,7 +327,6 @@ section {
     transform: scale(0.99);
 }
 
-/* Tabela de horarios */
 .tabela-horarios {
     width: 100%;
     border-collapse: collapse;
@@ -371,7 +355,6 @@ section {
     background-color: #f7f2ed;
 }
 
-/* Lista de diferenciais */
 .lista-diferenciais {
     list-style-type: square;
     padding-left: 1.5rem;
@@ -392,7 +375,6 @@ section {
     margin-bottom: 0;
 }
 
-/* Aviso e formulario de reserva */
 #aviso-reserva {
     display: flex;
     justify-content: space-between;
@@ -493,7 +475,6 @@ select:focus {
     cursor: pointer;
 }
 
-/* Rodape */
 footer {
     text-align: center;
     border-top: 1px solid var(--cor-borda);
