@@ -1,23 +1,29 @@
 # Cafeteria Aroma
 
-Página HTML de uma cafeteria com galeria de bebidas e formulário acessível para reserva de mesa.
+Página web de uma cafeteria com cardápio de bebidas, galeria, horários de funcionamento, analisador interativo e formulário acessível para reserva de mesa.
 
 ## Recursos
 
-- Galeria com fotos de cafés
-- Estrutura semântica com `header`, `main`, `section` e `footer`
-- Formulário de reserva com campos obrigatórios e validações
-- Seleção de bebida e preferência de atendimento
-- Labels associados corretamente aos campos do formulário
+- Galeria de bebidas com fotos de cafés e chás artesanais
+- Barra de navegação com Flexbox e cabeçalho fixo no topo (`position: sticky`)
+- Submenu suspenso (dropdown) acessível pelo mouse e teclado
+- Botão de menu adaptado para telas menores
+- Tabela com os horários de funcionamento
+- Lista com os diferenciais da cafeteria
+- Formulário de reserva com validações nativas e campos acessíveis
+- Analisador de cardápio em JavaScript com filtros de preço, cálculo de estatísticas e menu interativo
 
 ## Como visualizar
 
-Abra o arquivo `index.html` em qualquer navegador.
+Abra o arquivo `index.html` no navegador. Para testar o analisador de bebidas:
+1. Abra as ferramentas de desenvolvedor (<kbd>F12</kbd>) na aba **Console**.
+2. Clique no botão **☕ Abrir Menu Interativo** na página para rodar as consultas e relatórios.
 
 ## Tecnologias
 
 - HTML5
 - CSS3
+- JavaScript (ES6+)
 
 ## Avaliação
 
