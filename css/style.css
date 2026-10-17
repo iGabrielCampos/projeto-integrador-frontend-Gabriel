@@ -62,68 +62,232 @@ h3 {
 }
 
 /* --------------------------------------------------------------------------
-   4. SELETOR DE ID
-   Elemento único e estrutural da página: o cabeçalho principal da Cafeteria Aroma.
+   4. SELETOR DE ID E NAVBAR STICKY (AULA 08)
+   O cabeçalho principal permanece fixo no topo durante a rolagem (sticky),
+   com background sólido e sombra para não misturar com o conteúdo da página.
+   O z-index: 100 cria um Stacking Context superior sobre os cards e seções.
    -------------------------------------------------------------------------- */
 #cabecalho-principal {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     background-color: var(--cor-superficie);
     border-bottom: 1px solid var(--cor-borda);
-    padding: var(--espacamento-padrao) 1rem;
-    text-align: center;
+    box-shadow: 0 2px 8px rgba(111, 78, 55, 0.08);
 }
 
-#cabecalho-principal p {
-    font-size: 1.125rem;
+/* NAVBAR COM FLEXBOX:
+   Alinha em linha a identidade visual (marca) e os itens de navegação (menu) */
+.navbar-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.marca {
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-marca {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+
+.link-marca {
+    color: var(--cor-primaria-escura);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.2s ease;
+}
+
+.link-marca:hover {
+    color: var(--cor-secundaria);
+}
+
+.slogan-marca {
+    font-size: 0.8125rem;
     color: var(--cor-texto-suave);
-    margin-top: 0.5rem;
+    margin: 0.2rem 0 0 0;
+}
+
+/* BOTÃO HAMBÚRGUER (Acessível via HTML/CSS):
+   Oculto no desktop e visível apenas em telas menores via @media */
+.botao-hamburguer {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2.25rem;
+    height: 1.85rem;
+    padding: 0.25rem;
+    background: transparent;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+}
+
+.linha-hamburguer {
+    width: 100%;
+    height: 2px;
+    background-color: var(--cor-primaria-escura);
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
+
+.botao-hamburguer:hover .linha-hamburguer {
+    background-color: var(--cor-secundaria);
+}
+
+/* Lista horizontal de navegação com Flexbox */
+.menu-navegacao {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* --------------------------------------------------------------------------
-   7. ESTILIZAÇÃO DOS 4 ESTADOS DE LINKS (Ordem LoVe / HAte)
-   Ordem estrita:
-   1. :link     (Link não visitado)
-   2. :visited  (Link já visitado)
-   3. :hover    (Cursor sobre o link)
-   4. :active   (Momento do clique)
-   Esta ordem garante que pseudo-classes posteriores sobrescrevam as anteriores
-   corretamente de acordo com a especificidade da cascata CSS.
+   7. ESTILIZAÇÃO DE LINKS, HOVER E ESTADO ATIVO (AULA 08)
    -------------------------------------------------------------------------- */
+.link-menu {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--raio-borda);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
 
-/* COMBINADOR DESCENDENTE (espaço):
-   Seleciona links dentro do menu de navegação e rodapé para estilização contextual. */
-.menu-navegacao a:link,
+.link-menu:hover,
+.link-menu:focus {
+    color: var(--cor-primaria-escura);
+    background-color: rgba(111, 78, 55, 0.08);
+    text-decoration: none;
+}
+
+/* ESTADO ATIVO:
+   Classe .ativo, .active e atributo de acessibilidade aria-current="page" */
+.link-menu.ativo,
+.link-menu.active,
+.link-menu[aria-current="page"] {
+    color: #ffffff;
+    background-color: var(--cor-primaria);
+    box-shadow: 0 2px 6px rgba(111, 78, 55, 0.2);
+}
+
+.link-menu.ativo:hover,
+.link-menu.active:hover,
+.link-menu[aria-current="page"]:hover {
+    background-color: var(--cor-primaria-escura);
+    color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   SUBMENU DROPDOWN VIA :HOVER E :FOCUS-WITHIN (SEM BURACOS)
+   - Item pai com position: relative
+   - Submenu com position: absolute, top: 100% e margin: 0 (zero gap)
+   - Ponte invisível via pseudo-elemento ::before para continuidade do cursor
+   - Abre por :hover no mouse e :focus-within no teclado
+   -------------------------------------------------------------------------- */
+.menu-item-dropdown {
+    position: relative; /* Contexto de posicionamento do dropdown */
+}
+
+.indicador-dropdown {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.menu-item-dropdown:hover .indicador-dropdown {
+    transform: rotate(180deg);
+}
+
+.submenu-dropdown {
+    position: absolute;
+    top: 100%;                          /* Alinhado imediatamente à base do link pai */
+    left: 0;
+    min-width: 210px;
+    margin: 0;                          /* Zero margin-top para não criar buraco no hover */
+    padding: 0.5rem 0;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    box-shadow: 0 8px 20px rgba(111, 78, 55, 0.15);
+    list-style: none;
+    z-index: 101;                       /* Acima do cabeçalho sticky */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+/* Ponte de hover (hover bridge) garantindo que micro-movimentos do cursor não fechem o menu */
+.submenu-dropdown::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: 0;
+    right: 0;
+    height: 8px;
+}
+
+/* Abertura do submenu ao passar o mouse ou focar via teclado */
+.menu-item-dropdown:hover .submenu-dropdown,
+.menu-item-dropdown:focus-within .submenu-dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.link-submenu {
+    display: block;
+    padding: 0.625rem 1.125rem;
+    color: var(--cor-texto);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.link-submenu:hover,
+.link-submenu:focus {
+    background-color: #f7f2ed;
+    color: var(--cor-primaria-escura);
+}
+
+/* Links do Rodapé (mantendo demonstração dos estados LoVe/HAte da Aula 06) */
 footer a:link {
     color: var(--cor-primaria);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 600;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
-.menu-navegacao a:visited,
 footer a:visited {
     color: var(--cor-secundaria);
 }
 
-.menu-navegacao a:hover,
 footer a:hover {
     color: var(--cor-primaria-escura);
     text-decoration: underline;
 }
 
-.menu-navegacao a:active,
 footer a:active {
-    color: #9c27b0; /* Feedback visual imediato durante o clique */
-}
-
-/* Lista horizontal de navegação */
-.menu-navegacao {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    list-style-type: none;
-    margin-top: 1rem;
-    flex-wrap: wrap;
+    color: #9c27b0;
 }
 
 /* --------------------------------------------------------------------------
@@ -402,4 +566,47 @@ footer {
 
 footer p {
     margin-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVIDADE E BOTÃO HAMBÚRGUER (AULA 08)
+   Oculto no desktop e visível em telas estreitas via @media.
+   A lista de navegação se adapta ao layout compacto sem necessidade de JS.
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .botao-hamburguer {
+        display: flex;
+    }
+
+    .menu-navegacao {
+        display: none;
+    }
+
+    /* Permite navegação acessível em telas estreitas via :focus-within */
+    .navegacao-principal:focus-within .menu-navegacao {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        left: 1rem;
+        background-color: var(--cor-superficie);
+        border: 1px solid var(--cor-borda);
+        border-radius: var(--raio-borda);
+        padding: 1rem;
+        box-shadow: 0 8px 24px rgba(111, 78, 55, 0.15);
+        gap: 0.5rem;
+    }
+
+    .navegacao-principal:focus-within .link-menu {
+        width: 100%;
+    }
+
+    .navegacao-principal:focus-within .submenu-dropdown {
+        position: static;
+        box-shadow: none;
+        border: none;
+        background-color: #fbf9f5;
+        padding-left: 1rem;
+    }
 }
