@@ -36,7 +36,7 @@ const cardapio = [
 const valorPadrao = 15.00;
 let precoLimite = valorPadrao;
 
-const entradaUsuario = prompt("Informe um preco maximo em R$ para filtrar o cardapio (faixa valida: 5 a 50):");
+const entradaUsuario = prompt("Informe um preco maximo em R$ para filtrar o cardapio (faixa valida: 5 a 50):", "15.00");
 const valorRecebido = entradaUsuario ?? "";
 
 if (entradaUsuario === null) {
@@ -163,8 +163,8 @@ let opcaoMenu = "";
 do {
     const entradaMenu = prompt(
         "=== MENU INTERATIVO - CAFETERIA AROMA ===\n\n" +
-        "1 - Listar itens analisados no console\n" +
-        "2 - Exibir resumo estatistico no console\n" +
+        "1 - Listar itens analisados\n" +
+        "2 - Exibir resumo estatistico\n" +
         "3 (ou 'sair') - Encerrar o sistema\n\n" +
         "Escolha uma opcao:"
     );
@@ -172,11 +172,22 @@ do {
     const opcaoNormalizada = (entradaMenu ?? "3").trim().toLowerCase();
 
     switch (opcaoNormalizada) {
-        case "1":
+        case "1": {
             console.log("\n--- LISTAGEM DE BEBIDAS ANALISADAS ---");
             console.table(itensProcessados);
+
+            let textoItens = "☕ BEBIDAS ANALISADAS - CAFETERIA AROMA\n\n";
+            for (const itemCardapio of itensProcessados) {
+                textoItens += `${itemCardapio.id}. ${itemCardapio.nome}\n` +
+                    `   Preco: R$ ${itemCardapio.preco.toFixed(2)} | Faixa: ${itemCardapio.faixaPreco}\n` +
+                    `   Tipo: ${itemCardapio.etiquetaCategoria}\n` +
+                    `   Status: ${itemCardapio.statusOrcamento}\n\n`;
+            }
+            textoItens += "(A tabela completa tambem foi impressa no Console F12)";
+            alert(textoItens);
             break;
-        case "2":
+        }
+        case "2": {
             console.log("\n--- RESUMO ESTATISTICO DA CAFETERIA ---");
             console.log(`Preco maximo informado: R$ ${precoLimite.toFixed(2)}`);
             console.log(`Total acumulado: R$ ${totalPreco.toFixed(2)}`);
@@ -184,14 +195,28 @@ do {
             console.log(`Bebida de maior valor: ${itemMaisCaro.nome} (R$ ${itemMaisCaro.preco.toFixed(2)})`);
             console.log(`Bebida de menor valor: ${itemMaisBarato.nome} (R$ ${itemMaisBarato.preco.toFixed(2)})`);
             console.log(`Bebidas dentro do orcamento: ${contadorDentroDoLimite} de ${cardapio.length}`);
+
+            const textoResumo =
+                "📊 RESUMO ESTATISTICO - CAFETERIA AROMA\n\n" +
+                `• Preco limite informado: R$ ${precoLimite.toFixed(2)}\n` +
+                `• Total acumulado do cardapio: R$ ${totalPreco.toFixed(2)}\n` +
+                `• Preco medio das bebidas: R$ ${mediaPreco.toFixed(2)}\n` +
+                `• Bebida mais cara: ${itemMaisCaro.nome} (R$ ${itemMaisCaro.preco.toFixed(2)})\n` +
+                `• Bebida mais acessivel: ${itemMaisBarato.nome} (R$ ${itemMaisBarato.preco.toFixed(2)})\n` +
+                `• Bebidas dentro do orcamento: ${contadorDentroDoLimite} de ${cardapio.length} itens\n\n` +
+                "(Os dados estatisticos completos tambem foram impressos no Console F12)";
+            alert(textoResumo);
             break;
+        }
         case "3":
         case "sair":
             console.log("\n[Sistema Encerrado] Obrigado por utilizar o analisador da Cafeteria Aroma!");
+            alert("☕ [Sistema Encerrado]\nObrigado por utilizar o analisador da Cafeteria Aroma!");
             opcaoMenu = "sair";
             break;
         default:
             console.warn("\n[Aviso] Opcao invalida. Por favor, escolha 1, 2, 3 ou digite 'sair'.");
+            alert("⚠️ Opcao invalida!\nPor favor, escolha 1, 2, 3 ou digite 'sair'.");
             break;
     }
 
