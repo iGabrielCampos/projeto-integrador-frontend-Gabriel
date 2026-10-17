@@ -32,9 +32,14 @@ const cardapio = [
     { id: 6, nome: "Espresso Duplo com Leite Vegetal", categoria: "espresso", preco: 13.50 }
 ];
 
-// 2. Entrada de dados e validacao (prompt + Number + ??)
-const valorPadrao = 15.00;
-let precoLimite = valorPadrao;
+/**
+ * Funcao principal responsavel por disparar o fluxo de analise e o menu interativo.
+ * Pode ser executada automaticamente no carregamento ou sob demanda via interface/console.
+ */
+function iniciarMenuInterativo() {
+    // 2. Entrada de dados e validacao (prompt + Number + ??)
+    const valorPadrao = 15.00;
+    let precoLimite = valorPadrao;
 
 const entradaUsuario = prompt("Informe um preco maximo em R$ para filtrar o cardapio (faixa valida: 5 a 50):", "15.00");
 const valorRecebido = entradaUsuario ?? "";
@@ -224,3 +229,12 @@ do {
         opcaoMenu = "sair";
     }
 } while (opcaoMenu !== "sair");
+}
+
+// Execucao automatica inicial (Atividade Pratica da Aula 09)
+iniciarMenuInterativo();
+
+// Exportacao para escopo global (permite reabrir via botao ou console F12)
+if (typeof window !== "undefined") {
+    window.iniciarMenuInterativo = iniciarMenuInterativo;
+}
