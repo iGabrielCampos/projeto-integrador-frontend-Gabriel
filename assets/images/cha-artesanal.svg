@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Gradiente de Fundo Quente Temático -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8f0"/>
+      <stop offset="50%" stop-color="#f5ece1"/>
+      <stop offset="100%" stop-color="#e8d8c7"/>
+    </linearGradient>
+
+    <!-- Gradiente do Chá Âmbar Dourado -->
+    <linearGradient id="teaLiquid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e9b872"/>
+      <stop offset="60%" stop-color="#c88b48"/>
+      <stop offset="100%" stop-color="#9a5f27"/>
+    </linearGradient>
+
+    <!-- Gradiente do Vidro / Xícara -->
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="#fdfbf7" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#e8e0d7" stop-opacity="0.6"/>
+    </linearGradient>
+
+    <!-- Gradiente da Folha Artesanal -->
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#80b978"/>
+      <stop offset="100%" stop-color="#467c42"/>
+    </linearGradient>
+
+    <!-- Sombra Suave -->
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#6f4e37" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Fundo da Ilustração -->
+  <rect width="400" height="300" rx="12" fill="url(#bgGrad)"/>
+
+  <!-- Superfície / Mesa de Madeira Suave -->
+  <ellipse cx="200" cy="245" rx="140" ry="24" fill="#6f4e37" fill-opacity="0.1" filter="url(#softShadow)"/>
+
+  <!-- Pires -->
+  <ellipse cx="200" cy="235" rx="110" ry="18" fill="#fdfbf8" stroke="#e0d4c5" stroke-width="2"/>
+  <ellipse cx="200" cy="234" rx="90" ry="13" fill="#f5ede3" stroke="#dfd2c0" stroke-width="1.5"/>
+
+  <!-- Sombra da Xícara no Pires -->
+  <ellipse cx="200" cy="225" rx="65" ry="10" fill="#6f4e37" fill-opacity="0.15"/>
+
+  <!-- Alça da Xícara de Vidro -->
+  <path d="M 252 145 C 290 145, 292 205, 248 208" fill="none" stroke="url(#glassGrad)" stroke-width="9" stroke-linecap="round"/>
+  <path d="M 252 145 C 285 145, 287 205, 248 208" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Corpo da Xícara / Caneca de Vidro -->
+  <path d="M 140 130 
+           L 148 215 
+           C 150 230, 250 230, 252 215 
+           L 260 130 
+           Z" 
+        fill="url(#glassGrad)" 
+        stroke="#ffffff" 
+        stroke-width="2.5" 
+        filter="url(#softShadow)"/>
+
+  <!-- Líquido do Chá Artesanal -->
+  <path d="M 144 148 
+           L 149 212 
+           C 151 224, 249 224, 251 212 
+           L 256 148 
+           C 225 153, 175 153, 144 148 
+           Z" 
+        fill="url(#teaLiquid)"/>
+
+  <!-- Superfície Superior do Chá (Elipse de Nível) -->
+  <ellipse cx="200" cy="148" rx="56" ry="7" fill="#f7caa0" fill-opacity="0.75"/>
+
+  <!-- Borda Superior da Xícara -->
+  <ellipse cx="200" cy="130" rx="60" ry="8" fill="#ffffff" fill-opacity="0.3" stroke="#ffffff" stroke-width="2.5"/>
+
+  <!-- Folha de Chá Submersa -->
+  <path d="M 185 175 Q 175 160 188 152 Q 200 165 185 175 Z" fill="#467c42" opacity="0.65"/>
+  <path d="M 215 190 Q 228 175 220 168 Q 208 180 215 190 Z" fill="#3a6836" opacity="0.7"/>
+
+  <!-- Ramos e Folhas Frescas de Hortelã Saindo da Borda -->
+  <!-- Haste -->
+  <path d="M 198 155 Q 192 125 182 105" fill="none" stroke="#52884d" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Folha Esquerda -->
+  <path d="M 188 120 C 165 110, 160 130, 185 130 C 195 130, 192 122, 188 120 Z" fill="url(#leafGrad)" stroke="#3e6d3a" stroke-width="0.8"/>
+  <path d="M 186 122 Q 174 121 168 118" fill="none" stroke="#3e6d3a" stroke-width="0.8"/>
+  <!-- Folha Direita -->
+  <path d="M 192 112 C 215 102, 220 122, 195 124 C 188 124, 190 115, 192 112 Z" fill="url(#leafGrad)" stroke="#3e6d3a" stroke-width="0.8"/>
+  <!-- Broto Superior -->
+  <path d="M 182 105 C 172 88, 192 85, 186 103 Z" fill="#93ce8b" stroke="#467c42" stroke-width="0.8"/>
+
+  <!-- Flor de Camomila Decorativa Flutuando / Apoio -->
+  <g transform="translate(155, 230) scale(0.65)">
+    <!-- Pétalas Brancas -->
+    <ellipse cx="20" cy="8" rx="5" ry="11" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="20" cy="32" rx="5" ry="11" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="8" cy="20" rx="11" ry="5" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="32" cy="20" rx="11" ry="5" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="11" cy="11" rx="9" ry="5" transform="rotate(-45 11 11)" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="29" cy="11" rx="9" ry="5" transform="rotate(45 29 11)" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="11" cy="29" rx="9" ry="5" transform="rotate(45 11 29)" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <ellipse cx="29" cy="29" rx="9" ry="5" transform="rotate(-45 29 29)" fill="#ffffff" stroke="#e8e0d7" stroke-width="0.8"/>
+    <!-- Miolo Amarelo Ouro -->
+    <circle cx="20" cy="20" r="7.5" fill="#e9a825" stroke="#c88b15" stroke-width="1"/>
+  </g>
+
+  <!-- Brilho no Vidro da Xícara (Reflexo Elegante) -->
+  <path d="M 152 145 L 157 210 C 158 214, 163 214, 163 210 L 158 145 Z" fill="#ffffff" opacity="0.45"/>
+
+  <!-- Ondas de Vapor Aromático Quente -->
+  <path d="M 175 110 C 168 95, 180 85, 172 70 C 168 62, 172 55, 170 48" fill="none" stroke="#6f4e37" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+  <path d="M 205 105 C 215 90, 202 78, 212 62 C 216 54, 210 46, 214 38" fill="none" stroke="#6f4e37" stroke-width="2.5" stroke-linecap="round" opacity="0.25"/>
+  <path d="M 225 112 C 232 100, 224 88, 230 76" fill="none" stroke="#6f4e37" stroke-width="2" stroke-linecap="round" opacity="0.2"/>
+</svg>

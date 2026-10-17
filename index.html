@@ -10,17 +10,67 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- ==========================================================================
+       DIAGNÓSTICO TÉCNICO: CONTEXTO DE EMPILHAMENTO (STACKING CONTEXT) - AULA 08
+       
+       1. Prevenção de Conflitos e Sobreposição:
+          O cabeçalho principal (#cabecalho-principal) foi configurado com:
+          'position: sticky; top: 0; z-index: 100;'.
+          O submenu suspenso (.submenu-dropdown) possui:
+          'position: absolute; z-index: 101;'.
+          Essa combinação assegura que tanto a barra de navegação fixa quanto o dropdown
+          permaneçam em planos superiores na renderização tridimensional do navegador,
+          evitando que cards com 'transform', tabelas ou botões se sobreponham ao menu
+          durante a rolagem da página.
+       
+       2. Mapeamento de Contextos de Empilhamento da Página (Desafio Extra):
+          Na página atual existem 5 contextos de empilhamento distintos:
+          - Contexto 1 (Raiz): Elemento <html> (Stacking context padrão raiz criado pelo documento).
+          - Contexto 2 (#cabecalho-principal): Criado pela combinação de 'position: sticky' e 'z-index: 100'.
+          - Contexto 3 (.submenu-dropdown): Criado pela combinação de 'position: absolute' e 'z-index: 101'.
+          - Contexto 4 (.card:hover): Criado pela propriedade 'transform: translateY(-4px)' aplicada no estado :hover
+            dos cards de bebidas da galeria (a especificação CSS define que qualquer elemento com 'transform'
+            diferente de 'none' gera um novo contexto de empilhamento).
+          - Contexto 5 (.botao-primario:active): Criado pela propriedade 'transform: scale(0.99)' durante o clique ativo
+            no botão de submissão do formulário.
+       ========================================================================== -->
     <header id="cabecalho-principal">
-        <h1>☕ Cafeteria Aroma</h1>
-        <p>Sabores especiais para deixar seu dia mais gostoso.</p>
-        <nav aria-label="Navegação principal">
-            <ul class="menu-navegacao">
-                <li><a href="#titulo-bebidas">Nossas Bebidas</a></li>
-                <li><a href="#titulo-diferenciais">Diferenciais</a></li>
-                <li><a href="#titulo-horarios">Horários</a></li>
-                <li><a href="#titulo-reserva">Reservas</a></li>
-            </ul>
-        </nav>
+        <div class="navbar-container">
+            <div class="marca">
+                <h1 class="titulo-marca">
+                    <a href="#cabecalho-principal" class="link-marca">☕ Cafeteria Aroma</a>
+                </h1>
+                <p class="slogan-marca">Sabores especiais para deixar seu dia mais gostoso.</p>
+            </div>
+
+            <!-- Navbar com Flexbox -->
+            <nav id="menu-principal" class="navegacao-principal" aria-label="Navegação principal">
+                <!-- Botão Hambúrguer Responsivo e Acessível (HTML/CSS) -->
+                <button class="botao-hamburguer" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+                    <span class="linha-hamburguer"></span>
+                    <span class="linha-hamburguer"></span>
+                    <span class="linha-hamburguer"></span>
+                </button>
+
+                <ul class="menu-navegacao">
+                    <!-- Dropdown via :hover e :focus-within sem buracos -->
+                    <li class="menu-item-dropdown">
+                        <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page" aria-haspopup="true">
+                            Nossas Bebidas <span class="indicador-dropdown" aria-hidden="true">▾</span>
+                        </a>
+                        <ul class="submenu-dropdown" aria-label="Submenu de bebidas">
+                            <li><a href="#titulo-bebidas" class="link-submenu">☕ Cafés Espressos</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">🥛 Cappuccinos</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">🧊 Cafés Gelados</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">🍵 Chás Artesanais</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#titulo-diferenciais" class="link-menu">Diferenciais</a></li>
+                    <li><a href="#titulo-horarios" class="link-menu">Horários</a></li>
+                    <li><a href="#titulo-reserva" class="link-menu">Reservas</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -39,6 +89,10 @@
                 <div class="cafe-item card">
                     <img src="assets/images/cafe-gelado.webp" alt="Café Gelado">
                     <p>Café Gelado</p>
+                </div>
+                <div class="cafe-item card">
+                    <img src="assets/images/cha-artesanal.webp" alt="Chá Artesanal">
+                    <p>Chás Artesanais</p>
                 </div>
             </div>
         </section>
