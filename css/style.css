@@ -1,37 +1,21 @@
-/* ==========================================================================
-   STYLE CSS - Cafeteria Aroma
-   Atividade Prática: Estilização Base
-   ========================================================================== */
+/* Estilos principais da Cafeteria Aroma */
 
-/* --------------------------------------------------------------------------
-   2. VARIÁVEIS CSS (:root)
-   Definição de paleta temática (cafeteria), espaçamentos e raios de borda.
-   Reutilizadas em propriedades como: color, background-color, border,
-   border-radius, padding, margin e box-shadow (mais de 3 propriedades).
-   -------------------------------------------------------------------------- */
+/* Variaveis de cores, medidas e sombras */
 :root {
-    --cor-primaria: #6f4e37;          /* Marrom café tradicional */
-    --cor-primaria-escura: #4d3322;   /* Café torrado intenso */
-    --cor-secundaria: #c89666;        /* Café com leite / caramelo */
-    --cor-fundo: #fbf9f5;             /* Off-white / creme suave */
-    --cor-superficie: #ffffff;        /* Branco puro para superfícies e cards */
-    --cor-texto: #2c2523;             /* Marrom escuro para máxima legibilidade */
-    --cor-texto-suave: #6b635f;       /* Tom neutro para textos secundários */
-    --cor-borda: #e8e0d7;             /* Tom suave para divisórias */
-    --espacamento-padrao: 1.5rem;     /* Espaçamento base modular */
-    --raio-borda: 0.5rem;             /* Curvatura padrão dos cantos */
-    --sombra-card: 0 4px 12px rgba(111, 78, 55, 0.08); /* Sombra elegante */
+    --cor-primaria: #6f4e37;          /* Marrom principal */
+    --cor-primaria-escura: #4d3322;   /* Tom escuro para titulos e hover */
+    --cor-secundaria: #c89666;        /* Tom caramelo para destaques */
+    --cor-fundo: #fbf9f5;             /* Fundo claro da pagina */
+    --cor-superficie: #ffffff;        /* Fundo branco de cards */
+    --cor-texto: #2c2523;             /* Texto principal */
+    --cor-texto-suave: #6b635f;       /* Textos secundarios */
+    --cor-borda: #e8e0d7;             /* Bordas e divisorias */
+    --espacamento-padrao: 1.5rem;
+    --raio-borda: 0.5rem;
+    --sombra-card: 0 4px 12px rgba(111, 78, 55, 0.08);
 }
 
-/* --------------------------------------------------------------------------
-   9. JUSTIFICATIVA DO USO DE REM PARA FONT-SIZE:
-   Todo 'font-size' deste projeto utiliza exclusivamente a unidade relativa 'rem'.
-   Justificativa: O uso de rem baseia-se no tamanho de fonte definido na raiz (html),
-   respeitando as preferências de acessibilidade e zoom do navegador configuradas pelo
-   usuário. O uso de px (valor absoluto e fixo) ignora essas configurações e prejudica
-   a acessibilidade de pessoas com baixa visão.
-   -------------------------------------------------------------------------- */
-
+/* Tamanhos em rem respeitam o zoom e o tamanho de fonte padrao do usuario */
 body {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
@@ -40,9 +24,7 @@ body {
     line-height: 1.6;
 }
 
-/* COMBINADOR POR AGRUPAMENTO (,):
-   Aplicamos estilos de título compartilhados (cor temática e margem inferior)
-   em múltiplos níveis de cabeçalho de uma única vez para evitar repetição de código. */
+/* Regras compartilhadas entre os titulos */
 h1, h2, h3 {
     color: var(--cor-primaria-escura);
     line-height: 1.25;
@@ -61,12 +43,7 @@ h3 {
     font-size: 1.125rem;
 }
 
-/* --------------------------------------------------------------------------
-   4. SELETOR DE ID E NAVBAR STICKY (AULA 08)
-   O cabeçalho principal permanece fixo no topo durante a rolagem (sticky),
-   com background sólido e sombra para não misturar com o conteúdo da página.
-   O z-index: 100 cria um Stacking Context superior sobre os cards e seções.
-   -------------------------------------------------------------------------- */
+/* Cabecalho fixo no topo durante a rolagem */
 #cabecalho-principal {
     position: sticky;
     top: 0;
@@ -76,8 +53,7 @@ h3 {
     box-shadow: 0 2px 8px rgba(111, 78, 55, 0.08);
 }
 
-/* NAVBAR COM FLEXBOX:
-   Alinha em linha a identidade visual (marca) e os itens de navegação (menu) */
+/* Alinhamento da marca e dos links da navegacao */
 .navbar-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -116,8 +92,7 @@ h3 {
     margin: 0.2rem 0 0 0;
 }
 
-/* BOTÃO HAMBÚRGUER (Acessível via HTML/CSS):
-   Oculto no desktop e visível apenas em telas menores via @media */
+/* Botao hamburguer para telas menores */
 .botao-hamburguer {
     display: none;
     flex-direction: column;
@@ -143,7 +118,7 @@ h3 {
     background-color: var(--cor-secundaria);
 }
 
-/* Lista horizontal de navegação com Flexbox */
+/* Lista de links da navegacao */
 .menu-navegacao {
     display: flex;
     align-items: center;
@@ -153,9 +128,7 @@ h3 {
     padding: 0;
 }
 
-/* --------------------------------------------------------------------------
-   7. ESTILIZAÇÃO DE LINKS, HOVER E ESTADO ATIVO (AULA 08)
-   -------------------------------------------------------------------------- */
+/* Estilos dos links do menu */
 .link-menu {
     display: inline-flex;
     align-items: center;
@@ -176,8 +149,7 @@ h3 {
     text-decoration: none;
 }
 
-/* ESTADO ATIVO:
-   Classe .ativo, .active e atributo de acessibilidade aria-current="page" */
+/* Item da secao ativa */
 .link-menu.ativo,
 .link-menu.active,
 .link-menu[aria-current="page"] {
@@ -193,15 +165,9 @@ h3 {
     color: #ffffff;
 }
 
-/* --------------------------------------------------------------------------
-   SUBMENU DROPDOWN VIA :HOVER E :FOCUS-WITHIN (SEM BURACOS)
-   - Item pai com position: relative
-   - Submenu com position: absolute, top: 100% e margin: 0 (zero gap)
-   - Ponte invisível via pseudo-elemento ::before para continuidade do cursor
-   - Abre por :hover no mouse e :focus-within no teclado
-   -------------------------------------------------------------------------- */
+/* Submenu suspenso (dropdown) */
 .menu-item-dropdown {
-    position: relative; /* Contexto de posicionamento do dropdown */
+    position: relative; /* Referencia de posicionamento para o submenu */
 }
 
 .indicador-dropdown {
@@ -215,17 +181,17 @@ h3 {
 
 .submenu-dropdown {
     position: absolute;
-    top: 100%;                          /* Alinhado imediatamente à base do link pai */
+    top: 100%;
     left: 0;
     min-width: 210px;
-    margin: 0;                          /* Zero margin-top para não criar buraco no hover */
+    margin: 0;
     padding: 0.5rem 0;
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
     border-radius: var(--raio-borda);
     box-shadow: 0 8px 20px rgba(111, 78, 55, 0.15);
     list-style: none;
-    z-index: 101;                       /* Acima do cabeçalho sticky */
+    z-index: 101;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -233,7 +199,7 @@ h3 {
     transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
 }
 
-/* Ponte de hover (hover bridge) garantindo que micro-movimentos do cursor não fechem o menu */
+/* Evita que o submenu feche em micro-movimentos do mouse */
 .submenu-dropdown::before {
     content: "";
     position: absolute;
@@ -243,7 +209,7 @@ h3 {
     height: 8px;
 }
 
-/* Abertura do submenu ao passar o mouse ou focar via teclado */
+/* Abre o submenu por hover ou foco pelo teclado */
 .menu-item-dropdown:hover .submenu-dropdown,
 .menu-item-dropdown:focus-within .submenu-dropdown {
     opacity: 1;
@@ -268,7 +234,7 @@ h3 {
     color: var(--cor-primaria-escura);
 }
 
-/* Links do Rodapé (mantendo demonstração dos estados LoVe/HAte da Aula 06) */
+/* Links do rodape */
 footer a:link {
     color: var(--cor-primaria);
     text-decoration: none;
@@ -290,9 +256,7 @@ footer a:active {
     color: #9c27b0;
 }
 
-/* --------------------------------------------------------------------------
-   ESTRUTURA PRINCIPAL (LAYOUT)
-   -------------------------------------------------------------------------- */
+/* Layout do conteudo principal */
 main {
     max-width: 900px;
     margin: 0 auto;
@@ -303,14 +267,7 @@ section {
     margin-bottom: 2.5rem;
 }
 
-/* --------------------------------------------------------------------------
-   3. SELETORES DE CLASSE REUTILIZÁVEIS: .card, .destaque, .botao
-   -------------------------------------------------------------------------- */
-
-/* COMBINADOR FILHO DIRETO (>):
-   Selecionamos apenas os elementos .card que são filhos imediatos de .galeria.
-   Justificativa: Garante que cards internos ou aninhados em outros containers
-   não recebam essas regras de posicionamento e largura por engano. */
+/* Galeria de produtos */
 .galeria {
     display: flex;
     flex-wrap: wrap;
@@ -318,19 +275,14 @@ section {
     justify-content: center;
 }
 
-/* 6. APLICAÇÃO EXPLÍCITA DO BOX MODEL
-   Demonstração clara das 4 camadas do Box Model inspecionáveis no DevTools:
-   - Conteúdo (width: 260px)
-   - Preenchimento (padding: 1rem)
-   - Borda (border: 1px solid var(--cor-borda))
-   - Margem externa (margin: 0.5rem) */
+/* Cards das bebidas */
 .card {
     background-color: var(--cor-superficie);
-    border: 1px solid var(--cor-borda);       /* Borda do box model */
+    border: 1px solid var(--cor-borda);
     border-radius: var(--raio-borda);
-    padding: 1rem;                             /* Preenchimento interno do box model */
-    margin: 0.5rem;                            /* Margem externa do box model */
-    width: 260px;                              /* Largura do conteúdo (com border-box) */
+    padding: 1rem;
+    margin: 0.5rem;
+    width: 260px;
     box-shadow: var(--sombra-card);
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -341,9 +293,7 @@ section {
     box-shadow: 0 8px 20px rgba(111, 78, 55, 0.14);
 }
 
-/* 5. DESAFIO EXTRA (Opcional): object-fit: cover
-   Garante proporção e enquadramento das fotos das bebidas mesmo que não sejam
-   perfeitamente quadradas, sem distorcer o aspecto original. */
+/* Mantem a proporcao da imagem sem distorcer */
 .card img {
     width: 100%;
     height: 180px;
@@ -358,15 +308,13 @@ section {
     color: var(--cor-primaria-escura);
 }
 
-/* CLASSE REUTILIZÁVEL: .destaque
-   Permite destacar um produto especial na galeria ou qualquer outro elemento */
+/* Card em destaque */
 .destaque {
     border: 2px solid var(--cor-secundaria);
     background-color: #fff9f2;
 }
 
-/* CLASSE REUTILIZÁVEL: .botao
-   Estilização de botões com controle explícito de box model (padding, border, margin) */
+/* Estilos de botao */
 .botao {
     display: inline-block;
     padding: 0.75rem 1.5rem;
@@ -394,15 +342,10 @@ section {
     transform: scale(0.99);
 }
 
-/* --------------------------------------------------------------------------
-   8. TABELA E LISTA
-   Estilizadas com border-collapse, padding e list-style-type apropriados ao tema.
-   -------------------------------------------------------------------------- */
-
-/* Tabela de horários de funcionamento */
+/* Tabela de horarios */
 .tabela-horarios {
     width: 100%;
-    border-collapse: collapse;                 /* Exigência do Roteiro (item 8) */
+    border-collapse: collapse;
     background-color: var(--cor-superficie);
     border-radius: var(--raio-borda);
     overflow: hidden;
@@ -412,7 +355,7 @@ section {
 
 .tabela-horarios th,
 .tabela-horarios td {
-    padding: 0.875rem 1.25rem;                 /* Padding explícito nas células */
+    padding: 0.875rem 1.25rem;
     text-align: left;
     border-bottom: 1px solid var(--cor-borda);
     font-size: 0.9375rem;
@@ -430,7 +373,7 @@ section {
 
 /* Lista de diferenciais */
 .lista-diferenciais {
-    list-style-type: square;                   /* Exigência do Roteiro (item 8) */
+    list-style-type: square;
     padding-left: 1.5rem;
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
@@ -449,9 +392,7 @@ section {
     margin-bottom: 0;
 }
 
-/* --------------------------------------------------------------------------
-   FORMULÁRIO E AVISO
-   -------------------------------------------------------------------------- */
+/* Aviso e formulario de reserva */
 #aviso-reserva {
     display: flex;
     justify-content: space-between;
@@ -552,9 +493,7 @@ select:focus {
     cursor: pointer;
 }
 
-/* --------------------------------------------------------------------------
-   RODAPÉ
-   -------------------------------------------------------------------------- */
+/* Rodape */
 footer {
     text-align: center;
     border-top: 1px solid var(--cor-borda);
@@ -568,11 +507,7 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
-/* --------------------------------------------------------------------------
-   RESPONSIVIDADE E BOTÃO HAMBÚRGUER (AULA 08)
-   Oculto no desktop e visível em telas estreitas via @media.
-   A lista de navegação se adapta ao layout compacto sem necessidade de JS.
-   -------------------------------------------------------------------------- */
+/* Telas menores */
 @media (max-width: 768px) {
     .botao-hamburguer {
         display: flex;
@@ -582,7 +517,7 @@ footer p {
         display: none;
     }
 
-    /* Permite navegação acessível em telas estreitas via :focus-within */
+    /* Exibicao do menu quando focado pelo teclado */
     .navegacao-principal:focus-within .menu-navegacao {
         display: flex;
         flex-direction: column;

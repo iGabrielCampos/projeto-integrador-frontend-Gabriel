@@ -4,36 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafeteria Aroma</title>
-    <!-- Reset CSS: padronização global e box-sizing: border-box -->
+    <!-- Reset de estilos padrao -->
     <link rel="stylesheet" href="css/reset.css">
-    <!-- Style CSS: variáveis, seletores, box model e estilização temática -->
+    <!-- Folha de estilos principal -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- ==========================================================================
-       DIAGNÓSTICO TÉCNICO: CONTEXTO DE EMPILHAMENTO (STACKING CONTEXT) - AULA 08
+    <!-- 
+       Contextos de empilhamento (stacking context) e z-index:
        
-       1. Prevenção de Conflitos e Sobreposição:
-          O cabeçalho principal (#cabecalho-principal) foi configurado com:
-          'position: sticky; top: 0; z-index: 100;'.
-          O submenu suspenso (.submenu-dropdown) possui:
-          'position: absolute; z-index: 101;'.
-          Essa combinação assegura que tanto a barra de navegação fixa quanto o dropdown
-          permaneçam em planos superiores na renderização tridimensional do navegador,
-          evitando que cards com 'transform', tabelas ou botões se sobreponham ao menu
-          durante a rolagem da página.
+       O header (#cabecalho-principal) usa position: sticky com z-index: 100 e o submenu
+       (.submenu-dropdown) usa position: absolute com z-index: 101. Isso evita que cards,
+       tabelas ou botoes com transform fiquem por cima do menu durante a rolagem.
        
-       2. Mapeamento de Contextos de Empilhamento da Página (Desafio Extra):
-          Na página atual existem 5 contextos de empilhamento distintos:
-          - Contexto 1 (Raiz): Elemento <html> (Stacking context padrão raiz criado pelo documento).
-          - Contexto 2 (#cabecalho-principal): Criado pela combinação de 'position: sticky' e 'z-index: 100'.
-          - Contexto 3 (.submenu-dropdown): Criado pela combinação de 'position: absolute' e 'z-index: 101'.
-          - Contexto 4 (.card:hover): Criado pela propriedade 'transform: translateY(-4px)' aplicada no estado :hover
-            dos cards de bebidas da galeria (a especificação CSS define que qualquer elemento com 'transform'
-            diferente de 'none' gera um novo contexto de empilhamento).
-          - Contexto 5 (.botao-primario:active): Criado pela propriedade 'transform: scale(0.99)' durante o clique ativo
-            no botão de submissão do formulário.
-       ========================================================================== -->
+       Contextos de empilhamento criados nesta pagina:
+       1. Elemento <html> (contexto raiz criado pelo documento).
+       2. #cabecalho-principal (position: sticky com z-index: 100).
+       3. .submenu-dropdown (position: absolute com z-index: 101).
+       4. .card:hover (criado pelo transform: translateY(-4px) ao passar o mouse nos cards).
+       5. .botao-primario:active (criado pelo transform: scale(0.99) ao clicar no botao).
+    -->
     <header id="cabecalho-principal">
         <div class="navbar-container">
             <div class="marca">
@@ -43,9 +33,9 @@
                 <p class="slogan-marca">Sabores especiais para deixar seu dia mais gostoso.</p>
             </div>
 
-            <!-- Navbar com Flexbox -->
+            <!-- Navegacao principal -->
             <nav id="menu-principal" class="navegacao-principal" aria-label="Navegação principal">
-                <!-- Botão Hambúrguer Responsivo e Acessível (HTML/CSS) -->
+                <!-- Botao de menu para telas menores -->
                 <button class="botao-hamburguer" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
                     <span class="linha-hamburguer"></span>
                     <span class="linha-hamburguer"></span>
@@ -53,7 +43,7 @@
                 </button>
 
                 <ul class="menu-navegacao">
-                    <!-- Dropdown via :hover e :focus-within sem buracos -->
+                    <!-- Item com submenu suspenso -->
                     <li class="menu-item-dropdown">
                         <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page" aria-haspopup="true">
                             Nossas Bebidas <span class="indicador-dropdown" aria-hidden="true">▾</span>
@@ -74,7 +64,7 @@
     </header>
 
     <main>
-        <!-- Seção de Bebidas: Galeria com Cards e Destaque -->
+        <!-- Bebidas em destaque -->
         <section aria-labelledby="titulo-bebidas">
             <h2 id="titulo-bebidas">Nossas Bebidas</h2>
             <div class="galeria">
@@ -97,7 +87,7 @@
             </div>
         </section>
 
-        <!-- Seção do Menu Interativo (Aula 09 - JavaScript) -->
+        <!-- Analisador interativo de cardapio -->
         <section aria-labelledby="titulo-analisador">
             <h2 id="titulo-analisador">Analisador de Cardápio Interativo</h2>
             <div class="card destaque" style="width: 100%; max-width: 600px; margin: 1rem auto; padding: 1.5rem; text-align: center;">
@@ -113,7 +103,7 @@
             </div>
         </section>
 
-        <!-- Seção de Diferenciais: Lista estilizada com list-style-type e padding -->
+        <!-- Diferenciais -->
         <section aria-labelledby="titulo-diferenciais">
             <h2 id="titulo-diferenciais">Nossos Diferenciais</h2>
             <ul class="lista-diferenciais">
@@ -124,7 +114,7 @@
             </ul>
         </section>
 
-        <!-- Seção de Horários: Tabela estilizada com border-collapse e padding -->
+        <!-- Horarios de funcionamento -->
         <section aria-labelledby="titulo-horarios">
             <h2 id="titulo-horarios">Horários de Funcionamento</h2>
             <table class="tabela-horarios">
@@ -155,7 +145,7 @@
             </table>
         </section>
 
-        <!-- Seção de Reserva: Formulário estruturado com classes reutilizáveis -->
+        <!-- Formulario de reserva -->
         <section aria-labelledby="titulo-reserva">
             <h2 id="titulo-reserva">Reserve sua mesa</h2>
             <div class="aviso" id="aviso-reserva">
@@ -233,7 +223,7 @@
         <p><a href="#cabecalho-principal">Voltar ao topo ↑</a></p>
     </footer>
 
-    <!-- Script de Logica (Aula 09 - JavaScript Logica) -->
+    <!-- Logica interativa do cardapio -->
     <script src="js/logica.js" defer></script>
 </body>
 </html>
