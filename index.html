@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,8 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <!-- 
-       Contextos de empilhamento (stacking context) e z-index:
-       
-       O header (#cabecalho-principal) usa position: sticky com z-index: 100 e o submenu
-       (.submenu-dropdown) usa position: absolute com z-index: 101. Isso evita que cards,
-       tabelas ou botoes com transform fiquem por cima do menu durante a rolagem.
-       
-       Contextos de empilhamento criados nesta pagina:
-       1. Elemento <html> (contexto raiz criado pelo documento).
-       2. #cabecalho-principal (position: sticky com z-index: 100).
-       3. .submenu-dropdown (position: absolute com z-index: 101).
-       4. .card:hover (criado pelo transform: translateY(-4px) ao passar o mouse nos cards).
-       5. .botao-primario:active (criado pelo transform: scale(0.99) ao clicar no botao).
-    -->
     <header id="cabecalho-principal">
         <div class="navbar-container">
             <div class="marca">
@@ -32,7 +20,8 @@
             </div>
 
             <nav id="menu-principal" class="navegacao-principal" aria-label="Navegação principal">
-                <button class="botao-hamburguer" type="button" aria-label="Abrir menu de navegação" aria-expanded="false">
+                <button class="botao-hamburguer" type="button" aria-label="Abrir menu de navegação"
+                    aria-expanded="false">
                     <span class="linha-hamburguer"></span>
                     <span class="linha-hamburguer"></span>
                     <span class="linha-hamburguer"></span>
@@ -40,12 +29,13 @@
 
                 <ul class="menu-navegacao">
                     <li class="menu-item-dropdown">
-                        <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page" aria-haspopup="true">
+                        <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page"
+                            aria-haspopup="true">
                             Nossas Bebidas <span class="indicador-dropdown" aria-hidden="true">▾</span>
                         </a>
                         <ul class="submenu-dropdown" aria-label="Submenu de bebidas">
-                            <li><a href="#titulo-bebidas" class="link-submenu">☕ Cafés Espressos</a></li>
                             <li><a href="#titulo-bebidas" class="link-submenu">🥛 Cappuccinos</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">☕ Cafés Espressos</a></li>
                             <li><a href="#titulo-bebidas" class="link-submenu">🧊 Cafés Gelados</a></li>
                             <li><a href="#titulo-bebidas" class="link-submenu">🍵 Chás Artesanais</a></li>
                         </ul>
@@ -62,36 +52,46 @@
         <section aria-labelledby="titulo-bebidas">
             <h2 id="titulo-bebidas">Nossas Bebidas</h2>
             <div class="galeria">
-                <div class="cafe-item card">
-                    <img src="assets/images/cafe-expresso.webp" alt="Café Espresso">
-                    <p>Café Espresso</p>
-                </div>
                 <div class="cafe-item card destaque">
-                    <img src="assets/images/cappuccino.jpg" alt="Cappuccino">
-                    <p>Cappuccino</p>
+                    <img src="assets/images/cappuccino.jpg" alt="Cappuccino" width="1500" height="1125" loading="lazy">
+                    <h3>Cappuccino</h3>
+                    <p class="descricao-bebida">Espresso clássico com leite vaporizado e canela.</p>
+                    <span class="preco-bebida">R$ 14,50</span>
                 </div>
                 <div class="cafe-item card">
-                    <img src="assets/images/cafe-gelado.webp" alt="Café Gelado">
-                    <p>Café Gelado</p>
+                    <img src="assets/images/cafe-expresso.webp" alt="Café Espresso" width="350" height="280" loading="lazy">
+                    <h3>Café Espresso</h3>
+                    <p class="descricao-bebida">Encorpado, aroma marcante e crema aveludada.</p>
+                    <span class="preco-bebida">R$ 9,00</span>
                 </div>
                 <div class="cafe-item card">
-                    <img src="assets/images/cha-artesanal.webp" alt="Chá Artesanal">
-                    <p>Chás Artesanais</p>
+                    <img src="assets/images/cafe-gelado.webp" alt="Café Gelado" width="415" height="739" loading="lazy">
+                    <h3>Café Gelado</h3>
+                    <p class="descricao-bebida">Refrescante com notas suaves de caramelo e gelo.</p>
+                    <span class="preco-bebida">R$ 18,00</span>
+                </div>
+                <div class="cafe-item card">
+                    <img src="assets/images/cha-artesanal.webp" alt="Chá Artesanal" width="600" height="460" loading="lazy">
+                    <h3>Chás Artesanais</h3>
+                    <p class="descricao-bebida">Infusão natural de ervas finas e flores selecionadas.</p>
+                    <span class="preco-bebida">R$ 11,00</span>
                 </div>
             </div>
         </section>
 
         <section aria-labelledby="titulo-analisador">
             <h2 id="titulo-analisador">Analisador de Cardápio Interativo</h2>
-            <div class="card destaque" style="width: 100%; max-width: 600px; margin: 1rem auto; padding: 1.5rem; text-align: center;">
-                <p style="margin-bottom: 1rem; color: var(--cor-texto);">
-                    Explore a lógica interativa da Cafeteria Aroma: filtre bebidas por orçamento, consulte estatísticas de preços e navegue pelas opções do cardápio.
+            <div class="card destaque card-analisador">
+                <p class="analisador-descricao">
+                    Explore a lógica interativa da Cafeteria Aroma: filtre bebidas por orçamento, consulte estatísticas
+                    de preços e navegue pelas opções do cardápio.
                 </p>
-                <button type="button" class="botao botao-primario" onclick="iniciarMenuInterativo()" style="width: auto; padding: 0.75rem 2rem;">
+                <button type="button" class="botao botao-primario botao-analisador" onclick="iniciarMenuInterativo()">
                     ☕ Abrir Menu Interativo
                 </button>
-                <p style="font-size: 0.8125rem; color: var(--cor-texto-suave); margin-top: 1rem; margin-bottom: 0;">
-                    💡 Dica: Pressione <kbd>F12</kbd> e abra a aba <strong>Console</strong> para visualizar os relatórios e a tabela completa gerada pelo script.
+                <p class="analisador-dica">
+                    💡 Dica: Pressione <kbd>F12</kbd> e abra a aba <strong>Console</strong> para visualizar os
+                    relatórios e a tabela completa gerada pelo script.
                 </p>
             </div>
         </section>
@@ -140,7 +140,8 @@
             <h2 id="titulo-reserva">Reserve sua mesa</h2>
             <div class="aviso" id="aviso-reserva">
                 <p>Faça sua reserva e aproveite a experiência Aroma.</p>
-                <button class="botao-fechar" type="button" aria-label="Fechar aviso" aria-controls="aviso-reserva">&times;</button>
+                <button class="botao-fechar" type="button" aria-label="Fechar aviso"
+                    aria-controls="aviso-reserva">&times;</button>
             </div>
             <form action="#" method="post">
                 <fieldset>
@@ -158,7 +159,8 @@
 
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input id="telefone" name="telefone" type="tel" autocomplete="tel" pattern="[0-9]{10,11}" title="Digite apenas 10 ou 11 números">
+                        <input id="telefone" name="telefone" type="tel" autocomplete="tel" pattern="[0-9]{10,11}"
+                            title="Digite apenas 10 ou 11 números">
                     </div>
 
                     <div class="form-group">
@@ -215,4 +217,5 @@
 
     <script src="js/logica.js" defer></script>
 </body>
+
 </html>

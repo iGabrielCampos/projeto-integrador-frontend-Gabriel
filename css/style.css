@@ -2,14 +2,14 @@
     --cor-primaria: #6f4e37;
     --cor-primaria-escura: #4d3322;
     --cor-secundaria: #c89666;
-    --cor-fundo: #fbf9f5;
+    --cor-fundo: #f8f9fa;
     --cor-superficie: #ffffff;
     --cor-texto: #2c2523;
     --cor-texto-suave: #6b635f;
     --cor-borda: #e8e0d7;
     --espacamento-padrao: 1.5rem;
     --raio-borda: 0.5rem;
-    --sombra-card: 0 4px 12px rgba(111, 78, 55, 0.08);
+    --sombra-card: 0 2px 8px rgba(111, 78, 55, 0.06);
 }
 
 body {
@@ -18,6 +18,24 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1rem;
     line-height: 1.6;
+}
+
+::selection {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+}
+
+:focus-visible {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+
+a {
+    text-underline-offset: 0.2em;
+}
+
+input, select, textarea {
+    caret-color: var(--cor-primaria);
 }
 
 h1, h2, h3 {
@@ -180,7 +198,7 @@ h3 {
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
     border-radius: var(--raio-borda);
-    box-shadow: 0 8px 20px rgba(111, 78, 55, 0.15);
+    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.10);
     list-style: none;
     z-index: 101;
     opacity: 0;
@@ -234,7 +252,7 @@ footer a:link {
 }
 
 footer a:visited {
-    color: var(--cor-secundaria);
+    color: var(--cor-primaria);
 }
 
 footer a:hover {
@@ -243,7 +261,7 @@ footer a:hover {
 }
 
 footer a:active {
-    color: #9c27b0;
+    color: var(--cor-primaria-escura);
 }
 
 main {
@@ -277,7 +295,7 @@ section {
 
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(111, 78, 55, 0.14);
+    box-shadow: 0 4px 12px rgba(111, 78, 55, 0.12);
 }
 
 /* Mantem a proporcao da foto sem distorcer */
@@ -289,15 +307,84 @@ section {
     margin-bottom: 0.75rem;
 }
 
+.card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--cor-primaria-escura);
+    margin-bottom: 0.35rem;
+}
+
 .card p {
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--cor-primaria-escura);
 }
 
+.cafe-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.cafe-item .descricao-bebida {
+    flex-grow: 1;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--cor-texto-suave);
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+}
+
+.cafe-item .preco-bebida {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--cor-primaria);
+}
+
 .destaque {
     border: 2px solid var(--cor-secundaria);
     background-color: #fff9f2;
+}
+
+.card-analisador {
+    width: 100%;
+    max-width: 600px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.card-analisador .analisador-descricao {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--cor-texto);
+}
+
+.card-analisador .botao-analisador {
+    width: auto;
+    padding: 0.75rem 2rem;
+}
+
+.card-analisador .analisador-dica {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--cor-texto-suave);
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+kbd {
+    display: inline-block;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.75rem;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--cor-texto);
+    background-color: #f0ebe4;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(111, 78, 55, 0.15);
 }
 
 .botao {
@@ -335,6 +422,7 @@ section {
     overflow: hidden;
     box-shadow: var(--sombra-card);
     margin-top: 1rem;
+    font-variant-numeric: tabular-nums;
 }
 
 .tabela-horarios th,
@@ -379,8 +467,8 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f5ede6;
-    border-left: 4px solid var(--cor-primaria);
+    background-color: #f7ede3;
+    border: 1px solid #e5d3c2;
     padding: 0.875rem 1.25rem;
     border-radius: var(--raio-borda);
     margin-bottom: 1.5rem;
@@ -510,7 +598,7 @@ footer p {
         border: 1px solid var(--cor-borda);
         border-radius: var(--raio-borda);
         padding: 1rem;
-        box-shadow: 0 8px 24px rgba(111, 78, 55, 0.15);
+        box-shadow: 0 4px 14px rgba(111, 78, 55, 0.10);
         gap: 0.5rem;
     }
 
@@ -522,7 +610,7 @@ footer p {
         position: static;
         box-shadow: none;
         border: none;
-        background-color: #fbf9f5;
+        background-color: var(--cor-fundo);
         padding-left: 1rem;
     }
 }
