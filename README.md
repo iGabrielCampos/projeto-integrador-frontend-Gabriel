@@ -89,5 +89,5 @@ Abra o arquivo `index.html` no navegador. Para testar o analisador de bebidas:
 
 Avaliação por pares - Data 21/10 - Feita por: Arthur Evangelista-
 É notável que o site está ficando muito bem estruturado e organizado.
-Os códigos estão coesos e semânticos, com relação aos critérios exigidos nas aulas o desenvolvimento segue atendendo plenamente todos eles! Nota:10
-Navegação está simples, intuitiva e atrativa.
+Os códigos estão coesos e semânticos, *com relação aos critérios exigidos nas aulas o desenvolvimento segue atendendo plenamente todos eles!* Nota:10.
+Navegação está simples(vai direto ao ponto sem enrolação), intuitiva e atrativa. Demais recursos de organização dos repositórios também atenderam as exigências.
