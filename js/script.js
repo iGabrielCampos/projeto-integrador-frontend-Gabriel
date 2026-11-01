@@ -1,13 +1,3 @@
-/**
- * Desenvolvimento Front-end para Web - Aula 11
- * Manipulação do DOM, funções puras, métodos de array e classificação de dados.
- * Cafeteria Aroma
- */
-
-// =============================================================================
-// 1. DADOS (Array de pelo menos 5 objetos com 3 ou mais propriedades)
-// =============================================================================
-
 const itensCardapio = [
     { id: 1, nome: "Café Espresso Tradicional", categoria: "espresso", preco: 9.00, tempoPreparoMinutos: 3 },
     { id: 2, nome: "Cappuccino Italiano", categoria: "cappuccino", preco: 14.50, tempoPreparoMinutos: 5 },
@@ -17,18 +7,7 @@ const itensCardapio = [
     { id: 6, nome: "Espresso Duplo com Leite Vegetal", categoria: "espresso", preco: 13.50, tempoPreparoMinutos: 4 }
 ];
 
-// =============================================================================
-// 2. FUNÇÕES PURAS DE PROCESSAMENTO E CLASSIFICAÇÃO
-// =============================================================================
-
-/**
- * Função que processa: calcula o preço com desconto opcional.
- * Não altera os dados recebidos (função pura) e possui parâmetro com valor padrão.
- * 
- * @param {number} precoBase - Valor original da bebida.
- * @param {number} [descontoPercentual=0] - Percentual de desconto a aplicar (0 a 100).
- * @returns {number} Preço final calculado com duas casas decimais.
- */
+// Calcula o preco com desconto
 function calcularPrecoFinal(precoBase, descontoPercentual = 0) {
     if (typeof precoBase !== "number" || precoBase < 0) {
         return 0;
@@ -39,13 +18,7 @@ function calcularPrecoFinal(precoBase, descontoPercentual = 0) {
     return Number(resultado.toFixed(2));
 }
 
-/**
- * Função que classifica: recebe o resultado de calcularPrecoFinal e devolve
- * uma etiqueta textual baseada em 3 faixas de preço na ordem lógica estrita.
- * 
- * @param {number} preco - Preço a ser classificado.
- * @returns {"Economico" | "Intermediario" | "Premium"} Rótulo da faixa.
- */
+// Classifica a faixa de preco
 function classificarFaixaPreco(preco) {
     if (preco < 12.00) {
         return "Economico";
@@ -56,36 +29,19 @@ function classificarFaixaPreco(preco) {
     return "Premium";
 }
 
-/**
- * Formata um valor numérico para o padrão de moeda brasileiro (BRL).
- * 
- * @param {number} valor - Quantia numérica.
- * @returns {string} String formatada (ex.: "R$ 14,50").
- */
+// Formata para moeda brasileira
 function formatarPreco(valor) {
     return `R$ ${valor.toFixed(2).replace(".", ",")}`;
 }
 
-// =============================================================================
-// DESAFIO EXTRA (OPCIONAL): Fábrica de funções com closure
-// =============================================================================
-
-/**
- * Fábrica com closure que configura previamente uma taxa padrão de desconto.
- * 
- * @param {number} [descontoPadrao=0] - Percentual fixo da fábrica.
- * @returns {(preco: number, descontoOpcional?: number) => number}
- */
+// Funcao com closure para configurar o desconto
 function criarCalculadoraDesconto(descontoPadrao = 0) {
     return function (precoBase, desconto = descontoPadrao) {
         return calcularPrecoFinal(precoBase, desconto);
     };
 }
 
-// =============================================================================
-// 3. TESTES NO CONSOLE (F12) - Executados antes de manipular a página
-// =============================================================================
-
+// Testes no console
 console.group("Cafeteria Aroma — Verificação de Funções Puras");
 console.log("calcularPrecoFinal(10, 0):", calcularPrecoFinal(10, 0), "(esperado: 10)");
 console.log("calcularPrecoFinal(20, 10):", calcularPrecoFinal(20, 10), "(esperado: 18)");
@@ -98,11 +54,7 @@ const calculadoraCom10PorCento = criarCalculadoraDesconto(10);
 console.log("Fábrica com Closure — 10% sobre 50.00:", calculadoraCom10PorCento(50), "(esperado: 45)");
 console.groupEnd();
 
-// =============================================================================
-// 4. APLICAÇÃO DOS MÉTODOS DE ARRAY (map, filter, reduce, sort seguro)
-// =============================================================================
-
-// map: gera uma nova lista contendo preço final processado e classificação de faixa
+// Processa os itens com map
 const itensProcessados = itensCardapio.map((item) => {
     const precoFinal = calcularPrecoFinal(item.preco, 0);
     const faixa = classificarFaixaPreco(precoFinal);
@@ -117,19 +69,17 @@ const itensProcessados = itensCardapio.map((item) => {
     };
 });
 
-// filter: isola o subconjunto de itens acessíveis (faixa não-premium)
+// Filtra bebidas da faixa acessivel
 const itensAcessiveis = itensProcessados.filter((item) => item.faixa !== "Premium");
 
-// reduce: calcula o somatório total de preços do cardápio
+// Calcula a soma e a media com reduce
 const totalPreco = itensProcessados.reduce((acumulador, item) => acumulador + item.precoFinal, 0);
-
-// média calculada a partir do reduce
 const mediaPreco = totalPreco / itensProcessados.length;
 
-// sort seguro (Erro 4 evitado): cópia prévia do array com spread operator
+// Ordena os precos criando uma copia antes
 const itensOrdenadosPorPreco = [...itensProcessados].sort((a, b) => a.precoFinal - b.precoFinal);
 
-// Desafio Extra: Agrupamento por categoria utilizando reduce
+// Agrupa as bebidas por categoria
 const itensAgrupadosPorCategoria = itensProcessados.reduce((acumulador, item) => {
     const chave = item.categoria;
     if (!acumulador[chave]) {
@@ -139,21 +89,11 @@ const itensAgrupadosPorCategoria = itensProcessados.reduce((acumulador, item) =>
     return acumulador;
 }, {});
 
-// =============================================================================
-// 5. FUNÇÕES DE MONTAGEM DO DOM (createElement, textContent, classList, append)
-// =============================================================================
-
-/**
- * Cria o elemento visual de um card de bebida sem utilizar innerHTML.
- * 
- * @param {object} item - Item com propriedades processadas.
- * @returns {HTMLElement} Elemento article configurado.
- */
+// Monta o card de cada item
 function criarElementoCard(item) {
     const card = document.createElement("article");
     card.classList.add("card", "card-resultado");
 
-    // Marca o resultado com a classe específica da faixa de preço
     const classeFaixa = `faixa-${item.faixa.toLowerCase()}`;
     card.classList.add(classeFaixa);
 
@@ -186,15 +126,7 @@ function criarElementoCard(item) {
     return card;
 }
 
-/**
- * Cria o card de resumo estatístico gerado com reduce.
- * 
- * @param {number} totalItens - Quantidade total de itens.
- * @param {number} totalValor - Soma dos preços calculada com reduce.
- * @param {number} precoMedio - Média de preços calculada.
- * @param {number} totalAcessivel - Quantidade de itens filtrados.
- * @returns {HTMLElement} Elemento div de resumo estatístico.
- */
+// Monta o resumo de estatisticas
 function criarElementoResumo(totalItens, totalValor, precoMedio, totalAcessivel) {
     const cardResumo = document.createElement("div");
     cardResumo.classList.add("resumo-resultado");
@@ -223,12 +155,7 @@ function criarElementoResumo(totalItens, totalValor, precoMedio, totalAcessivel)
     return cardResumo;
 }
 
-/**
- * Cria o bloco de categorias agrupadas (Desafio Extra).
- * 
- * @param {Record<string, Array<object>>} categorias - Objeto agrupado via reduce.
- * @returns {HTMLElement}
- */
+// Monta o bloco com as bebidas por categoria
 function criarBlocoCategorias(categorias) {
     const container = document.createElement("div");
     container.classList.add("bloco-categorias-extra");
@@ -257,19 +184,13 @@ function criarBlocoCategorias(categorias) {
     return container;
 }
 
-// =============================================================================
-// 6. INICIALIZAÇÃO E INJEÇÃO NA PÁGINA (Com verificação de nulidade - Erro 5)
-// =============================================================================
-
+// Insere os elementos na pagina
 function inicializarSecaoResultado() {
-    // Seleção com verificação de nulidade (Erro 5 evitado)
     const containerResultado = document.querySelector("#resultado");
     if (!containerResultado) {
-        console.error("Erro 5 evitado: elemento '#resultado' não foi encontrado na página.");
         return;
     }
 
-    // Título e descrição da seção
     const tituloPrincipal = document.createElement("h2");
     tituloPrincipal.id = "titulo-resultado";
     tituloPrincipal.textContent = "Cardápio Dinâmico e Recomendações";
@@ -279,7 +200,6 @@ function inicializarSecaoResultado() {
     subtitulo.textContent =
         "Seleção artesanal com tempos médios de preparo, preços calculados e classificação por faixas de degustação.";
 
-    // Monta o resumo estatístico
     const elementoResumo = criarElementoResumo(
         itensProcessados.length,
         totalPreco,
@@ -287,7 +207,6 @@ function inicializarSecaoResultado() {
         itensAcessiveis.length
     );
 
-    // Monta o grid com todos os cards
     const gridCards = document.createElement("div");
     gridCards.classList.add("grid-resultado");
 
@@ -296,10 +215,8 @@ function inicializarSecaoResultado() {
         gridCards.append(elementoCard);
     }
 
-    // Monta o bloco do desafio extra
     const elementoCategorias = criarBlocoCategorias(itensAgrupadosPorCategoria);
 
-    // Injeta tudo no elemento <section id="resultado">
     containerResultado.append(
         tituloPrincipal,
         subtitulo,
@@ -307,9 +224,6 @@ function inicializarSecaoResultado() {
         gridCards,
         elementoCategorias
     );
-
-    console.log("Catálogo dinâmico montado e inserido com sucesso.");
 }
 
-// Executa a inicialização
 inicializarSecaoResultado();

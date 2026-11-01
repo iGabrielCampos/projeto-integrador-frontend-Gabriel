@@ -1,9 +1,4 @@
-/**
- * Analise do cardapio da Cafeteria Aroma.
- * Le o preco maximo informado pelo usuario, calcula estatisticas gerais e
- * disponibiliza um menu de navegacao no terminal e em alertas.
- */
-
+// Cardapio da cafeteria
 const cardapio = [
     { id: 1, nome: "Cafe Espresso Tradicional", categoria: "espresso", preco: 9.00 },
     { id: 2, nome: "Cappuccino Italiano", categoria: "cappuccino", preco: 14.50 },
@@ -13,9 +8,7 @@ const cardapio = [
     { id: 6, nome: "Espresso Duplo com Leite Vegetal", categoria: "espresso", preco: 13.50 }
 ];
 
-/**
- * Executa o fluxo de analise e o menu interativo.
- */
+// Inicia o menu interativo
 function iniciarMenuInterativo() {
     const valorPadrao = 15.00;
     let precoLimite = valorPadrao;
@@ -105,14 +98,7 @@ function iniciarMenuInterativo() {
 
     const mediaPreco = totalPreco / cardapio.length;
 
-    /*
-     * Teste de mesa (3 primeiras voltas com precoLimite = 15.00):
-     *
-     * 1. Cafe Espresso Tradicional (9.00)  -> Economico     -> Total: 9.00  -> No orcamento: 1
-     * 2. Cappuccino Italiano (14.50)       -> Intermediario -> Total: 23.50 -> No orcamento: 2
-     * 3. Cafe Gelado Caramelo (18.00)      -> Premium       -> Total: 41.50 -> No orcamento: 2
-     */
-
+    // Teste de mesa para conferencia dos calculos
     console.log(`\n======================================================`);
     console.log(`☕ RELATORIO GERAL - CARDAPIO CAFETERIA AROMA`);
     console.log(`======================================================`);
@@ -196,7 +182,7 @@ function iniciarMenuInterativo() {
 
 iniciarMenuInterativo();
 
-// Permite reabrir a funcao pelo botao da pagina ou pelo console
+// Disponibiliza para o botao da pagina
 if (typeof window !== "undefined") {
     window.iniciarMenuInterativo = iniciarMenuInterativo;
 }

@@ -23,7 +23,6 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Superfícies do navegador personalizadas (Craft Floor) */
 ::selection {
     background-color: var(--cor-primaria);
     color: #ffffff;
@@ -80,7 +79,7 @@ h3 {
     font-size: 1.125rem;
 }
 
-/* Cabecalho fixo no topo durante a rolagem */
+/* Cabecalho */
 #cabecalho-principal {
     position: sticky;
     top: 0;
@@ -128,7 +127,7 @@ h3 {
     margin: 0.2rem 0 0 0;
 }
 
-/* Botao hamburguer para telas menores */
+/* Menu mobile */
 .botao-hamburguer {
     display: none;
     flex-direction: column;
@@ -198,9 +197,9 @@ h3 {
     color: #ffffff;
 }
 
-/* Submenu suspenso (dropdown) */
+/* Submenu dropdown */
 .menu-item-dropdown {
-    position: relative; /* Referencia de posicionamento para o submenu */
+    position: relative;
 }
 
 .indicador-dropdown {
@@ -232,7 +231,6 @@ h3 {
     transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
 }
 
-/* Evita que o submenu feche em micro-movimentos do mouse */
 .submenu-dropdown::before {
     content: "";
     position: absolute;
@@ -242,7 +240,6 @@ h3 {
     height: 8px;
 }
 
-/* Abre o submenu por hover ou foco pelo teclado */
 .menu-item-dropdown:hover .submenu-dropdown,
 .menu-item-dropdown:focus-within .submenu-dropdown {
     opacity: 1;
@@ -322,7 +319,6 @@ section {
     box-shadow: 0 4px 12px rgba(111, 78, 55, 0.12);
 }
 
-/* Mantem a proporcao da foto sem distorcer */
 .card img {
     width: 100%;
     height: 180px;
@@ -600,10 +596,7 @@ footer p {
     margin-bottom: 0.5rem;
 }
 
-/* ==========================================================================
-   Aula 11 - Secao de Resultados Dinamicos e Classes de Faixas
-   ========================================================================== */
-
+/* Secao de resultados */
 .secao-resultado {
     margin-bottom: 3rem;
 }
@@ -615,7 +608,6 @@ footer p {
     line-height: 1.5;
 }
 
-/* Resumo estatistico gerado com reduce */
 .resumo-resultado {
     width: 100%;
     margin: 0 0 1.75rem 0;
@@ -652,7 +644,6 @@ footer p {
     font-variant-numeric: tabular-nums;
 }
 
-/* Grid de cards renderizados dinamicamente */
 .grid-resultado {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -725,7 +716,7 @@ footer p {
     border-top: 1px solid var(--cor-borda);
 }
 
-/* Estilizacao visual por faixa (JavaScript decide a classe, CSS decide a aparencia) */
+/* Faixas de preco */
 .faixa-economico {
     background-color: #fbfdfc;
     border-color: #cce3d8;
@@ -759,7 +750,6 @@ footer p {
     border: 1px solid #dccdc2;
 }
 
-/* Desafio Extra: Bloco de categorias agrupadas via reduce */
 .bloco-categorias-extra {
     background-color: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
@@ -802,7 +792,7 @@ footer p {
     margin: 0;
 }
 
-/* Telas menores */
+/* Responsivo */
 @media (max-width: 768px) {
     .botao-hamburguer {
         display: flex;
@@ -812,7 +802,6 @@ footer p {
         display: none;
     }
 
-    /* Exibicao do menu quando focado pelo teclado */
     .navegacao-principal:focus-within .menu-navegacao {
         display: flex;
         flex-direction: column;
