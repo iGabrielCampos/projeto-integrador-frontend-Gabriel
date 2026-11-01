@@ -86,16 +86,16 @@ function criarCalculadoraDesconto(descontoPadrao = 0) {
 // 3. TESTES NO CONSOLE (F12) - Executados antes de manipular a página
 // =============================================================================
 
-console.group("☕ [Aula 11] Testes das Funções Puras no Console");
-console.log("Teste 1 - calcularPrecoFinal(10, 0):", calcularPrecoFinal(10, 0), "-> Esperado: 10");
-console.log("Teste 2 - calcularPrecoFinal(20, 10):", calcularPrecoFinal(20, 10), "-> Esperado: 18");
-console.log("Teste 3 - calcularPrecoFinal(15) [com valor padrão]:", calcularPrecoFinal(15), "-> Esperado: 15");
-console.log("Teste 4 - classificarFaixaPreco(9.00):", classificarFaixaPreco(9.00), "-> Esperado: Economico");
-console.log("Teste 5 - classificarFaixaPreco(14.50):", classificarFaixaPreco(14.50), "-> Esperado: Intermediario");
-console.log("Teste 6 - classificarFaixaPreco(22.00):", classificarFaixaPreco(22.00), "-> Esperado: Premium");
+console.group("Cafeteria Aroma — Verificação de Funções Puras");
+console.log("calcularPrecoFinal(10, 0):", calcularPrecoFinal(10, 0), "(esperado: 10)");
+console.log("calcularPrecoFinal(20, 10):", calcularPrecoFinal(20, 10), "(esperado: 18)");
+console.log("calcularPrecoFinal(15) [valor padrão]:", calcularPrecoFinal(15), "(esperado: 15)");
+console.log("classificarFaixaPreco(9.00):", classificarFaixaPreco(9.00), "(esperado: Economico)");
+console.log("classificarFaixaPreco(14.50):", classificarFaixaPreco(14.50), "(esperado: Intermediario)");
+console.log("classificarFaixaPreco(22.00):", classificarFaixaPreco(22.00), "(esperado: Premium)");
 
 const calculadoraCom10PorCento = criarCalculadoraDesconto(10);
-console.log("Teste Extra (Closure) - 10% em 50.00:", calculadoraCom10PorCento(50), "-> Esperado: 45");
+console.log("Fábrica com Closure — 10% sobre 50.00:", calculadoraCom10PorCento(50), "(esperado: 45)");
 console.groupEnd();
 
 // =============================================================================
@@ -171,11 +171,12 @@ function criarElementoCard(item) {
 
     const categoria = document.createElement("p");
     categoria.classList.add("card-resultado-categoria");
-    categoria.textContent = `Categoria: ${item.categoria.toUpperCase()}`;
+    const nomeCategoriaFormatado = item.categoria.charAt(0).toUpperCase() + item.categoria.slice(1);
+    categoria.textContent = `Categoria: ${nomeCategoriaFormatado}`;
 
     const tempo = document.createElement("p");
     tempo.classList.add("card-resultado-tempo");
-    tempo.textContent = `⏱ Preparo: ${item.tempoPreparoMinutos} min`;
+    tempo.textContent = `Tempo de preparo: ${item.tempoPreparoMinutos} min`;
 
     const preco = document.createElement("p");
     preco.classList.add("card-resultado-preco");
@@ -196,25 +197,25 @@ function criarElementoCard(item) {
  */
 function criarElementoResumo(totalItens, totalValor, precoMedio, totalAcessivel) {
     const cardResumo = document.createElement("div");
-    cardResumo.classList.add("card", "resumo-resultado");
+    cardResumo.classList.add("resumo-resultado");
 
     const tituloResumo = document.createElement("h3");
-    tituloResumo.textContent = "📊 Resumo Geral do Cardápio (Cálculo via Reduce)";
+    tituloResumo.textContent = "Panorama do Cardápio";
 
     const listaResumo = document.createElement("ul");
     listaResumo.classList.add("lista-resumo");
 
     const linhaTotalItens = document.createElement("li");
-    linhaTotalItens.textContent = `Total de opções no cardápio: ${totalItens} bebidas`;
+    linhaTotalItens.textContent = `Opções no catálogo: ${totalItens} bebidas`;
 
     const linhaTotalPreco = document.createElement("li");
-    linhaTotalPreco.textContent = `Soma dos preços do catálogo: ${formatarPreco(totalValor)}`;
+    linhaTotalPreco.textContent = `Soma dos preços: ${formatarPreco(totalValor)}`;
 
     const linhaMediaPreco = document.createElement("li");
-    linhaMediaPreco.textContent = `Preço médio por bebida: ${formatarPreco(precoMedio)}`;
+    linhaMediaPreco.textContent = `Preço médio: ${formatarPreco(precoMedio)}`;
 
     const linhaAcessiveis = document.createElement("li");
-    linhaAcessiveis.textContent = `Opções de alto custo-benefício (filtradas): ${totalAcessivel} bebidas`;
+    linhaAcessiveis.textContent = `Bebidas em faixa acessível: ${totalAcessivel} opções`;
 
     listaResumo.append(linhaTotalItens, linhaTotalPreco, linhaMediaPreco, linhaAcessiveis);
     cardResumo.append(tituloResumo, listaResumo);
@@ -233,17 +234,17 @@ function criarBlocoCategorias(categorias) {
     container.classList.add("bloco-categorias-extra");
 
     const titulo = document.createElement("h3");
-    titulo.textContent = "📂 Visão Agrupada por Categoria (Reduce Extra)";
+    titulo.textContent = "Bebidas por Categoria";
 
     const gridCategorias = document.createElement("div");
     gridCategorias.classList.add("grid-categorias");
 
     for (const [categoria, lista] of Object.entries(categorias)) {
         const itemCat = document.createElement("div");
-        itemCat.classList.add("card", "card-categoria-item");
+        itemCat.classList.add("card-categoria-item");
 
         const tituloCat = document.createElement("h4");
-        tituloCat.textContent = `Categoria: ${categoria.toUpperCase()}`;
+        tituloCat.textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1);
 
         const contagem = document.createElement("p");
         contagem.textContent = `${lista.length} produto(s): ${lista.map((b) => b.nome).join(", ")}`;
@@ -271,12 +272,12 @@ function inicializarSecaoResultado() {
     // Título e descrição da seção
     const tituloPrincipal = document.createElement("h2");
     tituloPrincipal.id = "titulo-resultado";
-    tituloPrincipal.textContent = "Classificação Dinâmica de Bebidas";
+    tituloPrincipal.textContent = "Cardápio Dinâmico e Recomendações";
 
     const subtitulo = document.createElement("p");
     subtitulo.classList.add("resultado-subtitulo");
     subtitulo.textContent =
-        "Catálogo interativo gerado dinamicamente com funções puras, métodos de array (map, filter, reduce) e estilização por classes de faixa.";
+        "Seleção artesanal com tempos médios de preparo, preços calculados e classificação por faixas de degustação.";
 
     // Monta o resumo estatístico
     const elementoResumo = criarElementoResumo(
@@ -307,7 +308,7 @@ function inicializarSecaoResultado() {
         elementoCategorias
     );
 
-    console.log("✅ [Aula 11] Elementos gerados e inseridos no DOM com sucesso!");
+    console.log("Catálogo dinâmico montado e inserido com sucesso.");
 }
 
 // Executa a inicialização

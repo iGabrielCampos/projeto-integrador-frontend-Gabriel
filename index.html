@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafeteria Aroma</title>
+    <title>Cafeteria Aroma — Cafés Especiais & Torra Artesanal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,9 +17,9 @@
         <div class="navbar-container">
             <div class="marca">
                 <h1 class="titulo-marca">
-                    <a href="#cabecalho-principal" class="link-marca">☕ Cafeteria Aroma</a>
+                    <a href="#cabecalho-principal" class="link-marca">Cafeteria Aroma</a>
                 </h1>
-                <p class="slogan-marca">Sabores especiais para deixar seu dia mais gostoso.</p>
+                <p class="slogan-marca">Cafés especiais, grãos selecionados e métodos artesanais.</p>
             </div>
 
             <nav id="menu-principal" class="navegacao-principal" aria-label="Navegação principal">
@@ -34,10 +37,10 @@
                             Nossas Bebidas <span class="indicador-dropdown" aria-hidden="true">▾</span>
                         </a>
                         <ul class="submenu-dropdown" aria-label="Submenu de bebidas">
-                            <li><a href="#titulo-bebidas" class="link-submenu">🥛 Cappuccinos</a></li>
-                            <li><a href="#titulo-bebidas" class="link-submenu">☕ Cafés Espressos</a></li>
-                            <li><a href="#titulo-bebidas" class="link-submenu">🧊 Cafés Gelados</a></li>
-                            <li><a href="#titulo-bebidas" class="link-submenu">🍵 Chás Artesanais</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">Cappuccinos</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">Cafés Espressos</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">Cafés Gelados</a></li>
+                            <li><a href="#titulo-bebidas" class="link-submenu">Chás Artesanais</a></li>
                         </ul>
                     </li>
                     <li><a href="#titulo-diferenciais" class="link-menu">Diferenciais</a></li>
@@ -80,18 +83,16 @@
         </section>
 
         <section aria-labelledby="titulo-analisador">
-            <h2 id="titulo-analisador">Analisador de Cardápio Interativo</h2>
+            <h2 id="titulo-analisador">Consulta de Cardápio</h2>
             <div class="card destaque card-analisador">
                 <p class="analisador-descricao">
-                    Explore a lógica interativa da Cafeteria Aroma: filtre bebidas por orçamento, consulte estatísticas
-                    de preços e navegue pelas opções do cardápio.
+                    Filtre bebidas por faixa de orçamento e acompanhe relatórios estatísticos detalhados de preços e faixas de preparo.
                 </p>
                 <button type="button" class="botao botao-primario botao-analisador" onclick="iniciarMenuInterativo()">
-                    ☕ Abrir Menu Interativo
+                    Abrir Consulta Interativa
                 </button>
                 <p class="analisador-dica">
-                    💡 Dica: Pressione <kbd>F12</kbd> e abra a aba <strong>Console</strong> para visualizar os
-                    relatórios e a tabela completa gerada pelo script.
+                    Abra as ferramentas de desenvolvedor (<kbd>F12</kbd>) na aba <strong>Console</strong> para visualizar tabelas e relatórios completos.
                 </p>
             </div>
         </section>
@@ -142,7 +143,7 @@
         <section aria-labelledby="titulo-reserva">
             <h2 id="titulo-reserva">Reserve sua mesa</h2>
             <div class="aviso" id="aviso-reserva">
-                <p>Faça sua reserva e aproveite a experiência Aroma.</p>
+                <p>Reserve sua mesa com antecedência para garantir o melhor atendimento.</p>
                 <button class="botao-fechar" type="button" aria-label="Fechar aviso"
                     aria-controls="aviso-reserva">&times;</button>
             </div>
