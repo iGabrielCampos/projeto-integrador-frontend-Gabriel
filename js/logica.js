@@ -180,8 +180,6 @@ function iniciarMenuInterativo() {
     } while (opcaoMenu !== "sair");
 }
 
-iniciarMenuInterativo();
-
 // Disponibiliza para o botao da pagina
 if (typeof window !== "undefined") {
     window.iniciarMenuInterativo = iniciarMenuInterativo;

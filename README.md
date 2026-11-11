@@ -6,8 +6,16 @@ Página web de uma cafeteria com cardápio de bebidas, galeria, horários de fun
 
 - Galeria de bebidas com fotos de cafés e chás artesanais
 - Barra de navegação com Flexbox e cabeçalho fixo no topo (`position: sticky`)
+- Menu responsivo com botão hambúrguer acessível (`aria-expanded`), fechamento por `Escape`, restauração de foco e fechamento por clique externo
 - Submenu suspenso (dropdown) acessível pelo mouse e teclado
-- Botão de menu adaptado para telas menores
+- Cardápio interativo gerenciado via DOM e delegação de eventos (`closest` e `dataset`)
+- Busca em tempo real por nome e filtro por categorias
+- Controle com estado para exibição rápida de favoritos (`aria-pressed`)
+- Atalho de teclado rápido (`/`) para foco instantâneo no campo de busca
+- Resumo dinâmico estatístico anunciado por região acessível (`aria-live="polite"`)
+- Cadastro de novos itens ao vivo, demonstrando a propagação de eventos sem novos ouvintes
+- Segurança com renderização via `createElement` e `textContent` (prevenção a injeções XSS)
+- Atualização limpa de nós do DOM com `replaceChildren`
 - Tabela com os horários de funcionamento
 - Lista com os diferenciais da cafeteria
 - Formulário de reserva com validações nativas e campos acessíveis
@@ -15,9 +23,12 @@ Página web de uma cafeteria com cardápio de bebidas, galeria, horários de fun
 
 ## Como visualizar
 
-Abra o arquivo `index.html` no navegador. Para testar o analisador de bebidas:
-1. Abra as ferramentas de desenvolvedor (<kbd>F12</kbd>) na aba **Console**.
-2. Clique no botão **☕ Abrir Menu Interativo** na página para rodar as consultas e relatórios.
+Abra o arquivo `index.html` no navegador.
+1. Use o campo de busca ou pressione `/` para filtrar bebidas pelo nome.
+2. Filtre por categorias ou clique em **⭐ Apenas Favoritos** para alternar a exibição.
+3. Marque como favorito ou remova itens do cardápio utilizando os botões de cada card.
+4. Adicione uma nova bebida no formulário inferior e teste os botões criados dinamicamente.
+5. Para testar o analisador interativo por prompt da Aula 10, clique no botão **Abrir Consulta Interativa**.
 
 ## Tecnologias
 
