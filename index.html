@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafeteria Aroma — Cafés Especiais & Torra Artesanal</title>
+    <title>Cafeteria Aroma — Cafés Especiais &amp; Torra Artesanal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <!-- Cabecalho Fixo de Navegacao -->
     <header id="cabecalho-principal">
         <div class="navbar-container">
             <div class="marca">
-                <h1 class="titulo-marca">
-                    <a href="#cabecalho-principal" class="link-marca">Cafeteria Aroma</a>
-                </h1>
+                <a href="#cabecalho-principal" class="link-marca">
+                    <span class="titulo-marca">Cafeteria Aroma</span>
+                </a>
                 <p class="slogan-marca">Cafés especiais, grãos selecionados e métodos artesanais.</p>
             </div>
 
@@ -32,8 +33,7 @@
 
                 <ul id="menu-navegacao" class="menu-navegacao">
                     <li class="menu-item-dropdown">
-                        <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page"
-                            aria-haspopup="true">
+                        <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page" aria-haspopup="true">
                             Nossas Bebidas <span class="indicador-dropdown" aria-hidden="true">▾</span>
                         </a>
                         <ul class="submenu-dropdown" aria-label="Submenu de bebidas">
@@ -46,63 +46,135 @@
                     <li><a href="#secao-catalogo" class="link-menu">Cardápio</a></li>
                     <li><a href="#titulo-diferenciais" class="link-menu">Diferenciais</a></li>
                     <li><a href="#titulo-horarios" class="link-menu">Horários</a></li>
-                    <li><a href="#titulo-reserva" class="link-menu">Reservas</a></li>
+                    <li><a href="#titulo-reserva" class="link-menu link-menu-cta">Reservas</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section aria-labelledby="titulo-bebidas">
-            <h2 id="titulo-bebidas">Nossas Bebidas</h2>
+    <main id="conteudo-principal">
+        <!-- Secao Hero Editorial -->
+        <section id="hero" class="secao-hero" aria-labelledby="titulo-hero">
+            <div class="hero-conteudo">
+                <h1 id="titulo-hero" class="titulo-hero">
+                    Onde a torra artesanal encontra o tempo de uma boa conversa.
+                </h1>
+                <p class="hero-descricao">
+                    Grãos colhidos à mão em altitudes nobres, torrados semanalmente em pequenos lotes e extraídos em métodos precisos para despertar a riqueza de notas sensoriais.
+                </p>
+                <div class="hero-acoes">
+                    <a href="#secao-catalogo" class="botao botao-primario">Explorar Cardápio</a>
+                    <a href="#titulo-reserva" class="botao botao-secundario">Reservar uma Mesa</a>
+                </div>
+                <div class="hero-destaques-rapidos">
+                    <div class="destaque-dado">
+                        <span class="destaque-valor">100%</span>
+                        <span class="destaque-rotulo">Arábica Certificado</span>
+                    </div>
+                    <div class="destaque-dado">
+                        <span class="destaque-valor">Artesanal</span>
+                        <span class="destaque-rotulo">Torra Semanal</span>
+                    </div>
+                    <div class="destaque-dado">
+                        <span class="destaque-valor">4 Métodos</span>
+                        <span class="destaque-rotulo">Extração Manual</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+                <div class="hero-imagem-moldura">
+                    <img src="assets/images/cappuccino.jpg" alt="Xícara de cappuccino artesanal com latte art" width="600" height="450" loading="eager">
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeria de Destaques -->
+        <section id="secao-bebidas" class="secao-bebidas" aria-labelledby="titulo-bebidas">
+            <div class="secao-cabecalho">
+                <span class="subtitulo-editorial">Clássicos &amp; Autorais</span>
+                <h2 id="titulo-bebidas">Nossas Bebidas</h2>
+                <p class="secao-descricao">Uma seleção autoral que celebra a intensidade do grão e a leveza das infusões botânicas.</p>
+            </div>
+
             <div class="galeria">
-                <div class="cafe-item card destaque">
-                    <img src="assets/images/cappuccino.jpg" alt="Cappuccino" width="1500" height="1125" loading="lazy">
-                    <h3>Cappuccino</h3>
-                    <p class="descricao-bebida">Espresso clássico com leite vaporizado e canela.</p>
-                    <span class="preco-bebida">R$ 14,50</span>
+                <article class="cafe-item card destaque">
+                    <div class="cafe-item-midia">
+                        <img src="assets/images/cappuccino.jpg" alt="Cappuccino" width="1500" height="1125" loading="lazy">
+                        <span class="badge-destaque">Assinatura da Casa</span>
+                    </div>
+                    <div class="cafe-item-info">
+                        <h3>Cappuccino</h3>
+                        <p class="descricao-bebida">Espresso clássico com leite vaporizado e canela.</p>
+                        <span class="preco-bebida">R$ 14,50</span>
+                    </div>
+                </article>
+
+                <article class="cafe-item card">
+                    <div class="cafe-item-midia">
+                        <img src="assets/images/cafe-expresso.webp" alt="Café Espresso" width="350" height="280" loading="lazy">
+                    </div>
+                    <div class="cafe-item-info">
+                        <h3>Café Espresso</h3>
+                        <p class="descricao-bebida">Encorpado, aroma marcante e crema aveludada.</p>
+                        <span class="preco-bebida">R$ 9,00</span>
+                    </div>
+                </article>
+
+                <article class="cafe-item card">
+                    <div class="cafe-item-midia">
+                        <img src="assets/images/cafe-gelado.webp" alt="Café Gelado" width="415" height="739" loading="lazy">
+                    </div>
+                    <div class="cafe-item-info">
+                        <h3>Café Gelado</h3>
+                        <p class="descricao-bebida">Refrescante com notas suaves de caramelo e gelo.</p>
+                        <span class="preco-bebida">R$ 18,00</span>
+                    </div>
+                </article>
+
+                <article class="cafe-item card">
+                    <div class="cafe-item-midia">
+                        <img src="assets/images/cha-artesanal.webp" alt="Chá Artesanal" width="600" height="460" loading="lazy">
+                    </div>
+                    <div class="cafe-item-info">
+                        <h3>Chás Artesanais</h3>
+                        <p class="descricao-bebida">Infusão natural de ervas finas e flores selecionadas.</p>
+                        <span class="preco-bebida">R$ 11,00</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Faixa de Consulta Sensorial (Analisador) -->
+        <section class="secao-analisador" aria-labelledby="titulo-analisador">
+            <div class="analisador-container">
+                <div class="analisador-conteudo">
+                    <span class="subtitulo-editorial">Consultoria Sensorial</span>
+                    <h2 id="titulo-analisador">Consulta de Cardápio &amp; Estatísticas</h2>
+                    <p class="analisador-descricao">
+                        Filtre bebidas por faixa de orçamento e acompanhe relatórios estatísticos detalhados de preços e faixas de preparo.
+                    </p>
+                    <p class="analisador-dica">
+                        Abra as ferramentas de desenvolvedor (<kbd>F12</kbd>) na aba <strong>Console</strong> para visualizar tabelas e relatórios completos.
+                    </p>
                 </div>
-                <div class="cafe-item card">
-                    <img src="assets/images/cafe-expresso.webp" alt="Café Espresso" width="350" height="280" loading="lazy">
-                    <h3>Café Espresso</h3>
-                    <p class="descricao-bebida">Encorpado, aroma marcante e crema aveludada.</p>
-                    <span class="preco-bebida">R$ 9,00</span>
-                </div>
-                <div class="cafe-item card">
-                    <img src="assets/images/cafe-gelado.webp" alt="Café Gelado" width="415" height="739" loading="lazy">
-                    <h3>Café Gelado</h3>
-                    <p class="descricao-bebida">Refrescante com notas suaves de caramelo e gelo.</p>
-                    <span class="preco-bebida">R$ 18,00</span>
-                </div>
-                <div class="cafe-item card">
-                    <img src="assets/images/cha-artesanal.webp" alt="Chá Artesanal" width="600" height="460" loading="lazy">
-                    <h3>Chás Artesanais</h3>
-                    <p class="descricao-bebida">Infusão natural de ervas finas e flores selecionadas.</p>
-                    <span class="preco-bebida">R$ 11,00</span>
+                <div class="analisador-acao">
+                    <button type="button" id="btn-iniciar-analisador" class="botao botao-primario botao-analisador">
+                        <svg class="icone-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                        Abrir Consulta Interativa
+                    </button>
                 </div>
             </div>
         </section>
 
-        <section aria-labelledby="titulo-analisador">
-            <h2 id="titulo-analisador">Consulta de Cardápio</h2>
-            <div class="card destaque card-analisador">
-                <p class="analisador-descricao">
-                    Filtre bebidas por faixa de orçamento e acompanhe relatórios estatísticos detalhados de preços e faixas de preparo.
-                </p>
-                <button type="button" id="btn-iniciar-analisador" class="botao botao-primario botao-analisador">
-                    Abrir Consulta Interativa
-                </button>
-                <p class="analisador-dica">
-                    Abra as ferramentas de desenvolvedor (<kbd>F12</kbd>) na aba <strong>Console</strong> para visualizar tabelas e relatórios completos.
-                </p>
-            </div>
-        </section>
-
+        <!-- Catalogo Dinamico & Bancada do Barista -->
         <section id="secao-catalogo" class="secao-catalogo" aria-labelledby="titulo-catalogo">
-            <h2 id="titulo-catalogo">Cardápio Interativo &amp; Gestão de Bebidas</h2>
-            <p class="catalogo-subtitulo">
-                Consulte e filtre nosso cardápio em tempo real, marque seus cafés favoritos e adicione novos preparos artesanais ao catálogo.
-            </p>
+            <div class="secao-cabecalho">
+                <span class="subtitulo-editorial">Menu Dinâmico</span>
+                <h2 id="titulo-catalogo">Cardápio Interativo &amp; Gestão de Bebidas</h2>
+                <p class="catalogo-subtitulo">
+                    Consulte e filtre nosso cardápio em tempo real, marque seus cafés favoritos e adicione novos preparos artesanais ao catálogo.
+                </p>
+            </div>
 
             <div class="painel-filtros-catalogo">
                 <div class="grade-filtros">
@@ -125,7 +197,8 @@
 
                     <div class="campo-filtro-item campo-filtro-botao">
                         <button type="button" id="btn-filtro-favoritos" class="botao botao-secundario btn-toggle-favoritos" aria-pressed="false">
-                            ⭐ Apenas Favoritos
+                            <svg class="icone-svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            Apenas Favoritos
                         </button>
                     </div>
                 </div>
@@ -140,10 +213,13 @@
             </ul>
 
             <div class="bloco-cadastro-item">
-                <h3>Cadastrar Nova Opção de Bebida</h3>
-                <p class="cadastro-item-descricao">
-                    Adicione novas receitas autorais. As bebidas recém-criadas respondem instantaneamente aos botões de favoritar e remover via delegação de eventos.
-                </p>
+                <div class="bloco-cadastro-cabecalho">
+                    <span class="subtitulo-editorial">Espaço do Barista</span>
+                    <h3>Cadastrar Nova Opção de Bebida</h3>
+                    <p class="cadastro-item-descricao">
+                        Registre novas criações e microlotes sazonais. Os itens cadastrados entram imediatamente no catálogo ativo e respondem à gestão de favoritos e remoção.
+                    </p>
+                </div>
                 <form id="form-novo-item" class="form-novo-item">
                     <div class="grid-form-novo">
                         <div class="form-group">
@@ -181,8 +257,13 @@
             </div>
         </section>
 
-        <section aria-labelledby="titulo-diferenciais">
-            <h2 id="titulo-diferenciais">Nossos Diferenciais</h2>
+        <!-- Diferenciais -->
+        <section id="secao-diferenciais" class="secao-diferenciais" aria-labelledby="titulo-diferenciais">
+            <div class="secao-cabecalho">
+                <span class="subtitulo-editorial">Cuidado em Cada Detalhe</span>
+                <h2 id="titulo-diferenciais">Nossos Diferenciais</h2>
+                <p class="secao-descricao">O compromisso com o cultivo ético, o respeito ao tempo de maturação e a hospitalidade calorosa.</p>
+            </div>
             <ul class="lista-diferenciais">
                 <li>Grãos 100% arábica de origem sustentável e torra artesanal</li>
                 <li>Métodos variados de preparo: espresso, prensa francesa e coado especial</li>
@@ -191,8 +272,13 @@
             </ul>
         </section>
 
-        <section aria-labelledby="titulo-horarios">
-            <h2 id="titulo-horarios">Horários de Funcionamento</h2>
+        <!-- Horarios de Funcionamento -->
+        <section id="secao-horarios" class="secao-horarios" aria-labelledby="titulo-horarios">
+            <div class="secao-cabecalho">
+                <span class="subtitulo-editorial">Planeje seu Momento</span>
+                <h2 id="titulo-horarios">Horários de Funcionamento</h2>
+                <p class="secao-descricao">Ambiente aberto para o seu café da manhã, pausas revigorantes ou reuniões produtivas.</p>
+            </div>
             <div class="tabela-container" tabindex="0" role="region" aria-label="Tabela de horários de funcionamento com rolagem horizontal">
                 <table class="tabela-horarios">
                     <thead>
@@ -223,14 +309,20 @@
             </div>
         </section>
 
-        <section aria-labelledby="titulo-reserva">
-            <h2 id="titulo-reserva">Reserve sua mesa</h2>
+        <!-- Reserva de Mesa -->
+        <section id="secao-reserva" class="secao-reserva" aria-labelledby="titulo-reserva">
+            <div class="secao-cabecalho">
+                <span class="subtitulo-editorial">Hospitalidade Aroma</span>
+                <h2 id="titulo-reserva">Reserve sua mesa</h2>
+                <p class="secao-descricao">Antecipe sua visita e tenha uma experiência exclusiva em nosso salão ou varanda ao ar livre.</p>
+            </div>
+
             <div class="aviso" id="aviso-reserva">
                 <p>Reserve sua mesa com antecedência para garantir o melhor atendimento.</p>
-                <button class="botao-fechar" type="button" aria-label="Fechar aviso"
-                    aria-controls="aviso-reserva">&times;</button>
+                <button class="botao-fechar" type="button" aria-label="Fechar aviso" aria-controls="aviso-reserva">&times;</button>
             </div>
-            <form action="#" method="post">
+
+            <form class="form-reserva" action="#" method="post">
                 <fieldset>
                     <legend>Dados da reserva</legend>
 
@@ -291,15 +383,23 @@
                     </div>
                 </fieldset>
 
-                <button class="botao botao-primario" type="submit">Solicitar reserva</button>
+                <button class="botao botao-primario botao-submit-reserva" type="submit">Solicitar reserva</button>
             </form>
         </section>
-
     </main>
 
-    <footer>
-        <p>&copy; 2026 Cafeteria Aroma - Todos os direitos reservados.</p>
-        <p><a href="#cabecalho-principal">Voltar ao topo ↑</a></p>
+    <!-- Rodape Editorial -->
+    <footer class="rodape-principal">
+        <div class="rodape-container">
+            <div class="rodape-coluna-marca">
+                <span class="rodape-marca">Cafeteria Aroma</span>
+                <p class="rodape-slogan">Cafés especiais, grãos selecionados e métodos artesanais desde 2026.</p>
+            </div>
+            <div class="rodape-links">
+                <p>&copy; 2026 Cafeteria Aroma — Todos os direitos reservados.</p>
+                <p><a href="#cabecalho-principal" class="link-voltar-topo">Voltar ao topo ↑</a></p>
+            </div>
+        </div>
     </footer>
 
     <script src="js/logica.js" defer></script>
