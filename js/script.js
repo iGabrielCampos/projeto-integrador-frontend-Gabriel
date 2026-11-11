@@ -369,6 +369,25 @@ function tratarCliqueForaMenu(evento) {
     }
 }
 
+// Atualiza o estado ativo ao navegar entre secoes
+function tratarCliqueMenuNavegacao(evento) {
+    const link = evento.target.closest(".link-menu");
+    if (!link) {
+        return;
+    }
+
+    const linksMenu = document.querySelectorAll(".menu-navegacao .link-menu");
+    linksMenu.forEach((itemMenu) => {
+        itemMenu.classList.remove("ativo", "active");
+        itemMenu.removeAttribute("aria-current");
+    });
+
+    link.classList.add("ativo", "active");
+    link.setAttribute("aria-current", "page");
+
+    fecharMenuMobile();
+}
+
 // ============================================================================
 // 6. Funcoes de Inicializacao por Recurso
 // ============================================================================
@@ -377,6 +396,11 @@ function iniciarMenuNavegacao() {
     const botaoHamburguer = document.querySelector(".botao-hamburguer");
     if (botaoHamburguer) {
         botaoHamburguer.addEventListener("click", alternarMenuMobile);
+    }
+
+    const menuNavegacao = document.querySelector("#menu-navegacao");
+    if (menuNavegacao) {
+        menuNavegacao.addEventListener("click", tratarCliqueMenuNavegacao);
     }
 
     document.addEventListener("keydown", tratarTecladoMenu);
