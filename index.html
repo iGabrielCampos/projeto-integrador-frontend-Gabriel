@@ -24,13 +24,13 @@
 
             <nav id="menu-principal" class="navegacao-principal" aria-label="Navegação principal">
                 <button class="botao-hamburguer" type="button" aria-label="Abrir menu de navegação"
-                    aria-expanded="false">
+                    aria-expanded="false" aria-controls="menu-navegacao">
                     <span class="linha-hamburguer"></span>
                     <span class="linha-hamburguer"></span>
                     <span class="linha-hamburguer"></span>
                 </button>
 
-                <ul class="menu-navegacao">
+                <ul id="menu-navegacao" class="menu-navegacao">
                     <li class="menu-item-dropdown">
                         <a href="#titulo-bebidas" class="link-menu ativo active" aria-current="page"
                             aria-haspopup="true">
@@ -43,6 +43,7 @@
                             <li><a href="#titulo-bebidas" class="link-submenu">Chás Artesanais</a></li>
                         </ul>
                     </li>
+                    <li><a href="#secao-catalogo" class="link-menu">Cardápio Interativo</a></li>
                     <li><a href="#titulo-diferenciais" class="link-menu">Diferenciais</a></li>
                     <li><a href="#titulo-horarios" class="link-menu">Horários</a></li>
                     <li><a href="#titulo-reserva" class="link-menu">Reservas</a></li>
@@ -88,7 +89,7 @@
                 <p class="analisador-descricao">
                     Filtre bebidas por faixa de orçamento e acompanhe relatórios estatísticos detalhados de preços e faixas de preparo.
                 </p>
-                <button type="button" class="botao botao-primario botao-analisador" onclick="iniciarMenuInterativo()">
+                <button type="button" id="btn-iniciar-analisador" class="botao botao-primario botao-analisador">
                     Abrir Consulta Interativa
                 </button>
                 <p class="analisador-dica">
@@ -97,7 +98,88 @@
             </div>
         </section>
 
-        <section id="resultado" class="secao-resultado" aria-label="Catálogo dinâmico e destaques"></section>
+        <section id="secao-catalogo" class="secao-catalogo" aria-labelledby="titulo-catalogo">
+            <h2 id="titulo-catalogo">Cardápio Interativo &amp; Gestão de Bebidas</h2>
+            <p class="catalogo-subtitulo">
+                Consulte e filtre nosso cardápio em tempo real, marque seus cafés favoritos e adicione novos preparos artesanais ao catálogo.
+            </p>
+
+            <div class="painel-filtros-catalogo card">
+                <div class="grade-filtros">
+                    <div class="campo-filtro-item">
+                        <label for="campo-busca">Buscar bebida</label>
+                        <input type="search" id="campo-busca" class="input-busca" placeholder="Ex: Espresso, Mocha, Chá... (Atalho: /)">
+                    </div>
+
+                    <div class="campo-filtro-item">
+                        <label for="filtro-categoria">Categoria</label>
+                        <select id="filtro-categoria" class="select-filtro">
+                            <option value="todas">Todas as categorias</option>
+                            <option value="espresso">Espresso</option>
+                            <option value="cappuccino">Cappuccino</option>
+                            <option value="gelado">Café Gelado</option>
+                            <option value="cha">Chá Artesanal</option>
+                            <option value="especial">Especial Gourmet</option>
+                        </select>
+                    </div>
+
+                    <div class="campo-filtro-item campo-filtro-botao">
+                        <button type="button" id="btn-filtro-favoritos" class="botao botao-secundario btn-toggle-favoritos" aria-pressed="false">
+                            ⭐ Apenas Favoritos
+                        </button>
+                    </div>
+                </div>
+
+                <p id="resumo-catalogo" class="resumo-catalogo" aria-live="polite">
+                    Carregando cardápio...
+                </p>
+            </div>
+
+            <ul id="lista-cardapio" class="lista-cardapio" aria-label="Lista de bebidas do cardápio">
+                <!-- Renderizado dinamicamente via replaceChildren() -->
+            </ul>
+
+            <div class="card bloco-cadastro-item">
+                <h3>Cadastrar Nova Opção de Bebida</h3>
+                <p class="cadastro-item-descricao">
+                    Adicione novas receitas autorais. As bebidas recém-criadas respondem instantaneamente aos botões de favoritar e remover via delegação de eventos.
+                </p>
+                <form id="form-novo-item" class="form-novo-item">
+                    <div class="grid-form-novo">
+                        <div class="form-group">
+                            <label for="novo-nome">Nome da bebida</label>
+                            <input id="novo-nome" name="nome" type="text" required placeholder="Ex: Flat White Aveludado">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nova-categoria">Categoria</label>
+                            <select id="nova-categoria" name="categoria" required>
+                                <option value="">Selecione uma categoria</option>
+                                <option value="espresso">Espresso</option>
+                                <option value="cappuccino">Cappuccino</option>
+                                <option value="gelado">Café Gelado</option>
+                                <option value="cha">Chá Artesanal</option>
+                                <option value="especial">Especial Gourmet</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="novo-preco">Preço (R$)</label>
+                            <input id="novo-preco" name="preco" type="number" min="1" max="100" step="0.50" required placeholder="Ex: 15.50">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="novo-tempo">Preparo (minutos)</label>
+                            <input id="novo-tempo" name="tempo" type="number" min="1" max="60" value="5" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="botao botao-primario">
+                        Adicionar ao Cardápio
+                    </button>
+                </form>
+            </div>
+        </section>
 
         <section aria-labelledby="titulo-diferenciais">
             <h2 id="titulo-diferenciais">Nossos Diferenciais</h2>
