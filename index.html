@@ -104,7 +104,7 @@
                 Consulte e filtre nosso cardápio em tempo real, marque seus cafés favoritos e adicione novos preparos artesanais ao catálogo.
             </p>
 
-            <div class="painel-filtros-catalogo card">
+            <div class="painel-filtros-catalogo">
                 <div class="grade-filtros">
                     <div class="campo-filtro-item">
                         <label for="campo-busca">Buscar bebida</label>
@@ -139,7 +139,7 @@
                 <!-- Renderizado dinamicamente via replaceChildren() -->
             </ul>
 
-            <div class="card bloco-cadastro-item">
+            <div class="bloco-cadastro-item">
                 <h3>Cadastrar Nova Opção de Bebida</h3>
                 <p class="cadastro-item-descricao">
                     Adicione novas receitas autorais. As bebidas recém-criadas respondem instantaneamente aos botões de favoritar e remover via delegação de eventos.
@@ -193,32 +193,34 @@
 
         <section aria-labelledby="titulo-horarios">
             <h2 id="titulo-horarios">Horários de Funcionamento</h2>
-            <table class="tabela-horarios">
-                <thead>
-                    <tr>
-                        <th scope="col">Dia da Semana</th>
-                        <th scope="col">Abertura</th>
-                        <th scope="col">Fechamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Segunda a Sexta</td>
-                        <td>07:30</td>
-                        <td>20:00</td>
-                    </tr>
-                    <tr>
-                        <td>Sábado</td>
-                        <td>08:00</td>
-                        <td>19:00</td>
-                    </tr>
-                    <tr>
-                        <td>Domingo e Feriados</td>
-                        <td>08:30</td>
-                        <td>14:00</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="tabela-container" tabindex="0" role="region" aria-label="Tabela de horários de funcionamento com rolagem horizontal">
+                <table class="tabela-horarios">
+                    <thead>
+                        <tr>
+                            <th scope="col">Dia da Semana</th>
+                            <th scope="col">Abertura</th>
+                            <th scope="col">Fechamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Segunda a Sexta</td>
+                            <td>07:30</td>
+                            <td>20:00</td>
+                        </tr>
+                        <tr>
+                            <td>Sábado</td>
+                            <td>08:00</td>
+                            <td>19:00</td>
+                        </tr>
+                        <tr>
+                            <td>Domingo e Feriados</td>
+                            <td>08:30</td>
+                            <td>14:00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section aria-labelledby="titulo-reserva">
