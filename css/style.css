@@ -139,6 +139,16 @@ h3 {
     border: 1px solid var(--cor-borda);
     border-radius: var(--raio-borda);
     cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.botao-hamburguer[aria-expanded="true"] {
+    background-color: var(--cor-fundo);
+    border-color: var(--cor-primaria);
+}
+
+.botao-hamburguer[aria-expanded="true"] .linha-hamburguer {
+    background-color: var(--cor-secundaria);
 }
 
 .linha-hamburguer {
@@ -597,6 +607,249 @@ footer p {
 }
 
 /* Secao de resultados */
+/* Catalogo Interativo & Gestao */
+.secao-catalogo {
+    margin-bottom: 3.5rem;
+}
+
+.catalogo-subtitulo {
+    color: var(--cor-texto-suave);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.painel-filtros-catalogo {
+    width: 100%;
+    margin-bottom: 1.75rem;
+    padding: 1.5rem;
+    text-align: left;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+}
+
+.grade-filtros {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr auto;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .grade-filtros {
+        grid-template-columns: 1fr;
+    }
+}
+
+.campo-filtro-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.campo-filtro-item label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-primaria-escura);
+}
+
+.input-busca,
+.select-filtro {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.95rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: calc(var(--raio-borda) - 2px);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-busca:focus,
+.select-filtro:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 2px rgba(92, 60, 40, 0.15);
+}
+
+.campo-filtro-botao {
+    justify-content: flex-end;
+}
+
+.btn-toggle-favoritos {
+    padding: 0.65rem 1.15rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-toggle-favoritos[aria-pressed="true"] {
+    background-color: #fef3c7;
+    border-color: #f59e0b;
+    color: #92400e;
+    font-weight: 700;
+}
+
+.resumo-catalogo {
+    margin: 0;
+    padding: 0.85rem 1rem;
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: calc(var(--raio-borda) - 2px);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cor-primaria-escura);
+}
+
+/* Lista de Bebidas */
+.lista-cardapio {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card-item-catalogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.25rem;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+}
+
+.card-item-catalogo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(56, 35, 23, 0.08);
+}
+
+.card-item-catalogo.item-favorito {
+    border-color: #f59e0b;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.12);
+}
+
+.card-item-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-item-cabecalho h3 {
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.card-item-categoria {
+    font-size: 0.8125rem;
+    color: var(--cor-texto-suave);
+    margin: 0 0 0.35rem 0;
+}
+
+.card-item-tempo {
+    font-size: 0.875rem;
+    color: var(--cor-texto);
+    margin: 0 0 0.85rem 0;
+}
+
+.card-item-preco {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cor-primaria-escura);
+    font-variant-numeric: tabular-nums;
+    margin: 0 0 1rem 0;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--cor-borda);
+}
+
+.card-item-acoes {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.card-item-acoes .botao-acao {
+    flex: 1;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.8125rem;
+    border-radius: calc(var(--raio-borda) - 2px);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.botao-favorito-ativo {
+    background-color: #fef3c7;
+    border: 1px solid #f59e0b;
+    color: #92400e;
+}
+
+.botao-perigo {
+    background-color: transparent;
+    border: 1px solid #fca5a5;
+    color: #b91c1c;
+}
+
+.botao-perigo:hover {
+    background-color: #fee2e2;
+}
+
+.item-vazio {
+    grid-column: 1 / -1;
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--cor-superficie);
+    border: 1px dashed var(--cor-borda);
+    border-radius: var(--raio-borda);
+    color: var(--cor-texto-suave);
+    font-style: italic;
+}
+
+/* Bloco de cadastro de novo item */
+.bloco-cadastro-item {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    text-align: left;
+}
+
+.bloco-cadastro-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+    font-size: 1.2rem;
+}
+
+.cadastro-item-descricao {
+    font-size: 0.875rem;
+    color: var(--cor-texto-suave);
+    margin-bottom: 1.25rem;
+}
+
+.grid-form-novo {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .grid-form-novo {
+        grid-template-columns: 1fr;
+    }
+}
+
 .secao-resultado {
     margin-bottom: 3rem;
 }
@@ -802,7 +1055,8 @@ footer p {
         display: none;
     }
 
-    .navegacao-principal:focus-within .menu-navegacao {
+    .navegacao-principal:focus-within .menu-navegacao,
+    .menu-navegacao.menu-aberto {
         display: flex;
         flex-direction: column;
         position: absolute;
@@ -817,11 +1071,13 @@ footer p {
         gap: 0.5rem;
     }
 
-    .navegacao-principal:focus-within .link-menu {
+    .navegacao-principal:focus-within .link-menu,
+    .menu-navegacao.menu-aberto .link-menu {
         width: 100%;
     }
 
-    .navegacao-principal:focus-within .submenu-dropdown {
+    .navegacao-principal:focus-within .submenu-dropdown,
+    .menu-navegacao.menu-aberto .submenu-dropdown {
         position: static;
         box-shadow: none;
         border: none;
