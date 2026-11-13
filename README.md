@@ -8,6 +8,9 @@ Página web de uma cafeteria com cardápio de bebidas, galeria, horários de fun
 - Barra de navegação com Flexbox e cabeçalho fixo no topo (`position: sticky`)
 - Menu responsivo com botão hambúrguer acessível (`aria-expanded`), fechamento por `Escape`, restauração de foco e fechamento por clique externo
 - Submenu suspenso (dropdown) acessível pelo mouse e teclado
+- Seção de Multimídia com vídeo HTML5 (`<video>`), fallback de formatos (`.webm` e `.mp4`), legendas WebVTT (`.vtt`), pôster e justificativa de `preload="none"`
+- Elemento gráfico SVG inline acessível (`role="img"`, `<title>`, `<desc>`) com nitidez vetorial independente de DPI
+- Gráfico dinâmico em HTML5 Canvas com contexto 2D, animação via `requestAnimationFrame` e limpeza de quadro com `clearRect`
 - Cardápio interativo gerenciado via DOM e delegação de eventos (`closest` e `dataset`)
 - Busca em tempo real por nome e filtro por categorias
 - Controle com estado para exibição rápida de favoritos (`aria-pressed`)
@@ -17,9 +20,9 @@ Página web de uma cafeteria com cardápio de bebidas, galeria, horários de fun
 - Segurança com renderização via `createElement` e `textContent` (prevenção a injeções XSS)
 - Atualização limpa de nós do DOM com `replaceChildren`
 - Tabela com os horários de funcionamento
-- Lista com os diferenciais da cafeteria
+- Lista com os diferenciais da cafeteria e link externo referenciado (`target="_blank"` e `rel="noopener noreferrer"`)
 - Formulário de reserva com validações nativas e campos acessíveis
-- Analisador de cardápio em JavaScript com filtros de preço, cálculo de estatísticas e menu interativo
+- Analisador de cardápio em JavaScript com filtros de preço, cálculo de estatísticas e menu interativo (com teste de mesa e documentação técnica)
 
 ## Como visualizar
 
@@ -28,7 +31,7 @@ Abra o arquivo `index.html` no navegador.
 2. Filtre por categorias ou clique em **⭐ Apenas Favoritos** para alternar a exibição.
 3. Marque como favorito ou remova itens do cardápio utilizando os botões de cada card.
 4. Adicione uma nova bebida no formulário inferior e teste os botões criados dinamicamente.
-5. Para testar o analisador interativo por prompt da Aula 10, clique no botão **Abrir Consulta Interativa**.
+5. Para testar o analisador estatístico da Aula 09 no console, abra o painel retrátil **📊 Métricas do Cardápio** e clique em **Executar Análise Completa no Console (F12)**.
 
 ## Tecnologias
 

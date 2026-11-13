@@ -1,3 +1,45 @@
+/**
+ * ============================================================================
+ * MINI-ANALISADOR DE CARDÁPIO - CAFETERIA AROMA (AULA 09)
+ * ============================================================================
+ * Tema: Análise estatística de cardápio de cafés especiais e bebidas artesanais.
+ * 
+ * Entrada: Preço máximo limite em R$ informado pelo usuário via prompt (faixa: 5 a 50).
+ * Processamento:
+ *   1. Validação de dados (cancelar/null com ??, vazio, NaN via Number() e faixa válida).
+ *   2. Laço for...of acumulando preço total, contagem no orçamento, item mais caro e mais barato.
+ *   3. Classificação em faixas de preço (Economico, Intermediario, Premium) com if/else e ===.
+ *   4. Identificação da categoria da bebida via switch com break e default.
+ *   5. Menu interativo com do...while até a condição de saída ("sair" ou opção "3").
+ * Saída:
+ *   Relatório estruturado com template literals, console.table(), alerts e console logs.
+ * 
+ * Pseudocódigo da Análise:
+ *   INICIO
+ *     OBTER limitePreco VIA prompt COM fallback de R$ 15.00
+ *     VALIDAR se valor e numero valido entre 5 e 50
+ *     PARA CADA bebida NO cardapio:
+ *       ACUMULAR precoTotal E CONTAR se preco <= limitePreco
+ *       ATUALIZAR bebidaMaisCara E bebidaMaisBarata
+ *       CLASSIFICAR faixaPreco VIA if/else if/else
+ *       CLASSIFICAR etiquetaCategoria VIA switch
+ *     FIM PARA
+ *     CALCULAR mediaPreco = precoTotal / totalBebidas
+ *     EXIBIR relatorio COM console.table
+ *     REPETIR menu interativo COM do...while ATE comando "sair"
+ *   FIM
+ * 
+ * Teste de Mesa (3 primeiras voltas do laço for...of com limite padrão R$ 15.00):
+ * +-------+---------------------------+---------+------------+---------------------+---------------------+
+ * | Volta | Item (nome)               | Preço   | Total Acum.| Faixa de Preço      | Status Orçamento    |
+ * +-------+---------------------------+---------+------------+---------------------+---------------------+
+ * | 1     | Cafe Espresso Tradicional | R$ 9.00 | R$ 9.00    | Economico (<12)     | Dentro do orcamento |
+ * | 2     | Cappuccino Italiano       | R$ 14.50| R$ 23.50   | Intermediario (<=17)| Dentro do orcamento |
+ * | 3     | Cafe Gelado Caramelo      | R$ 18.00| R$ 41.50   | Premium (>17)       | Acima do orcamento  |
+ * +-------+---------------------------+---------+------------+---------------------+---------------------+
+ * ============================================================================
+ */
+
 // Cardapio da cafeteria
 const cardapio = [
     { id: 1, nome: "Cafe Espresso Tradicional", categoria: "espresso", preco: 9.00 },
@@ -180,7 +222,9 @@ function iniciarMenuInterativo() {
     } while (opcaoMenu !== "sair");
 }
 
-// Disponibiliza para o botao da pagina
+// Disponibiliza para o botao da pagina e executa no carregamento inicial
 if (typeof window !== "undefined") {
     window.iniciarMenuInterativo = iniciarMenuInterativo;
 }
+
+iniciarMenuInterativo();

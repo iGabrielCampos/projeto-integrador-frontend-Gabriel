@@ -159,8 +159,8 @@ function atualizarResumo(resumo) {
     }
 
     elementoResumo.textContent =
-        `Exibindo ${resumo.visiveis} de ${resumo.totalGeral} bebidas no cardápio ` +
-        `(${resumo.favoritos} favorita(s) listada(s) | Preço médio: ${formatarPreco(resumo.precoMedio)}).`;
+        `Exibindo ${resumo.visiveis} de ${resumo.totalGeral} bebidas ` +
+        `(${resumo.favoritos} fav. | Média: ${formatarPreco(resumo.precoMedio)}).`;
 }
 
 // Funcao central que le os dados, aplica filtros e redesenha com replaceChildren
@@ -236,6 +236,9 @@ function tratarCliqueLista(evento) {
         itemAlvo.favorito = !itemAlvo.favorito;
         desenhar();
     } else if (acao === "remover") {
+        if (!window.confirm(`Deseja realmente remover "${itemAlvo.nome}" do cardápio?`)) {
+            return;
+        }
         const indice = itensCardapio.findIndex((item) => item.id === idItem);
         if (indice !== -1) {
             itensCardapio.splice(indice, 1);
@@ -462,10 +465,111 @@ function tratarCliqueAnalisador() {
 }
 
 function iniciarAnalisadorPrompt() {
-    const botaoAnalisador = document.querySelector("#btn-iniciar-analisador");
+    const botaoAnalisador = document.querySelector("#btn-iniciar-analisador, .botao-analisador");
     if (botaoAnalisador) {
         botaoAnalisador.addEventListener("click", tratarCliqueAnalisador);
     }
+}
+
+// ============================================================================
+// Aula 05: Grafico em Canvas com Contexto 2D, Animacao e clearRect
+// ============================================================================
+
+function iniciarGraficoCanvas() {
+    const canvas = document.querySelector("#canvas-grafico-cafes");
+    if (!canvas || !canvas.getContext) {
+        return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+        return;
+    }
+
+    const metricas = [
+        { nome: "Espresso", valor: 9, max: 10, cor: "#181411" },
+        { nome: "Cappuccino", valor: 7, max: 10, cor: "#c2410c" },
+        { nome: "Gelado", valor: 6, max: 10, cor: "#ea580c" },
+        { nome: "Chá", valor: 4, max: 10, cor: "#6b7280" },
+        { nome: "Mocha", valor: 8, max: 10, cor: "#43281c" }
+    ];
+
+    let fatorProgresso = 0;
+
+    function renderizarQuadro() {
+        // Aula 05: clearRect a cada frame para evitar acumulo visual indevido
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const larguraBarra = 44;
+        const espacamento = 34;
+        const margemEsquerda = 45;
+        const linhaBaseY = 160;
+
+        // Eixo horizontal
+        ctx.strokeStyle = "#e5e7eb";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(25, linhaBaseY);
+        ctx.lineTo(canvas.width - 25, linhaBaseY);
+        ctx.stroke();
+
+        metricas.forEach((item, indice) => {
+            const x = margemEsquerda + indice * (larguraBarra + espacamento);
+            const alturaMaxima = (item.valor / item.max) * 115;
+            const alturaAtual = alturaMaxima * fatorProgresso;
+            const y = linhaBaseY - alturaAtual;
+
+            // Barra desenhada com contexto 2d
+            ctx.fillStyle = item.cor;
+            ctx.beginPath();
+            if (typeof ctx.roundRect === "function") {
+                ctx.roundRect(x, y, larguraBarra, alturaAtual, [6, 6, 0, 0]);
+            } else {
+                ctx.rect(x, y, larguraBarra, alturaAtual);
+            }
+            ctx.fill();
+
+            // Valor numerico no topo da barra
+            ctx.fillStyle = "#111827";
+            ctx.font = "600 12px 'Inter', system-ui, sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(`${item.valor}/10`, x + larguraBarra / 2, Math.max(16, y - 6));
+
+            // Rotulo textual da bebida
+            ctx.fillStyle = "#6b7280";
+            ctx.font = "500 12px 'Inter', system-ui, sans-serif";
+            ctx.fillText(item.nome, x + larguraBarra / 2, linhaBaseY + 20);
+        });
+
+        if (fatorProgresso < 1) {
+            fatorProgresso = Math.min(1, fatorProgresso + 0.05);
+            requestAnimationFrame(renderizarQuadro);
+        }
+    }
+
+    renderizarQuadro();
+}
+
+// ============================================================================
+// Aula 04: Desafio Extra - Detecao de Codec/Formato de Midia via canPlayType()
+// ============================================================================
+
+function verificarSuporteVideo() {
+    const elementoInfo = document.querySelector("#info-formato-video");
+    const video = document.createElement("video");
+    if (!elementoInfo || !video.canPlayType) {
+        return;
+    }
+
+    const suporteWebm = video.canPlayType('video/webm; codecs="vp9"');
+    const suporteMp4 = video.canPlayType('video/mp4; codecs="avc1.42E01E"');
+
+    let formatoEscolhido = "MP4 (H.264)";
+    if (suporteWebm === "probably" || suporteWebm === "maybe") {
+        formatoEscolhido = "WebM (VP9)";
+    }
+
+    elementoInfo.textContent = `Vídeo: formato ${formatoEscolhido} ativo (WebM: ${suporteWebm || "não"} | MP4: ${suporteMp4 || "não"}).`;
 }
 
 // ============================================================================
@@ -476,3 +580,5 @@ iniciarMenuNavegacao();
 iniciarCatalogoInterativo();
 iniciarAvisoReserva();
 iniciarAnalisadorPrompt();
+iniciarGraficoCanvas();
+verificarSuporteVideo();

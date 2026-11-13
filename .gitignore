@@ -1,3 +1,8 @@
+# Dependencias e variaveis de ambiente (Aula 01)
+node_modules/
+.env
+.env.*
+
 # Sistema operacional
 .DS_Store
 Thumbs.db
