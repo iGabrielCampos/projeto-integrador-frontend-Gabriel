@@ -1,44 +1,37 @@
-/* ==========================================================================
-   CAFETERIA AROMA — FOLHA DE ESTILOS PRINCIPAL
-   Design System Moderno, Clean e Minimalista
-   Totalmente aderente às Aulas 01 a 12 (HTML5, CSS3, Flexbox/Grid, Canvas, DOM/JS)
-   ========================================================================== */
+/* Folha de estilos principal da Cafeteria Aroma */
 
-/* --------------------------------------------------------------------------
-   AULA 06: DESIGN TOKENS (VARIÁVEIS CSS GLOBAIS)
-   Paleta de alto contraste, tipografia com Inter, superfícies neutras e elevações
-   -------------------------------------------------------------------------- */
+/* Variáveis globais (:root) */
 :root {
-  /* Cores de Superfície */
+  /* Cores de superfície */
   --bg-principal: #ffffff;
   --bg-superficie: #f8f9fa;
   --bg-elevado: #ffffff;
   --bg-sutil: #f1f3f5;
   --bg-escuro: #111827;
 
-  /* Cores de Texto */
+  /* Cores de texto */
   --texto-principal: #111827;
   --texto-secundario: #4b5563;
   --texto-suave: #57534e;
   --texto-inverso: #ffffff;
 
-  /* Cor de Destaque / Acento (Café Especial / Terracota Sofisticado) */
+  /* Cor de destaque */
   --destaque: #b45309;
   --destaque-hover: #92400e;
   --destaque-suave: #fef3c7;
   --destaque-fundo: #fffbeb;
 
-  /* Bordas e Contornos */
+  /* Bordas */
   --borda-fina: #e5e7eb;
   --borda-media: #d1d5db;
   --borda-foco: #111827;
 
-  /* Sombras e Elevação */
+  /* Sombras */
   --sombra-card: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
   --sombra-elevada: 0 10px 25px -5px rgba(0, 0, 0, 0.07), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
   --sombra-drawer: -12px 0 35px rgba(0, 0, 0, 0.12);
 
-  /* Raios de Arredondamento */
+  /* Raios de borda */
   --raio-sm: 6px;
   --raio-md: 10px;
   --raio-lg: 16px;
@@ -49,28 +42,22 @@
   --fonte-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --fonte-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* Transições Padronizadas */
+  /* Transições */
   --transicao-rapida: 150ms ease;
   --transicao-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --------------------------------------------------------------------------
-   CONFIGURAÇÃO DE BASE & UNIDADES RELATIVAS
-   -------------------------------------------------------------------------- */
+/* Configuração base e unidades relativas */
 html {
-  font-size: 100%; /* 16px padrão: 1rem = 16px */
+  font-size: 100%;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /*
-  AULA 06: Justificativa do uso de unidades relativas (rem):
-  Utilizamos 'rem' para toda a escala tipográfica, padding, margens e espaçamentos.
-  O rem toma como referência direta o font-size do elemento raiz (html). Quando o
-  usuário altera as preferências de zoom ou tamanho padrão de fonte do seu navegador
-  (fundamental para pessoas com baixa visão), toda a arquitetura visual do site escala
-  de modo harmônico e proporcional, garantindo conformidade com as diretrizes WCAG de acessibilidade.
+  Toda a escala tipográfica usa rem para acompanhar o font-size definido no navegador
+  pelo usuário, permitindo aumentar o zoom ou a fonte padrão sem quebrar o layout.
 */
 
 body {
@@ -82,10 +69,7 @@ body {
   overflow-x: hidden;
 }
 
-/* --------------------------------------------------------------------------
-   AULA 06: ORDEM LOVE / HATE EM LINKS GLOBAIS
-   :link -> :visited -> :hover -> :active
-   -------------------------------------------------------------------------- */
+/* Estados de link na ordem LoVe/HAte (:link, :visited, :hover, :active) */
 a:link {
   color: inherit;
   text-decoration: none;
@@ -105,9 +89,7 @@ a:active {
   outline-offset: 3px;
 }
 
-/* --------------------------------------------------------------------------
-   ESTRUTURA DE SEÇÕES E CABEÇALHOS
-   -------------------------------------------------------------------------- */
+/* Estrutura de seções e cabeçalhos */
 main {
   display: block;
 }
@@ -123,6 +105,10 @@ section {
   max-width: 620px;
 }
 
+/*
+  Combinador descendente (.secao-cabecalho h2): estiliza apenas os títulos h2
+  dentro de .secao-cabecalho, sem afetar outros h2 da página.
+*/
 .secao-cabecalho h2 {
   font-size: 2rem;
   font-weight: 700;
@@ -138,9 +124,7 @@ section {
   line-height: 1.55;
 }
 
-/* --------------------------------------------------------------------------
-   AULA 08: CABEÇALHO FIXO (STICKY HEADER) & MENU RESPONSIVO
-   -------------------------------------------------------------------------- */
+/* Cabeçalho fixo (sticky) e menu de navegação */
 #cabecalho-principal {
   position: sticky;
   top: 0;
@@ -200,7 +184,7 @@ section {
   border: 1px solid var(--borda-fina);
 }
 
-/* Menu de Navegacao (Flexbox - Aula 07 e 08) */
+/* Menu de navegação com Flexbox */
 .navegacao-principal {
   display: flex;
   align-items: center;
@@ -247,7 +231,7 @@ section {
   background-color: var(--destaque) !important;
 }
 
-/* Dropdown Menu (Aula 08) */
+/* Menu dropdown */
 .menu-item-dropdown {
   position: relative;
 }
@@ -302,7 +286,7 @@ section {
   color: var(--texto-principal);
 }
 
-/* Hamburguer Mobile */
+/* Botão hambúrguer no mobile */
 .botao-hamburguer {
   display: none;
   background: none;
@@ -320,9 +304,7 @@ section {
   transition: transform var(--transicao-rapida), opacity var(--transicao-rapida);
 }
 
-/* --------------------------------------------------------------------------
-   HERO SECTION: CLEAN, MINIMALISTA E COM HIERARQUIA TIPOGRÁFICA
-   -------------------------------------------------------------------------- */
+/* Seção principal (Hero) */
 .secao-hero {
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
@@ -376,7 +358,7 @@ section {
   margin-bottom: 2.75rem;
 }
 
-/* Botões Padronizados do Sistema */
+/* Botões padronizados */
 .botao {
   display: inline-flex;
   align-items: center;
@@ -460,9 +442,7 @@ section {
   transition: transform var(--transicao-normal);
 }
 
-/* --------------------------------------------------------------------------
-   AULA 07: SEÇÃO NOSSAS BEBIDAS (GRID RESPONSIVO E CARDS MODERNOS)
-   -------------------------------------------------------------------------- */
+/* Seção Nossas Bebidas (Grid responsivo) */
 .secao-bebidas {
   border-top: 1px solid var(--borda-fina);
 }
@@ -484,10 +464,16 @@ section {
 }
 
 /*
-  AULA 08 / OTIMIZAÇÃO: GPU Compositing
-  O transform: translateY() opera na camada de composição da GPU, evitando
-  recálculos de layout (reflow) ou repintura total (repaint) do documento.
+  Combinador filho direto (.trilho-destaques > .cafe-item) com pseudo-classe
+  estrutural :first-child para destacar o primeiro card da grade.
 */
+.trilho-destaques > .cafe-item:first-child,
+.destaque {
+  border: 1.5px solid var(--destaque);
+  background-color: var(--destaque-fundo);
+}
+
+/* transform no hover evita recálculo de layout (reflow) */
 .cafe-item.card:hover {
   transform: translateY(-4px);
   border-color: var(--borda-media);
@@ -555,9 +541,7 @@ section {
   color: var(--destaque);
 }
 
-/* --------------------------------------------------------------------------
-   AULA 04: SEÇÃO MULTIMÍDIA (VÍDEO HTML5 & CODECS)
-   -------------------------------------------------------------------------- */
+/* Seção multimídia (vídeo HTML5) */
 .secao-multimidia {
   border-top: 1px solid var(--borda-fina);
   background-color: var(--bg-superficie);
@@ -605,9 +589,7 @@ section {
   line-height: 1.5;
 }
 
-/* --------------------------------------------------------------------------
-   AULA 05: SEÇÃO PERFIL SENSORIAL (SVG ACESSÍVEL & CANVAS 2D)
-   -------------------------------------------------------------------------- */
+/* Perfil sensorial: SVG e Canvas 2D */
 .secao-indicadores {
   border-top: 1px solid var(--borda-fina);
 }
@@ -672,28 +654,19 @@ section {
 }
 
 #canvas-grafico-cafes {
+  display: block;
   width: 100%;
   max-width: 460px;
+  height: auto;
   margin: 0 auto;
   border-radius: var(--raio-md);
   border: 1px solid var(--borda-fina);
   background-color: #ffffff;
 }
 
-/* --------------------------------------------------------------------------
-   AULAS 09, 11 E 12: CARDÁPIO INTERATIVO & BARISTA METRICS DRAWER
-   -------------------------------------------------------------------------- */
+/* Cardápio interativo */
 .secao-catalogo {
   border-top: 1px solid var(--borda-fina);
-}
-
-.catalogo-cabecalho-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
 }
 
 .catalogo-subtitulo {
@@ -701,10 +674,7 @@ section {
   color: var(--texto-secundario);
 }
 
-/* --------------------------------------------------------------------------
-   AULA 09 E 10: SEÇÃO DE CONSULTA INTERATIVA (PROMPT & RELATÓRIO)
-   Card simples, limpo e integrado diretamente na página
-   -------------------------------------------------------------------------- */
+/* Consulta interativa de cardápio */
 .secao-analisador {
   border-top: 1px solid var(--borda-fina);
   background-color: var(--bg-superficie);
@@ -752,9 +722,39 @@ section {
   color: var(--texto-principal);
 }
 
-/* --------------------------------------------------------------------------
-   FILTROS DO CATÁLOGO & LISTA DINÂMICA
-   -------------------------------------------------------------------------- */
+.resumo-analisador-dom {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.analisador-metrica {
+  background-color: var(--bg-superficie);
+  border: 1px solid var(--borda-fina);
+  border-radius: var(--raio-md);
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.analisador-metrica-rotulo {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-secundario);
+}
+
+.analisador-metrica-valor {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+}
+
+/* Filtros do catálogo e lista dinâmica */
 .painel-filtros-catalogo {
   background-color: var(--bg-superficie);
   border: 1px solid var(--borda-fina);
@@ -823,10 +823,10 @@ section {
   line-height: 1.5;
 }
 
-/* Grid de Itens Renderizados via DOM replaceChildren */
+/* Grid de itens renderizados pelo JavaScript */
 .lista-cardapio {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
   gap: 1.25rem;
   list-style: none;
   padding: 0;
@@ -841,12 +841,33 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color var(--transicao-rapida), box-shadow var(--transicao-rapida);
+  transition: transform var(--transicao-normal), border-color var(--transicao-rapida), box-shadow var(--transicao-rapida);
+}
+
+.lista-cardapio > .card-item-catalogo:first-child {
+  border-top: 3px solid var(--destaque);
 }
 
 .card-item-catalogo:hover {
+  transform: translateY(-4px);
   border-color: var(--borda-media);
   box-shadow: var(--sombra-card);
+}
+
+.item-favorito {
+  border-color: #f59e0b;
+}
+
+.faixa-economico {
+  border-left: 3px solid #15803d;
+}
+
+.faixa-intermediario {
+  border-left: 3px solid #b45309;
+}
+
+.faixa-premium {
+  border-left: 3px solid #92400e;
 }
 
 .card-item-cabecalho {
@@ -873,11 +894,13 @@ section {
   border-radius: var(--raio-pilula);
 }
 
+.tag-economico,
 .tag-acessivel {
   background-color: #dcfce7;
   color: #15803d;
 }
 
+.tag-intermediario,
 .tag-moderado {
   background-color: #fef3c7;
   color: #b45309;
@@ -945,9 +968,7 @@ section {
   border-color: #fca5a5;
 }
 
-/* --------------------------------------------------------------------------
-   FORMULÁRIO DE CADASTRO DE NOVO ITEM
-   -------------------------------------------------------------------------- */
+/* Formulário de cadastro de novo item */
 .bloco-cadastro-item {
   background-color: var(--bg-superficie);
   border: 1px solid var(--borda-fina);
@@ -1007,9 +1028,7 @@ section {
   border-color: var(--texto-principal);
 }
 
-/* --------------------------------------------------------------------------
-   SEÇÃO DIFERENCIAIS
-   -------------------------------------------------------------------------- */
+/* Seção diferenciais */
 .secao-diferenciais {
   border-top: 1px solid var(--borda-fina);
 }
@@ -1034,6 +1053,16 @@ section {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
+  transition: transform var(--transicao-normal), border-color var(--transicao-rapida);
+}
+
+.lista-diferenciais > li:nth-child(odd) {
+  background-color: var(--destaque-fundo);
+  border-color: var(--destaque-suave);
+}
+
+.lista-diferenciais > li:hover {
+  transform: translateY(-3px);
 }
 
 .lista-diferenciais li::before {
@@ -1051,9 +1080,7 @@ section {
   flex-shrink: 0;
 }
 
-/* --------------------------------------------------------------------------
-   SEÇÃO HORÁRIOS & TABELA
-   -------------------------------------------------------------------------- */
+/* Seção horários e tabela */
 .secao-horarios {
   border-top: 1px solid var(--borda-fina);
   background-color: var(--bg-superficie);
@@ -1096,9 +1123,7 @@ section {
   background-color: var(--bg-superficie);
 }
 
-/* --------------------------------------------------------------------------
-   AULA 03: SEÇÃO RESERVA DE MESA & FORMULÁRIO ACESSÍVEL
-   -------------------------------------------------------------------------- */
+/* Seção reserva de mesa e formulário */
 .secao-reserva {
   border-top: 1px solid var(--borda-fina);
 }
@@ -1175,9 +1200,18 @@ section {
   padding: 0.85rem;
 }
 
-/* --------------------------------------------------------------------------
-   RODAPÉ CLEAN (FOOTER)
-   -------------------------------------------------------------------------- */
+.feedback-reserva {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--raio-md);
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Rodapé */
 .rodape-principal {
   background-color: #111827;
   color: #9ca3af;
@@ -1233,9 +1267,7 @@ section {
   font-weight: 500;
 }
 
-/* --------------------------------------------------------------------------
-   RESPONSIVIDADE (MEDIA QUERIES)
-   -------------------------------------------------------------------------- */
+/* Responsividade */
 @media (max-width: 900px) {
   .secao-hero {
     grid-template-columns: 1fr;
@@ -1253,6 +1285,14 @@ section {
 }
 
 @media (max-width: 680px) {
+  section {
+    padding: 3.25rem 1rem;
+  }
+
+  .titulo-hero {
+    font-size: 2rem;
+  }
+
   .menu-navegacao {
     display: none;
   }
@@ -1260,6 +1300,7 @@ section {
   .menu-navegacao.menu-aberto {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     position: absolute;
     top: 100%;
     left: 0;
@@ -1270,12 +1311,33 @@ section {
     box-shadow: var(--sombra-elevada);
   }
 
+  .menu-navegacao.menu-aberto .submenu-dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    margin-top: 0.25rem;
+    padding-left: 0.75rem;
+  }
+
   .botao-hamburguer {
     display: block;
   }
 
-  .painel-metricas-barista {
-    max-width: 100%;
+  .card-analisador,
+  .bloco-cadastro-item,
+  .form-reserva {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .indicador-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
   .hero-stats-grid {

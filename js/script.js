@@ -1,4 +1,49 @@
-// 1. Fonte da verdade: array de objetos com mais de 5 itens e mais de 3 propriedades cada
+/**
+ * Cafeteria Aroma - Script principal
+ *
+ * Tema: Cardápio interativo e análise estatística de bebidas artesanais.
+ *
+ * Entrada:
+ *   - Orçamento máximo em R$ informado via prompt (faixa válida: 5 a 50, padrão 15.00).
+ *   - Termo de busca, categoria e filtro de favoritos na interface.
+ *   - Cadastro de novas bebidas e envio do formulário de reserva.
+ *
+ * Processamento:
+ *   1. Validação e coerção explícita com Number() (null, vazio, NaN e faixa).
+ *   2. Padrão dados -> classificar -> resumir com for...of, if/else if/else,
+ *      switch, while (simulação de combo no orçamento) e do...while (menu).
+ *   3. Funções puras com escopo local, parâmetro padrão e return.
+ *   4. Métodos de array (filter, map, reduce) sobre itensCardapio.
+ *
+ * Saída:
+ *   - Cards e resumo renderizados no DOM com createElement, textContent e replaceChildren(),
+ *     marcados com classes CSS e anunciados em região aria-live="polite".
+ *   - Tabela e resumo no Console (F12) com console.table() e gráfico em Canvas 2D.
+ *
+ * Pseudocódigo:
+ *   INICIO
+ *     OBTER precoLimite VIA prompt (padrão 15.00) E VALIDAR entre 5 e 50
+ *     PARA CADA item DE itensCardapio (for...of):
+ *       ACUMULAR totalPreco, CONTAR itens <= precoLimite, ATUALIZAR caro/barato
+ *       CLASSIFICAR faixaPreco VIA if / else if / else
+ *       OBTER etiquetaCategoria VIA switch
+ *     FIM PARA
+ *     SIMULAR quantos itens sequenciais cabem no teto do combo VIA while
+ *     EXIBIR relatório NO console.table E NO DOM (#resumo-analisador-dom)
+ *     REPETIR menu interativo VIA do...while ATÉ opção "3" ou "sair"
+ *   FIM
+ *
+ * Teste de Mesa (3 primeiras voltas do for...of com precoLimite = R$ 15,00):
+ * +-------+-----------------------------+---------+------------+---------------+---------------------+
+ * | Volta | Item (nome)                 | Preço   | Total Acum.| Faixa         | Status Orçamento    |
+ * +-------+-----------------------------+---------+------------+---------------+---------------------+
+ * | 1     | Café Espresso Tradicional   | R$ 9,00 | R$ 9,00    | Economico     | Dentro do orçamento |
+ * | 2     | Cappuccino Italiano         | R$ 14,50| R$ 23,50   | Intermediario | Dentro do orçamento |
+ * | 3     | Café Gelado Caramelo        | R$ 18,00| R$ 41,50   | Premium       | Acima do orçamento  |
+ * +-------+-----------------------------+---------+------------+---------------+---------------------+
+ */
+
+// Base de dados principal (6 itens com 6 propriedades cada)
 const itensCardapio = [
     { id: 1, nome: "Café Espresso Tradicional", categoria: "espresso", preco: 9.00, tempoPreparoMinutos: 3, favorito: false },
     { id: 2, nome: "Cappuccino Italiano", categoria: "cappuccino", preco: 14.50, tempoPreparoMinutos: 5, favorito: true },
@@ -8,39 +53,79 @@ const itensCardapio = [
     { id: 6, nome: "Espresso Duplo com Leite Vegetal", categoria: "espresso", preco: 13.50, tempoPreparoMinutos: 4, favorito: false }
 ];
 
-// Estado reativo dos filtros da aplicacao
+// Estado atual dos filtros
 const estadoFiltros = {
     termo: "",
     categoria: "todas",
     apenasFavoritos: false
 };
 
-// ============================================================================
-// 2. Funcoes Puras de Calculo, Formatacao e Resumo
-// ============================================================================
+// Funções puras e escopo local
 
+// Processa o preço com desconto usando variáveis de escopo local e parâmetro padrão
 function calcularPrecoFinal(precoBase, descontoPercentual = 0) {
-    if (typeof precoBase !== "number" || precoBase < 0) {
+    const baseNumerica = Number(precoBase);
+    const descontoNumerico = Number(descontoPercentual);
+
+    if (Number.isNaN(baseNumerica) || baseNumerica < 0) {
         return 0;
     }
-    const descontoValido = Math.max(0, Math.min(100, descontoPercentual));
-    const valorDesconto = (precoBase * descontoValido) / 100;
-    const resultado = precoBase - valorDesconto;
+
+    const descontoValido = Math.max(0, Math.min(100, Number.isNaN(descontoNumerico) ? 0 : descontoNumerico));
+    const valorDesconto = (baseNumerica * descontoValido) / 100;
+    const resultado = baseNumerica - valorDesconto;
     return Number(resultado.toFixed(2));
 }
 
+// Exemplo de escopo local com closure: taxaPadraoLocal fica restrita à função externa
+function criarCalculadoraDesconto(descontoPadrao = 0) {
+    const taxaPadraoLocal = Number(descontoPadrao);
+    return function (precoBase, desconto = taxaPadraoLocal) {
+        return calcularPrecoFinal(precoBase, desconto);
+    };
+}
+
+// Classifica o preço em três faixas com if / else if / else
 function classificarFaixaPreco(preco) {
-    if (preco < 12.00) {
+    const valor = Number(preco);
+    if (valor < 12.00) {
         return "Economico";
-    }
-    if (preco <= 17.00) {
+    } else if (valor <= 17.00) {
         return "Intermediario";
+    } else {
+        return "Premium";
     }
-    return "Premium";
+}
+
+// Retorna a descrição da categoria usando switch com break e default
+function obterEtiquetaCategoria(categoria) {
+    let etiqueta = "";
+    switch (categoria) {
+        case "espresso":
+            etiqueta = "Espresso Tradicional da Casa";
+            break;
+        case "cappuccino":
+            etiqueta = "Cappuccino com Leite Vaporizado";
+            break;
+        case "gelado":
+            etiqueta = "Bebida Gelada Refrescante";
+            break;
+        case "cha":
+            etiqueta = "Infusão Artesanal de Frutas e Ervas";
+            break;
+        case "especial":
+            etiqueta = "Receita Autoral Gourmet";
+            break;
+        default:
+            etiqueta = "Bebida Especial Aroma";
+            break;
+    }
+    return etiqueta;
 }
 
 function formatarPreco(valor) {
-    return `R$ ${valor.toFixed(2).replace(".", ",")}`;
+    const numero = Number(valor);
+    return `R$ ${(Number.isNaN(numero) ? 0 : numero).toFixed(2).replace(".", ",")}`;
 }
 
 function formatarNomeCategoria(categoria) {
@@ -54,16 +139,10 @@ function formatarNomeCategoria(categoria) {
     return mapaCategorias[categoria] || categoria.charAt(0).toUpperCase() + categoria.slice(1);
 }
 
-function criarCalculadoraDesconto(descontoPadrao = 0) {
-    return function (precoBase, desconto = descontoPadrao) {
-        return calcularPrecoFinal(precoBase, desconto);
-    };
-}
-
-// Funcao pura que calcula o resumo estatistico a partir dos dados recebidos
+// Calcula o resumo estatístico com filter e reduce
 function calcularResumo(itensFiltrados, totalItensGeral) {
     const visiveis = itensFiltrados.length;
-    const favoritos = itensFiltrados.filter((item) => item.favorito).length;
+    const favoritos = itensFiltrados.filter((item) => item.favorito === true).length;
     const somaPrecos = itensFiltrados.reduce((acumulador, item) => acumulador + item.preco, 0);
     const precoMedio = visiveis > 0 ? somaPrecos / visiveis : 0;
 
@@ -71,15 +150,214 @@ function calcularResumo(itensFiltrados, totalItensGeral) {
         visiveis: visiveis,
         totalGeral: totalItensGeral,
         favoritos: favoritos,
-        precoMedio: precoMedio
+        precoMedio: Number(precoMedio.toFixed(2))
     };
 }
 
-// ============================================================================
-// 3. Renderizacao do DOM (createElement, textContent, dataset, replaceChildren)
-// ============================================================================
+// Lógica estruturada: dados -> classificar -> resumir
 
-// Cria cada elemento da lista garantindo protecao total contra XSS (sem innerHTML para dados)
+function executarAnaliseCardapio(precoLimiteParametro = 15.00, exibirNoConsole = true) {
+    const precoLimite = Number(precoLimiteParametro);
+    const itensProcessados = [];
+
+    if (itensCardapio.length === 0) {
+        return {
+            precoLimite: precoLimite,
+            totalPreco: 0,
+            mediaPreco: 0,
+            contadorDentroDoLimite: 0,
+            totalItens: 0,
+            itensNoCombo: 0,
+            itemMaisCaro: null,
+            itemMaisBarato: null,
+            itensProcessados: itensProcessados
+        };
+    }
+
+    let totalPreco = 0;
+    let contadorDentroDoLimite = 0;
+    let itemMaisCaro = itensCardapio[0];
+    let itemMaisBarato = itensCardapio[0];
+
+    for (const item of itensCardapio) {
+        totalPreco += item.preco;
+
+        if (item.preco <= precoLimite) {
+            contadorDentroDoLimite++;
+        }
+        if (item.preco > itemMaisCaro.preco) {
+            itemMaisCaro = item;
+        }
+        if (item.preco < itemMaisBarato.preco) {
+            itemMaisBarato = item;
+        }
+
+        const faixaPreco = classificarFaixaPreco(item.preco);
+        const etiquetaCategoria = obterEtiquetaCategoria(item.categoria);
+        const statusOrcamento = item.preco <= precoLimite ? "Dentro do orçamento" : "Acima do orçamento";
+
+        itensProcessados.push({
+            id: item.id,
+            nome: item.nome,
+            categoria: item.categoria,
+            preco: Number(item.preco.toFixed(2)),
+            faixaPreco: faixaPreco,
+            etiquetaCategoria: etiquetaCategoria,
+            statusOrcamento: statusOrcamento
+        });
+    }
+
+    // Simula com while quantos itens sequenciais cabem em um combo de até 2x o limite
+    let indiceWhile = 0;
+    let somaCombo = 0;
+    let itensNoCombo = 0;
+    const tetoCombo = precoLimite * 2;
+
+    while (indiceWhile < itensCardapio.length && somaCombo + itensCardapio[indiceWhile].preco <= tetoCombo) {
+        somaCombo += itensCardapio[indiceWhile].preco;
+        itensNoCombo++;
+        indiceWhile++;
+    }
+
+    const mediaPreco = totalPreco / itensCardapio.length;
+
+    if (exibirNoConsole) {
+        console.log("=== RELATÓRIO GERAL - CARDÁPIO CAFETERIA AROMA ===");
+        console.log(`Parâmetro de preço máximo: ${formatarPreco(precoLimite)}`);
+        console.log(`Total acumulado do cardápio: ${formatarPreco(totalPreco)}`);
+        console.log(`Média de preço das bebidas: ${formatarPreco(mediaPreco)}`);
+        console.log(`Bebida mais cara: ${itemMaisCaro.nome} (${formatarPreco(itemMaisCaro.preco)})`);
+        console.log(`Bebida mais acessível: ${itemMaisBarato.nome} (${formatarPreco(itemMaisBarato.preco)})`);
+        console.log(`Itens dentro do orçamento: ${contadorDentroDoLimite} de ${itensCardapio.length}`);
+        console.log(`Simulação combo (while, teto ${formatarPreco(tetoCombo)}): ${itensNoCombo} itens (${formatarPreco(somaCombo)})`);
+        console.table(itensProcessados);
+    }
+
+    return {
+        precoLimite: precoLimite,
+        totalPreco: Number(totalPreco.toFixed(2)),
+        mediaPreco: Number(mediaPreco.toFixed(2)),
+        contadorDentroDoLimite: contadorDentroDoLimite,
+        totalItens: itensCardapio.length,
+        itensNoCombo: itensNoCombo,
+        itemMaisCaro: itemMaisCaro,
+        itemMaisBarato: itemMaisBarato,
+        itensProcessados: itensProcessados
+    };
+}
+
+function renderizarResumoAnalisador(relatorio) {
+    const container = document.querySelector("#resumo-analisador-dom");
+    if (!container) {
+        return;
+    }
+
+    if (!relatorio || relatorio.totalItens === 0) {
+        const avisoVazio = document.createElement("p");
+        avisoVazio.textContent = "Nenhuma bebida disponível para análise estatística.";
+        container.replaceChildren(avisoVazio);
+        return;
+    }
+
+    const metricas = [
+        { rotulo: "Orçamento analisado", valor: formatarPreco(relatorio.precoLimite) },
+        { rotulo: "Dentro do orçamento", valor: `${relatorio.contadorDentroDoLimite} de ${relatorio.totalItens} bebidas` },
+        { rotulo: "Média do cardápio", valor: formatarPreco(relatorio.mediaPreco) },
+        { rotulo: "Mais acessível", valor: `${relatorio.itemMaisBarato.nome} (${formatarPreco(relatorio.itemMaisBarato.preco)})` }
+    ];
+
+    const cartoes = metricas.map((metrica) => {
+        const bloco = document.createElement("div");
+        bloco.classList.add("analisador-metrica");
+
+        const rotulo = document.createElement("span");
+        rotulo.classList.add("analisador-metrica-rotulo");
+        rotulo.textContent = metrica.rotulo;
+
+        const valor = document.createElement("strong");
+        valor.classList.add("analisador-metrica-valor");
+        valor.textContent = metrica.valor;
+
+        bloco.append(rotulo, valor);
+        return bloco;
+    });
+
+    container.replaceChildren(...cartoes);
+}
+
+// Menu interativo via prompt e do...while acionado pelo usuário
+function iniciarMenuInterativo() {
+    const valorPadrao = 15.00;
+    let precoLimite = valorPadrao;
+
+    const entradaUsuario = prompt("Informe um preço máximo em R$ para filtrar o cardápio (faixa válida: 5 a 50):", "15.00");
+    const valorRecebido = entradaUsuario ?? "";
+
+    if (entradaUsuario === null) {
+        console.warn(`[Aviso] Entrada cancelada pelo usuário. Usando preço padrão de R$ ${valorPadrao.toFixed(2)}.`);
+    } else if (valorRecebido.trim() === "") {
+        console.warn(`[Aviso] Nenhum valor informado. Usando preço padrão de R$ ${valorPadrao.toFixed(2)}.`);
+    } else {
+        const numeroConvertido = Number(valorRecebido.replace(",", "."));
+        if (Number.isNaN(numeroConvertido)) {
+            console.warn(`[Aviso] '${valorRecebido}' não é um número válido. Usando R$ ${valorPadrao.toFixed(2)}.`);
+        } else if (numeroConvertido < 5 || numeroConvertido > 50) {
+            console.warn(`[Aviso] Preço R$ ${numeroConvertido.toFixed(2)} fora da faixa (5 a 50). Usando R$ ${valorPadrao.toFixed(2)}.`);
+        } else {
+            precoLimite = numeroConvertido;
+        }
+    }
+
+    const relatorio = executarAnaliseCardapio(precoLimite, true);
+    renderizarResumoAnalisador(relatorio);
+
+    let opcaoMenu = "";
+    do {
+        const entradaMenu = prompt(
+            "=== MENU INTERATIVO - CAFETERIA AROMA ===\n\n" +
+            "1 - Listar itens analisados\n" +
+            "2 - Exibir resumo estatístico\n" +
+            "3 (ou 'sair') - Encerrar o sistema\n\n" +
+            "Escolha uma opção:"
+        );
+
+        const opcaoNormalizada = (entradaMenu ?? "3").trim().toLowerCase();
+
+        switch (opcaoNormalizada) {
+            case "1": {
+                console.table(relatorio.itensProcessados);
+                let textoItens = "BEBIDAS ANALISADAS - CAFETERIA AROMA\n\n";
+                for (const itemCardapio of relatorio.itensProcessados) {
+                    textoItens += `${itemCardapio.id}. ${itemCardapio.nome}: ${formatarPreco(itemCardapio.preco)} (${itemCardapio.faixaPreco} | ${itemCardapio.statusOrcamento})\n`;
+                }
+                alert(textoItens);
+                break;
+            }
+            case "2": {
+                const textoResumo =
+                    "RESUMO ESTATÍSTICO - CAFETERIA AROMA\n\n" +
+                    `• Preço limite: ${formatarPreco(relatorio.precoLimite)}\n` +
+                    `• Total acumulado: ${formatarPreco(relatorio.totalPreco)}\n` +
+                    `• Preço médio: ${formatarPreco(relatorio.mediaPreco)}\n` +
+                    `• Mais cara: ${relatorio.itemMaisCaro.nome} (${formatarPreco(relatorio.itemMaisCaro.preco)})\n` +
+                    `• Mais acessível: ${relatorio.itemMaisBarato.nome} (${formatarPreco(relatorio.itemMaisBarato.preco)})\n` +
+                    `• Dentro do orçamento: ${relatorio.contadorDentroDoLimite} de ${relatorio.totalItens}`;
+                alert(textoResumo);
+                break;
+            }
+            case "3":
+            case "sair":
+                opcaoMenu = "sair";
+                break;
+            default:
+                alert("Opção inválida! Escolha 1, 2, 3 ou 'sair'.");
+                break;
+        }
+    } while (opcaoMenu !== "sair");
+}
+
+// Renderização do DOM: createElement, textContent e replaceChildren
+
 function criarElementoItem(item) {
     const li = document.createElement("li");
     li.classList.add("card-item-catalogo");
@@ -96,6 +374,7 @@ function criarElementoItem(item) {
     cabecalho.classList.add("card-item-cabecalho");
 
     const titulo = document.createElement("h3");
+    titulo.classList.add("card-item-titulo");
     titulo.textContent = item.nome;
 
     const badgeFaixa = document.createElement("span");
@@ -136,12 +415,10 @@ function criarElementoItem(item) {
     btnRemover.textContent = "Remover";
 
     barraAcoes.append(btnFavorito, btnRemover);
-
     li.append(cabecalho, categoria, tempo, preco, barraAcoes);
     return li;
 }
 
-// Atualiza o resumo anunciado pela regiao aria-live="polite"
 function atualizarResumo(resumo) {
     const elementoResumo = document.querySelector("#resumo-catalogo");
     if (!elementoResumo) {
@@ -163,7 +440,6 @@ function atualizarResumo(resumo) {
         `(${resumo.favoritos} fav. | Média: ${formatarPreco(resumo.precoMedio)}).`;
 }
 
-// Funcao central que le os dados, aplica filtros e redesenha com replaceChildren
 function desenhar() {
     const listaCardapio = document.querySelector("#lista-cardapio");
     if (!listaCardapio) {
@@ -193,11 +469,10 @@ function desenhar() {
 
     const dadosResumo = calcularResumo(itensFiltrados, itensCardapio.length);
     atualizarResumo(dadosResumo);
+    renderizarResumoAnalisador(executarAnaliseCardapio(15.00, false));
 }
 
-// ============================================================================
-// 4. Ouvintes Nomeados de Eventos do Catalogo (com Delegacao)
-// ============================================================================
+// Ouvintes de eventos e delegação
 
 function tratarBusca(evento) {
     estadoFiltros.termo = evento.target.value;
@@ -217,7 +492,7 @@ function tratarAlternarFavoritos(evento) {
     desenhar();
 }
 
-// Delegacao de eventos: um unico ouvinte no conteiner <ul>
+// Delegação de eventos: um único ouvinte na lista <ul>
 function tratarCliqueLista(evento) {
     const botao = evento.target.closest("[data-acao]");
     if (!botao) {
@@ -247,7 +522,6 @@ function tratarCliqueLista(evento) {
     }
 }
 
-// Formulario de adicao de item novo (prova da delegacao de eventos)
 function tratarEnvioFormulario(evento) {
     evento.preventDefault();
     const form = evento.currentTarget;
@@ -286,7 +560,23 @@ function tratarEnvioFormulario(evento) {
     desenhar();
 }
 
-// Desafio extra: tecla de atalho '/' para focar no campo de busca
+function tratarEnvioReserva(evento) {
+    evento.preventDefault();
+    const form = evento.currentTarget;
+    const feedback = document.querySelector("#feedback-reserva");
+    const inputNome = form.querySelector("#nome");
+    const inputData = form.querySelector("#data");
+    const inputHorario = form.querySelector("#horario");
+
+    if (feedback && inputNome && inputData && inputHorario) {
+        const nomeCliente = inputNome.value.trim() || "Cliente";
+        feedback.textContent = `Reserva solicitada para ${nomeCliente} em ${inputData.value} às ${inputHorario.value}. Aguardamos você!`;
+        feedback.hidden = false;
+    }
+
+    form.reset();
+}
+
 function tratarAtalhoTeclado(evento) {
     if (evento.key !== "/") {
         return;
@@ -307,9 +597,7 @@ function tratarAtalhoTeclado(evento) {
     }
 }
 
-// ============================================================================
-// 5. Controle com Estado do Menu de Navegacao e Acessibilidade
-// ============================================================================
+// Menu de navegação mobile e acessibilidade
 
 function fecharMenuMobile() {
     const botaoHamburguer = document.querySelector(".botao-hamburguer");
@@ -336,7 +624,6 @@ function alternarMenuMobile() {
     menuNavegacao.classList.toggle("menu-aberto", novoEstado);
 }
 
-// Fechamento pelo teclado: tecla Escape fecha e devolve foco ao botao hamburguer
 function tratarTecladoMenu(evento) {
     if (evento.key !== "Escape") {
         return;
@@ -354,7 +641,6 @@ function tratarTecladoMenu(evento) {
     }
 }
 
-// Desafio extra: fechar menu com clique fora usando closest
 function tratarCliqueForaMenu(evento) {
     const navegacao = document.querySelector("#menu-principal");
     const botaoHamburguer = document.querySelector(".botao-hamburguer");
@@ -372,7 +658,6 @@ function tratarCliqueForaMenu(evento) {
     }
 }
 
-// Atualiza o estado ativo ao navegar entre secoes
 function tratarCliqueMenuNavegacao(evento) {
     const link = evento.target.closest(".link-menu");
     if (!link) {
@@ -391,9 +676,7 @@ function tratarCliqueMenuNavegacao(evento) {
     fecharMenuMobile();
 }
 
-// ============================================================================
-// 6. Funcoes de Inicializacao por Recurso
-// ============================================================================
+// Inicialização por recurso
 
 function iniciarMenuNavegacao() {
     const botaoHamburguer = document.querySelector(".botao-hamburguer");
@@ -438,7 +721,6 @@ function iniciarCatalogoInterativo() {
 
     document.addEventListener("keydown", tratarAtalhoTeclado);
 
-    // Primeira renderizacao: a pagina nasce preenchida
     desenhar();
 }
 
@@ -456,25 +738,24 @@ function iniciarAvisoReserva() {
     if (botaoFecharAviso) {
         botaoFecharAviso.addEventListener("click", tratarFecharAviso);
     }
-}
 
-function tratarCliqueAnalisador() {
-    if (typeof window.iniciarMenuInterativo === "function") {
-        window.iniciarMenuInterativo();
+    const formReserva = document.querySelector("#form-reserva");
+    if (formReserva) {
+        formReserva.addEventListener("submit", tratarEnvioReserva);
     }
 }
 
 function iniciarAnalisadorPrompt() {
-    const botaoAnalisador = document.querySelector("#btn-iniciar-analisador, .botao-analisador");
+    const botaoAnalisador = document.querySelector("#btn-iniciar-analisador");
     if (botaoAnalisador) {
-        botaoAnalisador.addEventListener("click", tratarCliqueAnalisador);
+        botaoAnalisador.addEventListener("click", iniciarMenuInterativo);
     }
+
+    const relatorioInicial = executarAnaliseCardapio(15.00, true);
+    renderizarResumoAnalisador(relatorioInicial);
 }
 
-// ============================================================================
-// Aula 05: Grafico em Canvas com Contexto 2D, Animacao e clearRect
-// ============================================================================
-
+// Gráfico em Canvas 2D animado com requestAnimationFrame e clearRect
 function iniciarGraficoCanvas() {
     const canvas = document.querySelector("#canvas-grafico-cafes");
     if (!canvas || !canvas.getContext) {
@@ -497,7 +778,6 @@ function iniciarGraficoCanvas() {
     let fatorProgresso = 0;
 
     function renderizarQuadro() {
-        // Aula 05: clearRect a cada frame para evitar acumulo visual indevido
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         const larguraBarra = 44;
@@ -505,7 +785,6 @@ function iniciarGraficoCanvas() {
         const margemEsquerda = 45;
         const linhaBaseY = 160;
 
-        // Eixo horizontal
         ctx.strokeStyle = "#e5e7eb";
         ctx.lineWidth = 1.5;
         ctx.beginPath();
@@ -519,7 +798,6 @@ function iniciarGraficoCanvas() {
             const alturaAtual = alturaMaxima * fatorProgresso;
             const y = linhaBaseY - alturaAtual;
 
-            // Barra desenhada com contexto 2d
             ctx.fillStyle = item.cor;
             ctx.beginPath();
             if (typeof ctx.roundRect === "function") {
@@ -529,13 +807,11 @@ function iniciarGraficoCanvas() {
             }
             ctx.fill();
 
-            // Valor numerico no topo da barra
             ctx.fillStyle = "#111827";
             ctx.font = "600 12px 'Inter', system-ui, sans-serif";
             ctx.textAlign = "center";
             ctx.fillText(`${item.valor}/10`, x + larguraBarra / 2, Math.max(16, y - 6));
 
-            // Rotulo textual da bebida
             ctx.fillStyle = "#6b7280";
             ctx.font = "500 12px 'Inter', system-ui, sans-serif";
             ctx.fillText(item.nome, x + larguraBarra / 2, linhaBaseY + 20);
@@ -550,10 +826,7 @@ function iniciarGraficoCanvas() {
     renderizarQuadro();
 }
 
-// ============================================================================
-// Aula 04: Desafio Extra - Detecao de Codec/Formato de Midia via canPlayType()
-// ============================================================================
-
+// Detecta suporte de codec com canPlayType()
 function verificarSuporteVideo() {
     const elementoInfo = document.querySelector("#info-formato-video");
     const video = document.createElement("video");
@@ -572,10 +845,7 @@ function verificarSuporteVideo() {
     elementoInfo.textContent = `Vídeo: formato ${formatoEscolhido} ativo (WebM: ${suporteWebm || "não"} | MP4: ${suporteMp4 || "não"}).`;
 }
 
-// ============================================================================
-// 7. Inicializacao Geral dos Recursos ao Carregar o Script
-// ============================================================================
-
+// Inicialização geral
 iniciarMenuNavegacao();
 iniciarCatalogoInterativo();
 iniciarAvisoReserva();

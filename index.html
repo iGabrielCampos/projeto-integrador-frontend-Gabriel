@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cafeteria Aroma — Cafés Especiais &amp; Torra Artesanal</title>
-    <!-- Tipografia Moderna de Alta Fidelidade (Inter) -->
+    <title>Cafeteria Aroma | Cafés Especiais e Torra Artesanal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,12 +14,9 @@
 </head>
 
 <body>
-    <!-- Cabecalho Fixo de Navegacao -->
-    <!-- Aula 08: Contexto de Empilhamento (Stacking Context):
-         O cabecalho principal possui 'position: sticky' e 'z-index: 100', criando seu proprio
-         contexto de empilhamento. O submenu dropdown (.submenu-dropdown) utiliza 'position: absolute'
-         e 'z-index: 101' relativo ao elemento pai (.menu-item-dropdown com 'position: relative'),
-         assegurando sobreposicao nitida e sem conflitos visuais durante a rolagem da pagina. -->
+    <!-- Cabeçalho fixo de navegação: o header usa position: sticky e z-index: 100 para manter seu
+         contexto de empilhamento; o submenu (.submenu-dropdown) usa position: absolute e z-index: 105
+         dentro de .menu-item-dropdown (position: relative), ficando acima do conteúdo ao rolar. -->
     <header id="cabecalho-principal">
         <div class="navbar-container">
             <div class="marca">
@@ -62,7 +58,7 @@
     </header>
 
     <main id="conteudo-principal">
-        <!-- Hero de Boas-Vindas -->
+        <!-- Hero -->
         <section id="hero" class="secao-hero" aria-labelledby="titulo-hero">
             <div class="hero-conteudo">
                 <span class="badge-tag-topo">Cafés Especiais &bull; Origem Controlada</span>
@@ -70,7 +66,7 @@
                     Café especial. Torra fresca toda semana.
                 </h1>
                 <p class="hero-descricao">
-                    Grãos 100% arábica do Cerrado Mineiro e da Mantiqueira. Moídos na hora, com métodos de extração precisos para uma xícara equilibrada, aromática e autêntica.
+                    Grãos 100% arábica do Cerrado Mineiro e da Mantiqueira, moídos na hora e preparados em métodos de extração precisos.
                 </p>
                 <div class="hero-acoes">
                     <a href="#secao-catalogo" class="botao botao-primario">Ver Cardápio</a>
@@ -98,11 +94,11 @@
             </div>
         </section>
 
-        <!-- Galeria de Destaques da Casa -->
+        <!-- Galeria de bebidas -->
         <section id="secao-bebidas" class="secao-bebidas" aria-labelledby="titulo-bebidas">
             <div class="secao-cabecalho">
                 <h2 id="titulo-bebidas">Nossas Bebidas</h2>
-                <p class="secao-descricao">Clássicos da casa e criações autorais com grãos de alta pontuação.</p>
+                <p class="secao-descricao">Clássicos da casa e receitas próprias preparadas com grãos selecionados.</p>
             </div>
 
             <div class="galeria trilho-destaques" role="region" aria-label="Bebidas em destaque com rolagem horizontal">
@@ -113,7 +109,7 @@
                     </div>
                     <div class="cafe-item-info">
                         <h3>Cappuccino</h3>
-                        <p class="descricao-bebida">Espresso duplo, leite vaporizado aveludado e toque suave de canela.</p>
+                        <p class="descricao-bebida">Espresso duplo com leite vaporizado cremoso e canela.</p>
                         <span class="preco-bebida">R$ 14,50</span>
                     </div>
                 </article>
@@ -124,7 +120,7 @@
                     </div>
                     <div class="cafe-item-info">
                         <h3>Café Espresso</h3>
-                        <p class="descricao-bebida">Encorpado, crema densa cor de avelã e notas pronunciadas de cacau.</p>
+                        <p class="descricao-bebida">Bebida encorpada com crema de avelã e notas de cacau.</p>
                         <span class="preco-bebida">R$ 9,00</span>
                     </div>
                 </article>
@@ -135,7 +131,7 @@
                     </div>
                     <div class="cafe-item-info">
                         <h3>Café Gelado</h3>
-                        <p class="descricao-bebida">Cold brew infusionado por 16h com caramelo artesanal e gelo cristal.</p>
+                        <p class="descricao-bebida">Extração a frio por 16h servida com caramelo da casa e gelo.</p>
                         <span class="preco-bebida">R$ 18,00</span>
                     </div>
                 </article>
@@ -146,29 +142,25 @@
                     </div>
                     <div class="cafe-item-info">
                         <h3>Chás Artesanais</h3>
-                        <p class="descricao-bebida">Infusão botânica natural de ervas finas, maçã desidratada e hibisco.</p>
+                        <p class="descricao-bebida">Infusão de ervas finas com maçã desidratada e hibisco.</p>
                         <span class="preco-bebida">R$ 11,00</span>
                     </div>
                 </article>
             </div>
         </section>
 
-        <!-- Secao Multimidia (Aula 04) -->
+        <!-- Seção multimídia -->
         <section id="secao-multimidia" class="secao-multimidia" aria-labelledby="titulo-multimidia">
             <div class="secao-cabecalho">
                 <h2 id="titulo-multimidia">Métodos de Extração Artesanal</h2>
-                <p class="secao-descricao">Moagem sob demanda e água a 92°C para revelar a doçura natural e notas florais de cada lote.</p>
+                <p class="secao-descricao">Moagem na hora e água a 92°C para manter a doçura natural de cada lote.</p>
             </div>
 
-            <!-- Justificativa de preload="none" (Aula 04):
-                 O vídeo explicativo está posicionado abaixo da dobra inicial da página. A opção "none"
-                 foi escolhida deliberadamente para evitar o download prematuro de dados de mídia pesados,
-                 economizando dados móveis e largura de banda do usuário, e melhorando a velocidade de
-                 carregamento inicial (FCP). Os dados do vídeo só serão requisitados quando o usuário
-                 clicar no botão de reprodução. -->
+            <!-- O vídeo fica abaixo da dobra inicial, então preload="none" evita baixar arquivos
+                 de mídia antes da hora, economiza dados móveis e só carrega ao clicar em reproduzir. -->
             <div class="video-container">
                 <video class="video-destaque" controls width="640" height="360" poster="assets/media/extracao-poster.jpg" preload="none" aria-label="Vídeo demonstrativo de extração artesanal de café">
-                    <!-- Ordem de preferencia por eficiencia/qualidade: WebM primeiro, MP4 como fallback universal -->
+                    <!-- WebM primeiro por compressão menor; MP4 como fallback -->
                     <source src="assets/media/extracao-cafe.webm" type="video/webm">
                     <source src="assets/media/extracao-cafe.mp4" type="video/mp4">
                     <track kind="subtitles" src="assets/media/legendas-cafe.vtt" srclang="pt-BR" label="Português" default>
@@ -178,24 +170,21 @@
             </div>
         </section>
 
-        <!-- Secao Indicadores Graficos: SVG Acessivel & Canvas 2D (Aula 05) -->
+        <!-- Indicadores gráficos: SVG e Canvas 2D -->
         <section id="secao-indicadores" class="secao-indicadores" aria-labelledby="titulo-indicadores">
             <div class="secao-cabecalho">
-                <h2 id="titulo-indicadores">Perfil Sensorial &amp; Intensidade</h2>
-                <p class="secao-descricao">Comparativo técnico de corpo, notas aromáticas e intensidade das nossas bebidas.</p>
+                <h2 id="titulo-indicadores">Perfil Sensorial e Intensidade</h2>
+                <p class="secao-descricao">Comparativo da intensidade sensorial das bebidas da casa.</p>
             </div>
 
             <div class="indicadores-grid">
                 <div class="indicador-card">
-                    <!-- Observação de nitidez SVG (Aula 05):
-                         Ao redimensionar a janela do navegador ou ampliar o zoom, este elemento gráfico
-                         em SVG inline preserva suas bordas, curvas e traços vetoriais com nitidez absoluta,
-                         sem pixelização ou perda de qualidade típica de formatos rasterizados (PNG/JPEG),
-                         independentemente da densidade de pixels (DPI) da tela. -->
+                    <!-- Ao redimensionar a janela ou dar zoom, o SVG inline mantém bordas e traços
+                         nítidos sem pixelizar, diferente de formatos raster (PNG/JPEG). -->
                     <div class="svg-selo-container">
                         <svg class="svg-selo" role="img" aria-labelledby="titulo-svg-selo desc-svg-selo" width="80" height="80" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <title id="titulo-svg-selo">Selo de Torra Fresca Artesanal</title>
-                            <desc id="desc-svg-selo">Emblema com xícara de café estilizada e vapores aromáticos indicando torra especial</desc>
+                            <desc id="desc-svg-selo">Emblema com xícara de café estilizada e vapor de torra especial</desc>
                             <circle cx="32" cy="32" r="30" stroke="#c2410c" stroke-width="2" fill="#fdfbf9"/>
                             <path d="M18 28h28v12a9 9 0 0 1-9 9H27a9 9 0 0 1-9-9V28z" fill="#181411"/>
                             <path d="M46 31h4a4 4 0 0 1 4 4v1a4 4 0 0 1-4 4h-4" stroke="#181411" stroke-width="2.5" stroke-linecap="round"/>
@@ -208,25 +197,26 @@
 
                 <div class="indicador-card canvas-card">
                     <h3>Escala de Intensidade das Bebidas</h3>
-                    <!-- Canvas funcional com fallback textual real para leitores de tela (Aula 05) -->
-                    <canvas id="canvas-grafico-cafes" width="460" height="200" role="img" aria-label="Gráfico de barras ilustrando a intensidade sensorial de cada bebida">
-                        Gráfico demonstrativo de intensidade sensorial: Espresso Tradicional (Intensidade 9/10), Cappuccino (Intensidade 7/10), Café Gelado (Intensidade 6/10), Chá Especial (Intensidade 4/10) e Mocha (Intensidade 8/10).
+                    <!-- Fallback textual para leitores de tela -->
+                    <canvas id="canvas-grafico-cafes" width="460" height="200" role="img" aria-label="Gráfico de barras com a intensidade sensorial de cada bebida">
+                        Intensidade sensorial: Espresso Tradicional (9/10), Cappuccino (7/10), Café Gelado (6/10), Chá Especial (4/10) e Mocha (8/10).
                     </canvas>
                 </div>
             </div>
         </section>
 
-        <!-- Consulta Interativa de Cardapio (Aulas 09 e 10) -->
+        <!-- Consulta interativa de cardápio -->
         <section id="secao-analisador" class="secao-analisador" aria-labelledby="titulo-analisador">
             <div class="card-analisador">
                 <div class="secao-cabecalho">
                     <h2 id="titulo-analisador">Consulta Interativa de Cardápio</h2>
                     <p class="secao-descricao">
-                        Filtre bebidas por faixa de orçamento e acompanhe relatórios estatísticos detalhados de preços e médias.
+                        Filtre bebidas por orçamento e veja o resumo de preços e médias do cardápio.
                     </p>
                 </div>
+                <div id="resumo-analisador-dom" class="resumo-analisador-dom" aria-live="polite"></div>
                 <div class="analisador-acoes">
-                    <button type="button" class="botao botao-primario botao-analisador" onclick="iniciarMenuInterativo()">
+                    <button type="button" id="btn-iniciar-analisador" class="botao botao-primario botao-analisador">
                         Abrir Consulta Interativa (Prompt / Notificação)
                     </button>
                     <p class="analisador-dica">
@@ -236,12 +226,12 @@
             </div>
         </section>
 
-        <!-- Catalogo Dinamico (Aulas 11 e 12) -->
+        <!-- Catálogo dinâmico -->
         <section id="secao-catalogo" class="secao-catalogo" aria-labelledby="titulo-catalogo">
             <div class="secao-cabecalho">
                 <h2 id="titulo-catalogo">Cardápio Interativo</h2>
                 <p class="catalogo-subtitulo">
-                    Filtre por categoria, busque pelo nome, favorite suas opções e adicione novas receitas ao vivo.
+                    Filtre por categoria, busque pelo nome, marque seus favoritos ou adicione novas bebidas.
                 </p>
             </div>
 
@@ -278,24 +268,23 @@
                 </p>
             </div>
 
-            <!-- Lista Dinamica de Cards (replaceChildren) -->
+            <!-- Lista dinâmica preenchida via JavaScript -->
             <ul id="lista-cardapio" class="lista-cardapio" aria-label="Lista de bebidas do cardápio">
-                <!-- Renderizado dinamicamente via JavaScript replaceChildren() -->
             </ul>
 
-            <!-- Formulario de Cadastro de Novo Item -->
+            <!-- Cadastro de novo item -->
             <div class="bloco-cadastro-item">
                 <div class="bloco-cadastro-cabecalho">
                     <h3>Cadastrar Nova Receita</h3>
                     <p class="cadastro-item-descricao">
-                        Adicione novas criações ao catálogo ativo. O item responderá imediatamente às ações de favoritar e remover.
+                        Inclua uma nova bebida no cardápio para favoritar, filtrar ou remover da lista.
                     </p>
                 </div>
                 <form id="form-novo-item" class="form-novo-item">
                     <div class="grid-form-novo">
                         <div class="form-group">
                             <label for="novo-nome">Nome da bebida</label>
-                            <input id="novo-nome" name="nome" type="text" required placeholder="Ex: Flat White Aveludado">
+                            <input id="novo-nome" name="nome" type="text" required placeholder="Ex: Flat White">
                         </div>
 
                         <div class="form-group">
@@ -332,17 +321,17 @@
         <section id="secao-diferenciais" class="secao-diferenciais" aria-labelledby="titulo-diferenciais">
             <div class="secao-cabecalho">
                 <h2 id="titulo-diferenciais">Por que a Cafeteria Aroma</h2>
-                <p class="secao-descricao">Transparência do grão à xícara, ambiente calmo e atendimento acolhedor.</p>
+                <p class="secao-descricao">Do grão à xícara com torra controlada e preparo na hora.</p>
             </div>
             <ul class="lista-diferenciais">
                 <li>Grãos selecionados com torra artesanal fresca toda semana</li>
                 <li>Métodos variados de preparo: espresso, prensa francesa e coado especial</li>
-                <li>Ambiente acolhedor com Wi-Fi de alta velocidade e tomadas acessíveis</li>
-                <li>Opções inclusivas com leites vegetais e acompanhamentos sem glúten</li>
+                <li>Ambiente com Wi-Fi rápido e tomadas acessíveis</li>
+                <li>Leites vegetais e acompanhamentos sem glúten disponíveis</li>
             </ul>
         </section>
 
-        <!-- Horarios de Funcionamento -->
+        <!-- Horários de funcionamento -->
         <section id="secao-horarios" class="secao-horarios" aria-labelledby="titulo-horarios">
             <div class="secao-cabecalho">
                 <h2 id="titulo-horarios">Horários de Atendimento</h2>
@@ -382,15 +371,15 @@
         <section id="secao-reserva" class="secao-reserva" aria-labelledby="titulo-reserva">
             <div class="secao-cabecalho">
                 <h2 id="titulo-reserva">Reserve sua Mesa</h2>
-                <p class="secao-descricao">Garanta seu espaço com antecedência em nosso salão interno ou na varanda ao ar livre.</p>
+                <p class="secao-descricao">Escolha entre o salão interno ou a varanda ao ar livre.</p>
             </div>
 
             <div class="aviso" id="aviso-reserva">
-                <p>Reserve com antecedência para garantir o melhor atendimento e mesa reservada.</p>
+                <p>Reserve com antecedência para garantir sua mesa no horário desejado.</p>
                 <button class="botao-fechar" type="button" aria-label="Fechar aviso" aria-controls="aviso-reserva">&times;</button>
             </div>
 
-            <form class="form-reserva" action="#" method="post">
+            <form id="form-reserva" class="form-reserva" action="#" method="post">
                 <fieldset>
                     <legend>Dados da reserva</legend>
 
@@ -452,27 +441,27 @@
                 </fieldset>
 
                 <button class="botao botao-primario botao-submit-reserva" type="submit">Solicitar reserva</button>
+                <p id="feedback-reserva" class="feedback-reserva" aria-live="polite" hidden></p>
             </form>
         </section>
     </main>
 
-    <!-- Rodape -->
+    <!-- Rodapé -->
     <footer class="rodape-principal">
         <div class="rodape-container">
             <div class="rodape-coluna-marca">
                 <span class="rodape-marca">Cafeteria Aroma</span>
-                <p class="rodape-slogan">Cafés especiais, grãos selecionados e métodos artesanais desde 2026.</p>
+                <p class="rodape-slogan">Cafés especiais preparados na hora desde 2026.</p>
             </div>
             <div class="rodape-links">
-                <p>&copy; 2026 Cafeteria Aroma — Projeto Integrador Frontend.</p>
-                <!-- Aula 02: Link para fonte externa relevante com target="_blank" e rel="noopener noreferrer" -->
+                <p>&copy; 2026 Cafeteria Aroma. Projeto Integrador Frontend.</p>
+                <!-- Link externo com target="_blank" e rel="noopener noreferrer" -->
                 <p>Referência técnica: <a href="https://bsca.com.br" class="link-externo-referencia" target="_blank" rel="noopener noreferrer">Associação Brasileira de Cafés Especiais (BSCA) ↗</a></p>
                 <p><a href="#cabecalho-principal" class="link-voltar-topo">Voltar ao topo ↑</a></p>
             </div>
         </div>
     </footer>
 
-    <script src="js/logica.js" defer></script>
     <script src="js/script.js" defer></script>
 </body>
 
