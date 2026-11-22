@@ -1,107 +1,90 @@
 # Cafeteria Aroma
 
-Página web de uma cafeteria com cardápio de bebidas, galeria, horários de funcionamento, analisador interativo e formulário acessível para reserva de mesa.
+Página web da Cafeteria Aroma, feita para clientes que procuram cafés especiais e chás artesanais. O site apresenta o cardápio da casa, um vídeo sobre o preparo do café, gráficos de intensidade sensorial, uma consulta de preços por orçamento e um formulário para reservar mesa.
 
-## Recursos
+## Tecnologias utilizadas
 
-- Galeria de bebidas com fotos de cafés e chás artesanais
-- Barra de navegação com Flexbox e cabeçalho fixo no topo (`position: sticky`)
-- Menu responsivo com botão hambúrguer acessível (`aria-expanded`), fechamento por `Escape`, restauração de foco e fechamento por clique externo
-- Submenu suspenso (dropdown) acessível pelo mouse e teclado
-- Seção de Multimídia com vídeo HTML5 (`<video>`), fallback de formatos (`.webm` e `.mp4`), legendas WebVTT (`.vtt`), pôster e justificativa de `preload="none"`
-- Elemento gráfico SVG inline acessível (`role="img"`, `<title>`, `<desc>`) com nitidez vetorial independente de DPI
-- Gráfico dinâmico em HTML5 Canvas com contexto 2D, animação via `requestAnimationFrame` e limpeza de quadro com `clearRect`
-- Cardápio interativo gerenciado via DOM e delegação de eventos (`closest` e `dataset`)
-- Busca em tempo real por nome e filtro por categorias
-- Controle com estado para exibição rápida de favoritos (`aria-pressed`)
-- Atalho de teclado rápido (`/`) para foco instantâneo no campo de busca
-- Resumo dinâmico estatístico anunciado por região acessível (`aria-live="polite"`)
-- Cadastro de novos itens ao vivo, demonstrando a propagação de eventos sem novos ouvintes
-- Segurança com renderização via `createElement` e `textContent` (prevenção a injeções XSS)
-- Atualização limpa de nós do DOM com `replaceChildren`
-- Tabela com os horários de funcionamento
-- Lista com os diferenciais da cafeteria e link externo referenciado (`target="_blank"` e `rel="noopener noreferrer"`)
-- Formulário de reserva com validações nativas e campos acessíveis
-- Analisador de cardápio em JavaScript com filtros de preço, cálculo de estatísticas e menu interativo (com teste de mesa e documentação técnica)
+- HTML5 semântico (`header`, `nav`, `main`, `section`, `article`, `footer`, formulários com validação nativa e mídia `<video>` com `<track>` WebVTT)
+- CSS3 (`:root` custom properties, Flexbox, CSS Grid, pseudo-classes estruturais, animações com `transform` e Media Queries)
+- JavaScript puro (ES6+: lógica estruturada, funções puras com escopo local, `map`/`filter`/`reduce`, criação segura de DOM com `createElement`/`textContent`/`replaceChildren` e delegação de eventos)
+- SVG inline acessível e HTML5 Canvas 2D animado com `requestAnimationFrame` e `clearRect`
 
-## Como visualizar
+## Capturas de tela
 
-Abra o arquivo `index.html` no navegador.
-1. Use o campo de busca ou pressione `/` para filtrar bebidas pelo nome.
-2. Filtre por categorias ou clique em **⭐ Apenas Favoritos** para alternar a exibição.
-3. Marque como favorito ou remova itens do cardápio utilizando os botões de cada card.
-4. Adicione uma nova bebida no formulário inferior e teste os botões criados dinamicamente.
-5. Para testar o analisador estatístico da Aula 09 no console, abra o painel retrátil **📊 Métricas do Cardápio** e clique em **Executar Análise Completa no Console (F12)**.
+### Desktop (1280x900)
 
-## Tecnologias
+![Versão desktop da Cafeteria Aroma](assets/images/print-desktop.png)
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
+### Celular (390x844)
 
-## Avaliação
+![Versão mobile da Cafeteria Aroma](assets/images/print-celular.png)
 
-- 02/09 - avaliação em pares -
+## Estrutura de pastas
 
-### Aula 1 — Git e GitHub
+```text
+projeto-integrador-frontend-Gabriel/
+├── assets/
+│   ├── images/
+│   │   ├── cafe-expresso.webp
+│   │   ├── cafe-gelado.webp
+│   │   ├── cappuccino.jpg
+│   │   ├── cha-artesanal.svg
+│   │   ├── cha-artesanal.webp
+│   │   ├── print-celular.png
+│   │   └── print-desktop.png
+│   └── media/
+│       ├── extracao-cafe.mp4
+│       ├── extracao-cafe.webm
+│       ├── extracao-poster.jpg
+│       └── legendas-cafe.vtt
+├── css/
+│   ├── reset.css
+│   └── style.css
+├── docs/
+│   └── modelagem/
+├── js/
+│   └── script.js
+├── index.html
+└── README.md
+```
 
-**1. Repositório público e documentado**
-- **Status:** Atende Plenamente
-- **Comentário:** O repositório está público e o `README.md` explica claramente do que se trata o projeto: título, uma breve descrição, seção e tecnologias. Cumpre bem o objetivo de descrever o projeto a quem chega ao repositório.
+## Como executar
 
-**2. Histórico de commits**
-- **Status:** Atende Plenamente
-- **Comentário:** Os 4 commits do histórico têm mensagens descritivas e específicas: "Inicializa projeto da cafeteria", "Adiciona semântica e formulário de reserva", "Atualiza estrutura da pagina" e "Adiciona README do projeto". Dá para entender a evolução do projeto só lendo o log.
+1. Clone ou baixe o repositório para a sua máquina.
+2. Abra o arquivo `index.html` diretamente no navegador ou inicie com a extensão Live Server no VS Code.
+3. Na página, use o campo de busca (ou a tecla `/`), o filtro por categoria e o botão **Apenas Favoritos** para filtrar o cardápio.
+4. Adicione novas bebidas no formulário **Cadastrar Nova Receita** e teste os botões de favoritar e remover criados dinamicamente.
+5. Clique em **Abrir Consulta Interativa** para informar um orçamento limite via `prompt()`, navegar pelo menu em `do...while` e conferir a tabela completa no Console (`F12`).
 
-**3. Uso de branch e Pull Request**
-- **Status:** Atende Plenamente
-- **Comentário:** Encontrei um Pull Request, com status Merged, feito da branch `feature/html-semantica-formulario` para a `main`. Isso mostra que o fluxo de branch + PR foi feito e fechado corretamente.
+## Mapa dos requisitos
 
-**4. .gitignore presente**
-- **Status:** Atende Plenamente
-- **Comentário:** Encontrado um arquivo `.gitignore` no repositório, com o básico colocado (`node_modules`, `.env` ou arquivos de build que pudessem vazar), assim como o critério pede explicitamente.
+| Requisito (Seção 2) | Arquivo | Localização / Implementação |
+|---|---|---|
+| Estrutura semântica (`header`, `nav`, `main`, `section`, `article`, `footer`) | `index.html` | Linhas 20, 30, 60, 62 a 371, 105 a 148, 450 |
+| Formulário acessível com `label`, `fieldset`, `legend`, `required`, `pattern`/`min`/`max` | `index.html` | Seção `#secao-reserva` (linhas 382 a 445) |
+| Multimídia `<video>` com 2 `<source>`, `poster`, `preload="none"` e `<track>` `.vtt` | `index.html` | Seção `#secao-multimidia` (linhas 153 a 170) |
+| SVG inline acessível (`role="img"`, `<title>`, `<desc>`) e Canvas 2D animado | `index.html` / `js/script.js` | `index.html` (linhas 185 a 203); `iniciarGraficoCanvas` (`js/script.js`, linha 759) |
+| Reset CSS (`box-sizing: border-box` e remoção de margens do `body`) | `css/reset.css` | Linhas 1 a 28 |
+| Variáveis no `:root`, unidades `rem`, ordem LoVe/HAte e combinadores comentados | `css/style.css` | `:root` (linha 4), `a:link..:active` (linhas 73 a 85), combinadores (linhas 109, 466) |
+| Navbar em Flexbox, `position: sticky`, dropdown e menu mobile | `css/style.css` | Linhas 128 a 306 e `@media (max-width: 680px)` (linhas 1287 a 1343) |
+| Seções em Grid com pseudo-classes estruturais e hover com `transform` | `css/style.css` | `.trilho-destaques > .cafe-item:first-child` (linha 470), `.lista-cardapio > .card-item-catalogo:first-child` (linha 847), `.lista-diferenciais > li:nth-child(odd)` (linha 1059) |
+| Responsividade celular e desktop | `css/style.css` | Media queries `@media (max-width: 900px)` (linha 1271) e `@media (max-width: 680px)` (linha 1287) |
+| Dados (6 itens com 6 propriedades) e planejamento no topo | `js/script.js` | Comentário (linhas 1 a 44) e `const itensCardapio` (linhas 47 a 54) |
+| Lógica (Aula 09): dados -> classificar -> resumir (`if/else if/else`, `switch`, `for...of`, `while`, `do...while`) | `js/script.js` | `classificarFaixaPreco` (linha 89), `obterEtiquetaCategoria` (linha 101), `executarAnaliseCardapio` (linha 159), `iniciarMenuInterativo` (linha 289) |
+| Funções e escopo (Aula 10): 2+ funções, `const`/`let`, `Number()`, `return`, escopo local | `js/script.js` | `calcularPrecoFinal` (linha 66), `criarCalculadoraDesconto` (linha 81), `calcularResumo` (linha 143) |
+| Arrays e DOM (Aula 11): `map`, `filter`, `reduce`, `createElement`/`textContent`, classes CSS | `js/script.js` | `criarElementoItem` (linha 361), `desenhar` (linha 443), `renderizarResumoAnalisador` (linha 249) |
+| Eventos (Aula 12): `aria-expanded`, `aria-pressed`, teclado, delegação, busca/filtro e `aria-live="polite"` | `js/script.js` | `tratarCliqueLista` (linha 496), `tratarBusca` (linha 477), `tratarFiltroCategoria` (linha 482), `tratarAlternarFavoritos` (linha 487), `alternarMenuMobile` (linha 613), `tratarTecladoMenu` (linha 627) |
+| Script único ligado ao final do `<body>` com `defer` | `index.html` | `<script src="js/script.js" defer></script>` (linha 465) |
 
-### Aula 2 — Conceitos Fundamentais da Web
+## Autor
 
-**5. HTML mínimo válido**
-- **Status:** Atende Plenamente
-- **Comentário:** `index.html`, linhas 1–8: `<!DOCTYPE html>`, `<html lang="pt-BR">`, `<head>` com `<meta charset="UTF-8">`, `<meta name="viewport">` e `<title>Cafeteria Aroma</title>`, seguido de `<body>` fechado corretamente.
+- Nome: Gabriel Amâncio Campos Crispim
+- RGM: 47012412
+- Curso: Análise e Desenvolvimento de Sistemas (UNIPÊ)
 
-**6. Página abre sem erros**
-- **Status:** Atende Plenamente
-- **Comentário:** Os três `<img>` correspondem exatamente às imagens presentes no repositório, nenhum link quebrado.
+---
 
-### Aula 3 — HTML5 — Semântica e Formulários
+## Histórico de avaliações por pares
 
-**7. Elementos semânticos**
-- **Status:** Atende Plenamente
-- **Comentário:** O documento usa `<header>` (linha ~9), `<main>` envolvendo o conteúdo, duas `<section>` e `<footer>` no final. Não usa `<nav>` nem `<article>`, mas isso faz sentido com o escopo do projeto.
-
-**8. Labels associados aos campos**
-- **Status:** Atende Plenamente
-- **Comentário:** Todos os campos de texto/data/número/select têm `<label>` casando com o `id` do `<input>`/`<select>` correspondente. Nos radios, a associação é feita de forma correta.
-
-**9. Validação nativa usada**
-- **Status:** Atende Plenamente
-- **Comentário:** Os tipos foram escolhidos corretamente para e-mail, telefone, data/horário e quantidade de pessoas. O atributo `required` está presente nos campos essenciais e ausente apenas no telefone, já que nem toda reserva depende de contato obrigatório.
-
-### Cálculo da Nota Final
-
-| # | Critério | Status | Pontos |
-|---|----------|--------|--------|
-| 1 | Repositório público e documentado | Atende Plenamente | 2 |
-| 2 | Histórico de commits | Atende Plenamente | 2 |
-| 3 | Uso de branch e Pull Request | Atende Plenamente | 2 |
-| 4 | .gitignore presente | Atende Plenamente | 2 |
-| 5 | HTML mínimo válido | Atende Plenamente | 2 |
-| 6 | Página abre sem erros | Atende Plenamente | 2 |
-| 7 | Elementos semânticos | Atende Plenamente | 2 |
-| 8 | Labels associados aos campos | Atende Plenamente | 2 |
-| 9 | Validação nativa usada | Atende Plenamente | 2 |
-
-**Nota Final: 10,0**
-
-Avaliação por pares - Data 21/10 - Feita por: Arthur Evangelista-
-É notável que o site está ficando muito bem estruturado e organizado.
-Os códigos estão coesos e semânticos, *com relação aos critérios exigidos nas aulas o desenvolvimento segue atendendo plenamente todos eles!* Nota:10.
-Navegação está simples(vai direto ao ponto sem enrolação), intuitiva e atrativa. Demais recursos de organização dos repositórios também atenderam as exigências.
+- Avaliação em pares (02/09): Nota 10,0 em Git/GitHub, HTML mínimo válido, semântica e formulários.
+- Avaliação em pares (21/10, Arthur Evangelista): Nota 10,0 em estrutura semântica, navegação e organização do repositório.
