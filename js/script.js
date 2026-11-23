@@ -285,7 +285,7 @@ function renderizarResumoAnalisador(relatorio) {
     container.replaceChildren(...cartoes);
 }
 
-// Menu interativo via prompt e do...while acionado pelo usuário
+// Menu interativo via prompt e do...while (acionado ao carregar e via botão)
 function iniciarMenuInterativo() {
     const valorPadrao = 15.00;
     let precoLimite = valorPadrao;
@@ -852,3 +852,4 @@ iniciarAvisoReserva();
 iniciarAnalisadorPrompt();
 iniciarGraficoCanvas();
 verificarSuporteVideo();
+iniciarMenuInterativo();

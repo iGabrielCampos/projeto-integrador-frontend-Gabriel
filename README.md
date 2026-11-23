@@ -54,7 +54,7 @@ projeto-integrador-frontend-Gabriel/
 2. Abra o arquivo `index.html` diretamente no navegador ou inicie com a extensão Live Server no VS Code.
 3. Na página, use o campo de busca (ou a tecla `/`), o filtro por categoria e o botão **Apenas Favoritos** para filtrar o cardápio.
 4. Adicione novas bebidas no formulário **Cadastrar Nova Receita** e teste os botões de favoritar e remover criados dinamicamente.
-5. Clique em **Abrir Consulta Interativa** para informar um orçamento limite via `prompt()`, navegar pelo menu em `do...while` e conferir a tabela completa no Console (`F12`).
+5. Ao abrir a página (ou ao clicar em **Abrir Consulta Interativa**), informe um orçamento limite via `prompt()`, navegar pelo menu em `do...while` e conferir a tabela completa no Console (`F12`).
 
 ## Mapa dos requisitos
 
